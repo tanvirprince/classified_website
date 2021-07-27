@@ -14,6 +14,182 @@ if (isset($latestOptions, $latestOptions['hide_on_mobile']) and $latestOptions['
 	$hideOnMobile = ' hidden-sm';
 }
 ?>
+@php
+
+$all_ads = App\Models\Post::latest()->get()->take(15);
+$randoms = App\Models\Post::get()->random(15);
+$popular = App\Models\Post::get()->sortByDesc('visits')->take(15);
+
+	
+@endphp
+
+
+<br/>
+<br/>
+
+<div class="container">
+	
+	<ul class="nav nav-tabs">
+	  <li class="active"><h3><a class="btn btn-default" data-toggle="tab" href="#home">ALL ADS</a></h3></li>
+	  <li><h3><a class="btn btn-default" data-toggle="tab" href="#menu1">RANDOM ADS</a></h3></li>
+	  <li><h3><a class="btn btn-default" data-toggle="tab" href="#menu2">POPULAR ADS</a></h3></li>
+	</ul>
+  
+	<div class="tab-content">
+	  <div id="home" class="tab-pane active">
+		
+		{{-- @foreach ($all_ads as $all)
+		@php
+				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+	
+		@endphp
+			<div class="item-list bg-light" style="height: 362px;">	
+					<div class="row">
+						<div class="col-sm-2 col-12 no-padding photobox">
+							<div class="add-image">
+								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
+								<a href=""><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" alt="Web Developer"> </a>
+							</div>
+						</div>
+						<div class="col-sm-7 col-12 add-desc-box">
+							<div class="items-details">
+								<h5 class="add-title"><a href="">{{ $all->title }} </a></h5>
+								<span class="info-row">
+									<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Private individual"></span>
+										<span class="date">
+											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
+										</span>
+										<span class="category">
+										<i class="icon-folder-circled"></i>
+											<a href="" class="info-link">{{$category}}</a>
+									</span>
+									<span class="item-location">
+										<i class="icon-location-2"></i>
+										<a href="" class="info-link">{{$country}}</a> 
+									</span>
+								</span>
+							</div>				
+						</div>
+						
+						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
+							<h4 class="item-price"></h4>
+								<a class="btn btn-default btn-sm make-favorite" id="27">
+								<i class="fa fa-heart"></i><span> Save </span>
+								</a>
+						</div>
+					</div>
+			</div>
+		@endforeach --}}
+
+	  </div>
+	  <div id="menu1" class="tab-pane">
+		<hr/>
+		@foreach ($randoms as $all)
+		@php
+				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+				$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+
+		@endphp
+			<div class="item-list bg-light" style="height: 362px;">	
+					<div class="row">
+						<div class="col-sm-2 col-12 no-padding photobox">
+							<div class="add-image">
+								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" alt="Web Developer"> </a>
+							</div>
+						</div>
+						<div class="col-sm-7 col-12 add-desc-box">
+							<div class="items-details">
+								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<span class="info-row">
+									<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Private individual"></span>
+										<span class="date">
+											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
+										</span>
+										<span class="category">
+										<i class="icon-folder-circled"></i>
+											<a href="{{ url("/category/$slug_cat")}}" class="info-link">{{$category}}</a>
+									</span>
+									<span class="item-location">
+										<i class="icon-location-2"></i>
+										<a href="{{ url("/location/$country/$all->city_id")}}" class="info-link">{{$country}}</a> 
+									</span>
+								</span>
+							</div>				
+						</div>
+						
+						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
+							<h4 class="item-price"></h4>
+								<a class="btn btn-default btn-sm make-favorite" id="27">
+								<i class="fa fa-heart"></i><span> Save </span>
+								</a>
+						</div>
+					</div>
+			</div>
+		@endforeach
+
+
+	  </div>
+	  <div id="menu2" class="tab-pane">
+		
+		<hr/>
+		@foreach ($popular as $all)
+		@php
+				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+				$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+
+		@endphp
+			<div class="item-list bg-light" style="height: 362px;">	
+					<div class="row">
+						<div class="col-sm-2 col-12 no-padding photobox">
+							<div class="add-image">
+								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" alt="Web Developer"> </a>
+							</div>
+						</div>
+						<div class="col-sm-7 col-12 add-desc-box">
+							<div class="items-details">
+								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<span class="info-row">
+									<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Private individual"></span>
+										<span class="date">
+											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
+										</span>
+										<span class="category">
+										<i class="icon-folder-circled"></i>
+											<a href="{{ url("/category/$slug_cat")}}" class="info-link">{{$category}}</a>
+									</span>
+									<span class="item-location">
+										<i class="icon-location-2"></i>
+										<a href="{{ url("/location/$country/$all->city_id")}}" class="info-link">{{$country}}</a> 
+									</span>
+								</span>
+							</div>				
+						</div>
+						
+						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
+							<h4 class="item-price"></h4>
+								<a class="btn btn-default btn-sm make-favorite" id="27">
+								<i class="fa fa-heart"></i><span> Save </span>
+								</a>
+						</div>
+					</div>
+			</div>
+		@endforeach
+
+
+	  </div>
+	  
+  </div>
+
+
+
 @if (isset($latest) && !empty($latest) && $latest->posts->count() > 0)
 	@includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'], ['hideOnMobile' => $hideOnMobile])
 	<div class="container{{ $hideOnMobile }}">
@@ -169,80 +345,8 @@ if (isset($latestOptions, $latestOptions['hide_on_mobile']) and $latestOptions['
 	
 	  
 @endif
-@php
-
-$all_ads = App\Models\Post::get()->take(10);
-	
-@endphp
 
 
-<br/>
-<br/>
-<div class="container">
-	
-
-	<div class="tab">
-	<button class="" onclick="openCity(event, 'London')">ALL Ads</button>
-	<button class="tablinks" onclick="openCity(event, 'Paris')">RANDOMS</button>
-	<button class="tablinks" onclick="openCity(event, 'Tokyo')">POLPULAR</button>
-	</div>
-
-	<div id="London" class="tabcontent">
-	
-	@foreach ($all_ads as $all)
-	@php
-			$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
-
-	@endphp
-		<div class="item-list bg-light" style="height: 362px;">	
-				<div class="row">
-					<div class="col-sm-2 col-12 no-padding photobox">
-						<div class="add-image">
-							<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
-							<a href=""><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" alt="Web Developer"> </a>
-						</div>
-					</div>
-					<div class="col-sm-7 col-12 add-desc-box">
-						<div class="items-details">
-							<h5 class="add-title"><a href="">{{ $all->title }} </a></h5>
-							<span class="info-row">
-								<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Private individual">p</span>&nbsp;
-									<span class="date">
-										<i class="icon-clock"></i> Jul 19th, 2021 at 12:21
-									</span>
-									<span class="category">
-									<i class="icon-folder-circled"></i>
-										<a href="" class="info-link">Automobiles</a>
-										<a href="" class="info-link">Cars</a>
-								</span>
-								<span class="item-location">
-									<i class="icon-location-2"></i>
-									<a href="" class="info-link">London</a> 
-								</span>
-							</span>
-						</div>				
-					</div>
-					
-					<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
-						<h4 class="item-price"></h4>
-							<a class="btn btn-default btn-sm make-favorite" id="27">
-							<i class="fa fa-heart"></i><span> Save </span>
-							</a>
-					</div>
-				</div>
-		</div>
-	@endforeach
-	<div id="Paris" class="tabcontent">
-	<h3>Paris</h3>
-	<p>Paris is the capital of France.</p> 
-	</div>
-
-	<div id="Tokyo" class="tabcontent">
-	<h3>Tokyo</h3>
-	<p>Tokyo is the capital of Japan.</p>
-	</div>
-
-</div>
 {{-- another design  --}}
 
 {{-- another design  --}}
@@ -250,6 +354,14 @@ $all_ads = App\Models\Post::get()->take(10);
 
 @section('after_scripts')
     @parent
+
+	<script>
+		$(document).ready(function(){
+		  $(".nav-tabs a").click(function(){
+			$(this).tab('show');
+		  });
+		});
+		</script>
     <script>
 		
 		/* Default view (See in /js/script.js) */

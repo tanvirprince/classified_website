@@ -109,7 +109,7 @@
 								<i class="icon-eye-3"></i> {{ \App\Helpers\Number::short($post->visits) }} {{ trans_choice('global.count_views', getPlural($post->visits)) }}
 							</span>
 						</span>
-						
+						{{-- image  --}}
 						<?php $picturesSlider = 'post.inc.pictures-slider.' . config('settings.single.pictures_slider', 'horizontal-thumb'); ?>
 						@if (view()->exists($picturesSlider))
 							@includeFirst([config('larapen.core.customizedViewPath') . $picturesSlider, $picturesSlider])
@@ -288,12 +288,14 @@
 									</div>
 								</div>
 								
+								
 								@if (config('plugins.reviews.installed'))
 									@if (view()->exists('reviews::comments'))
 										@include('reviews::comments')
 									@endif
 								@endif
 							</div>
+							
 							<!-- /.tab content -->
 									
 							<div class="content-footer text-left">
@@ -309,9 +311,12 @@
 									{!! genEmailContactBtn($post) !!}
 								@endif
 							</div>
+							
 						</div>
+						
 					</div>
 					<!--/.items-details-wrapper-->
+					
 				</div>
 				<!--/.page-content-->
 
@@ -346,6 +351,8 @@
 									</div>
 								</div>
 							@endif
+
+							
 							
 							<div class="card-content">
 								<?php $evActionStyle = 'style="border-top: 0;"'; ?>
@@ -468,6 +475,51 @@
                                         </a>
                                     </p>
                                     @endif
+								</div>
+							</div>
+						</div>
+						<div class="col-4">
+							{{-- @include('post.report') --}}
+							
+							<a href="{{ url('posts/' . $post->id . '/report') }}"><button class="btn btn-danger center"><i class="fa icon-info-circled-alt tooltipHere">Report this ads</i> </button></a>
+							{{-- <a href="{{ url('posts/' . $post->id . '/report') }}">
+								<i class="fa icon-info-circled-alt tooltipHere"
+								   data-toggle="tooltip"
+								   data-original-title="{{ t('Report abuse') }}"
+								></i>
+							</a> --}}
+						</div>
+						<br>
+
+
+						@php
+						$popular = App\Models\Post::get()->random(2);	
+						@endphp
+						<div class="card sidebar-card">
+							<div class="card-header">Recommanded for you</div>
+							<div class="card-content">
+								<div class="card-body text-left">
+									@foreach ($popular as $all)
+									@php
+											$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+											$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+											$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+											$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+
+									@endphp
+									
+									<div class="card">
+										<img class="card-img-top" src="{{asset('/')}}storage/{{$image }}" alt="Card image cap">
+										<hr>
+										<div class="card-body">
+										  {{-- <a href="{{ url("/$all->slug/$all->id")}}"><h3> {{ $all->title }}</h3></a> --}}
+										  <h4 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h4>
+										</div>
+									</div>
+									<hr/>
+									
+									@endforeach
+									
 								</div>
 							</div>
 						</div>

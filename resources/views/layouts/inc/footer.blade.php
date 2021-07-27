@@ -20,6 +20,53 @@ if (
 	$colClass4 = 'col-lg-4 col-md-4 col-sm-4 col-xs-12';
 }
 ?>
+
+<div class="container-fluid bg-dark">
+	<div class="row col-md-12">
+		<div class="col-md-4">
+		<h1> Footer 1 </h1>
+		</div>
+		<div class="col-md-4">
+
+		</div>
+		<div class="col-md-4">
+
+		</div>
+
+	</div>
+</div>
+<div class="container-fluid bg-success">
+	<div class="row col-md-12">
+		<div class="col-md-4">
+		
+		</div>
+		<div class="col-md-4">
+			<h1> Footer 2 </h1>
+		</div>
+		<div class="col-md-4">
+
+		</div>
+
+	</div>
+</div>
+<div class="container-fluid bg-grey">
+	<div class="row col-md-12">
+		<div class="col-md-4">
+		
+		</div>
+		<div class="col-md-4">
+
+		</div>
+		<div class="col-md-4">
+			<h1> Footer 3 </h1>
+		</div>
+
+	</div>
+</div>
+
+
+
+
 <footer class="main-footer">
 	<div class="footer-content">
 		<div class="container">
