@@ -14,337 +14,266 @@ if (isset($latestOptions, $latestOptions['hide_on_mobile']) and $latestOptions['
 	$hideOnMobile = ' hidden-sm';
 }
 ?>
+
+<br/>
+
+{{-- <p>In this example, we use JavaScript to "click" on the London button, to open the tab on page load.</p> --}}
+<div class="container">
+
+
+<div class="tab">
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">ALL ADS</button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">POPULAR ADS</button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">LATEST ADS</button>
+</div>
 @php
-
-$all_ads = App\Models\Post::latest()->get()->take(15);
-$randoms = App\Models\Post::get()->random(15);
-$popular = App\Models\Post::get()->sortByDesc('visits')->take(15);
-
+$all_ads = App\Models\Post::latest()->get()->take(4);
+$front_random_active = App\Models\Post::get()->random(4);
+$randoms = App\Models\Post::latest()->get()->take(4);
+$popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 	
 @endphp
 
+<div id="London" class="tabcontent">
+	<br/>
+	<br/>
 
-<br/>
-<br/>
-
-<div class="container">
-	
-	<ul class="nav nav-tabs">
-	  <li class="active"><h3><a class="btn btn-default" data-toggle="tab" href="#home">ALL ADS</a></h3></li>
-	  <li><h3><a class="btn btn-default" data-toggle="tab" href="#menu1">RANDOM ADS</a></h3></li>
-	  <li><h3><a class="btn btn-default" data-toggle="tab" href="#menu2">POPULAR ADS</a></h3></li>
-	</ul>
-  
-	<div class="tab-content">
-	  <div id="home" class="tab-pane active">
-		
-		{{-- @foreach ($all_ads as $all)
-		@php
-				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
-				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
-				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
-	
-		@endphp
-			<div class="item-list bg-light" style="height: 362px;">	
-					<div class="row">
-						<div class="col-sm-2 col-12 no-padding photobox">
-							<div class="add-image">
-								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
-								<a href=""><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" alt="Web Developer"> </a>
-							</div>
-						</div>
-						<div class="col-sm-7 col-12 add-desc-box">
-							<div class="items-details">
-								<h5 class="add-title"><a href="">{{ $all->title }} </a></h5>
-								<span class="info-row">
-									<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Private individual"></span>
-										<span class="date">
-											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
-										</span>
-										<span class="category">
-										<i class="icon-folder-circled"></i>
-											<a href="" class="info-link">{{$category}}</a>
-									</span>
-									<span class="item-location">
-										<i class="icon-location-2"></i>
-										<a href="" class="info-link">{{$country}}</a> 
-									</span>
-								</span>
-							</div>				
-						</div>
-						
-						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
-							<h4 class="item-price"></h4>
-								<a class="btn btn-default btn-sm make-favorite" id="27">
-								<i class="fa fa-heart"></i><span> Save </span>
-								</a>
-						</div>
-					</div>
-			</div>
-		@endforeach --}}
-
-	  </div>
-	  <div id="menu1" class="tab-pane">
-		<hr/>
-		@foreach ($randoms as $all)
-		@php
-				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
-				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
-				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
-				$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
-
-		@endphp
-			<div class="item-list bg-light" style="height: 362px;">	
-					<div class="row">
-						<div class="col-sm-2 col-12 no-padding photobox">
-							<div class="add-image">
-								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" alt="Web Developer"> </a>
-							</div>
-						</div>
-						<div class="col-sm-7 col-12 add-desc-box">
-							<div class="items-details">
-								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
-								<span class="info-row">
-									<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Private individual"></span>
-										<span class="date">
-											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
-										</span>
-										<span class="category">
-										<i class="icon-folder-circled"></i>
-											<a href="{{ url("/category/$slug_cat")}}" class="info-link">{{$category}}</a>
-									</span>
-									<span class="item-location">
-										<i class="icon-location-2"></i>
-										<a href="{{ url("/location/$country/$all->city_id")}}" class="info-link">{{$country}}</a> 
-									</span>
-								</span>
-							</div>				
-						</div>
-						
-						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
-							<h4 class="item-price"></h4>
-								<a class="btn btn-default btn-sm make-favorite" id="27">
-								<i class="fa fa-heart"></i><span> Save </span>
-								</a>
-						</div>
-					</div>
-			</div>
-		@endforeach
-
-
-	  </div>
-	  <div id="menu2" class="tab-pane">
-		
-		<hr/>
-		@foreach ($popular as $all)
-		@php
-				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
-				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
-				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
-				$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
-
-		@endphp
-			<div class="item-list bg-light" style="height: 362px;">	
-					<div class="row">
-						<div class="col-sm-2 col-12 no-padding photobox">
-							<div class="add-image">
-								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" alt="Web Developer"> </a>
-							</div>
-						</div>
-						<div class="col-sm-7 col-12 add-desc-box">
-							<div class="items-details">
-								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
-								<span class="info-row">
-									<span class="add-type business-ads tooltipHere" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Private individual"></span>
-										<span class="date">
-											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
-										</span>
-										<span class="category">
-										<i class="icon-folder-circled"></i>
-											<a href="{{ url("/category/$slug_cat")}}" class="info-link">{{$category}}</a>
-									</span>
-									<span class="item-location">
-										<i class="icon-location-2"></i>
-										<a href="{{ url("/location/$country/$all->city_id")}}" class="info-link">{{$country}}</a> 
-									</span>
-								</span>
-							</div>				
-						</div>
-						
-						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
-							<h4 class="item-price"></h4>
-								<a class="btn btn-default btn-sm make-favorite" id="27">
-								<i class="fa fa-heart"></i><span> Save </span>
-								</a>
-						</div>
-					</div>
-			</div>
-		@endforeach
-
-
-	  </div>
-	  
-  </div>
-
-
-
-@if (isset($latest) && !empty($latest) && $latest->posts->count() > 0)
-	@includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'], ['hideOnMobile' => $hideOnMobile])
 	<div class="container{{ $hideOnMobile }}">
 		<div class="col-xl-12 content-box layout-section">
 			<div class="row row-featured row-featured-category">
-				
 				<div class="col-xl-12 box-title no-border">
 					<div class="inner">
 						<h2>
-							<span class="title-3">{!! $latest->title !!}</span>
+							{{-- <span class="title-3">{!! $latest->title !!}</span> --}}
 							<a href="{{ $latest->link }}" class="sell-your-item">
 								{{ t('View more') }} <i class="icon-th-list"></i>
 							</a>
 						</h2>
 					</div>
 				</div>
-				
-				<div id="postsList" class="adds-wrapper noSideBar category-list">
-					@foreach($latest->posts as $key => $post)
-						@continue(empty($post->city))
-						<?php
-							// Main Picture
-							if ($post->pictures->count() > 0) {
-								$postImg = imgUrl($post->pictures->get(0)->filename, 'medium');
-							} else {
-								$postImg = imgUrl(config('larapen.core.picture.default'), 'medium');
-							}
-						?>
-						<div class="item-list">
-							@if ($post->featured == 1)
-								@if (isset($post->latestPayment, $post->latestPayment->package) && !empty($post->latestPayment->package))
-									@if ($post->latestPayment->package->ribbon != '')
-										<div class="cornerRibbons {{ $post->latestPayment->package->ribbon }}">
-											<a href="#"> {{ $post->latestPayment->package->short_name }}</a>
-										</div>
-									@endif
+	<div id="postsList" class="adds-wrapper noSideBar category-list make-grid">
+	
+ 	@foreach ($front_random_active as $all)
+			@php
+				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+				$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+			@endphp
+
+			<div class="item-list bg-light" style="height: 354px;">	
+					<div class="row">
+						<div class="col-sm-2 col-12 no-padding photobox">
+							<div class="add-image">
+								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
+
+								@if (!empty($image))
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
+								@else
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
 								@endif
-							@endif
-							
-							<div class="row">
-								<div class="col-sm-2 col-12 no-padding photobox">
-									<div class="add-image">
-										<span class="photo-count"><i class="fa fa-camera"></i> {{ $post->pictures->count() }} </span>
-										<a href="{{ \App\Helpers\UrlGen::post($post) }}">
-											<img class="lazyload img-thumbnail no-margin" src="{{ $postImg }}" alt="{{ $post->title }}">
-										</a>
-									</div>
-								</div>
-								
-								<div class="{{ $colDescBox }} add-desc-box">
-									<div class="items-details">
-										<h5 class="add-title">
-											<a href="{{ \App\Helpers\UrlGen::post($post) }}">{{ \Illuminate\Support\Str::limit($post->title, 70) }}</a>
-										</h5>
-										
-										<span class="info-row">
-											@if (isset($post->postType) && !empty($post->postType))
-												<span class="add-type business-ads tooltipHere"
-													  data-toggle="tooltip"
-													  data-placement="bottom"
-													  title="{{ $post->postType->name }}"
-												>
-													{{ strtoupper(mb_substr($post->postType->name, 0, 1)) }}
-												</span>&nbsp;
-											@endif
-											@if (!config('settings.listing.hide_dates'))
-												<span class="date">
-													<i class="icon-clock"></i> {!! $post->created_at_formatted !!}
-												</span>
-											@endif
-											<span class="category"{!! (config('lang.direction')=='rtl') ? ' dir="rtl"' : '' !!}>
-												<i class="icon-folder-circled"></i>&nbsp;
-												@if (isset($post->category->parent) && !empty($post->category->parent))
-													<a href="{!! \App\Helpers\UrlGen::category($post->category->parent) !!}" class="info-link">
-														{{ $post->category->parent->name }}
-													</a>&nbsp;&raquo;&nbsp;
-												@endif
-												<a href="{!! \App\Helpers\UrlGen::category($post->category) !!}" class="info-link">
-													{{ $post->category->name }}
-												</a>
-											</span>
-											<span class="item-location"{!! (config('lang.direction')=='rtl') ? ' dir="rtl"' : '' !!}>
-												<i class="icon-location-2"></i>&nbsp;
-												<a href="{!! \App\Helpers\UrlGen::city($post->city) !!}" class="info-link">
-													{{ $post->city->name }}
-												</a>
-												{{ (isset($post->distance)) ? '- ' . round($post->distance, 2) . getDistanceUnit() : '' }}
-											</span>
-										</span>
-									</div>
-									
-									@if (config('plugins.reviews.installed'))
-										@if (view()->exists('reviews::ratings-list'))
-											@include('reviews::ratings-list')
-										@endif
-									@endif
-								
-								</div>
-								
-								<div class="{{ $colPriceBox }} text-right price-box" style="white-space: nowrap;">
-									<h4 class="item-price">
-										@if (isset($post->category, $post->category->type))
-											@if (!in_array($post->category->type, ['not-salable']))
-												@if (is_numeric($post->price) && $post->price > 0)
-													{!! \App\Helpers\Number::money($post->price) !!}
-												@elseif(is_numeric($post->price) && $post->price == 0)
-													{!! t('free_as_price') !!}
-												@else
-													{!! \App\Helpers\Number::money(' --') !!}
-												@endif
-											@endif
-										@else
-											{{ '--' }}
-										@endif
-									</h4>&nbsp;
-									@if (isset($post->latestPayment, $post->latestPayment->package) && !empty($post->latestPayment->package))
-										@if ($post->latestPayment->package->has_badge == 1)
-											<a class="btn btn-danger btn-sm make-favorite">
-												<i class="fa fa-certificate"></i>
-												<span> {{ $post->latestPayment->package->short_name }} </span>
-											</a>&nbsp;
-										@endif
-									@endif
-									@if (isset($post->savedByLoggedUser) && $post->savedByLoggedUser->count() > 0)
-										<a class="btn btn-success btn-sm make-favorite" id="{{ $post->id }}">
-											<i class="fa fa-heart"></i><span> {{ t('Saved') }} </span>
-										</a>
-									@else
-										<a class="btn btn-default btn-sm make-favorite" id="{{ $post->id }}">
-											<i class="fa fa-heart"></i><span> {{ t('Save') }} </span>
-										</a>
-									@endif
-								</div>
+
+
+								{{-- <a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 150px;" alt="Web Developer"> </a> --}}
 							</div>
 						</div>
-					@endforeach
-			
-					<div style="clear: both"></div>
-					
-					@if (isset($latestOptions) && isset($latestOptions['show_view_more_btn']) && $latestOptions['show_view_more_btn'] == '1')
-						<div class="mb20 text-center">
-							<a href="{{ \App\Helpers\UrlGen::search() }}" class="btn btn-default mt10">
-								<i class="fa fa-arrow-circle-right"></i> {{ t('View more') }}
-							</a>
+						<div class="col-sm-7 col-12 add-desc-box">
+							<div class="items-details">
+								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<span class="info-row">
+									
+										<span class="date">
+											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
+										</span>
+										<span class="category">
+										<i class="icon-folder-circled"></i>
+											<a href="{{ url("/category/$slug_cat")}}" class="info-link">{{$category}}</a>
+									</span>
+									<span class="item-location">
+										<i class="icon-location-2"></i>
+										<a href="{{ url("/location/$country/$all->city_id")}}" class="info-link">{{$country}}</a> 
+									</span>
+								</span>
+							</div>				
 						</div>
-					@endif
-				</div>
-				
+						
+						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
+							<h4 class="item-price">{{ $all->price }}</h4>
+								<a class="btn btn-default btn-sm make-favorite" id="27">
+								<i class="fa fa-heart"></i><span> Save </span>
+								</a>
+						</div>
+					</div>
 			</div>
-		</div>
+	@endforeach
 	</div>
+</div>
+</div>
+</div>
+			
+</div>
 
+<div id="Paris" class="tabcontent">
+
+	<br/>
+	<br/>
+
+	<div class="container{{ $hideOnMobile }}">
+		<div class="col-xl-12 content-box layout-section">
+			<div class="row row-featured row-featured-category">
+				<div class="col-xl-12 box-title no-border">
+					<div class="inner">
+						<h2>
+							{{-- <span class="title-3">{!! $latest->title !!}</span> --}}
+							<a href="{{ $latest->link }}" class="sell-your-item">
+								{{ t('View more') }} <i class="icon-th-list"></i>
+							</a>
+						</h2>
+					</div>
+				</div>
+	<div id="postsList" class="adds-wrapper noSideBar category-list make-grid">
 	
-	  
-@endif
+ 	@foreach ($popular as $all)
+			@php
+				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+				$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+			@endphp
+
+			<div class="item-list bg-light" style="height: 354px;">	
+					<div class="row">
+						<div class="col-sm-2 col-12 no-padding photobox">
+							<div class="add-image">
+								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
+
+								@if (!empty($image))
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
+								@else
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
+								@endif
+
+
+								{{-- <a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 150px;" alt="Web Developer"> </a> --}}
+							</div>
+						</div>
+						<div class="col-sm-7 col-12 add-desc-box">
+							<div class="items-details">
+								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<span class="info-row">
+									
+										<span class="date">
+											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
+										</span>
+										<span class="category">
+										<i class="icon-folder-circled"></i>
+											<a href="{{ url("/category/$slug_cat")}}" class="info-link">{{$category}}</a>
+									</span>
+									<span class="item-location">
+										<i class="icon-location-2"></i>
+										<a href="{{ url("/location/$country/$all->city_id")}}" class="info-link">{{$country}}</a> 
+									</span>
+								</span>
+							</div>				
+						</div>
+						
+						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
+							<h4 class="item-price">{{ $all->price }}</h4>
+								<a class="btn btn-default btn-sm make-favorite" id="27">
+								<i class="fa fa-heart"></i><span> Save </span>
+								</a>
+						</div>
+					</div>
+			</div>
+	@endforeach
+	</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<div id="Tokyo" class="tabcontent">
+  
+{{-- starts from here  		 --}}
+<br/>
+	<br/>
+
+	<div class="container{{ $hideOnMobile }}">
+		<div class="col-xl-12 content-box layout-section">
+			<div class="row row-featured row-featured-category">
+				<div class="col-xl-12 box-title no-border">
+					<div class="inner">
+						<h2>
+							{{-- <span class="title-3">{!! $latest->title !!}</span> --}}
+							<a href="{{ $latest->link }}" class="sell-your-item">
+								{{ t('View more') }} <i class="icon-th-list"></i>
+							</a>
+						</h2>
+					</div>
+				</div>
+	<div id="postsList" class="adds-wrapper noSideBar category-list make-grid">
+	
+		@foreach ($randoms as $all)
+		@php
+				$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+				$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+				$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+				$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+				
+		@endphp
+
+			<div class="item-list bg-light" style="height: 354px;">	
+					<div class="row">
+						<div class="col-sm-2 col-12 no-padding photobox">
+							<div class="add-image">
+								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
+
+								@if (!empty($image))
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
+								@else
+								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
+								@endif
+
+
+								{{-- <a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 150px;" alt="Web Developer"> </a> --}}
+							</div>
+						</div>
+						<div class="col-sm-7 col-12 add-desc-box">
+							<div class="items-details">
+								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<span class="info-row">
+									
+										<span class="date">
+											<i class="icon-clock"></i> {{$all->created_at->DiffForHumans()}}
+										</span>
+										<span class="category">
+										<i class="icon-folder-circled"></i>
+											<a href="{{ url("/category/$slug_cat")}}" class="info-link">{{$category}}</a>
+									</span>
+									<span class="item-location">
+										<i class="icon-location-2"></i>
+										<a href="{{ url("/location/$country/$all->city_id")}}" class="info-link">{{$country}}</a> 
+									</span>
+								</span>
+							</div>				
+						</div>
+						
+						<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
+							<h4 class="item-price">{{ $all->price }}</h4>
+								<a class="btn btn-default btn-sm make-favorite" id="27">
+								<i class="fa fa-heart"></i><span> Save </span>
+								</a>
+						</div>
+					</div>
+			</div>
+	@endforeach
+	</div>
+</div>
+</div>
+</div>
+	
+</div>
 
 
 {{-- another design  --}}

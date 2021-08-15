@@ -24,7 +24,7 @@ if (
 <div class="container-fluid bg-dark">
 	<div class="row col-md-12">
 		<div class="col-md-4">
-		<h1> Footer 1 </h1>
+		<h1 class="text-white"> Footer 1 </h1>
 		</div>
 		<div class="col-md-4">
 
@@ -63,7 +63,20 @@ if (
 
 	</div>
 </div>
+<div class="container-fluid bg-danger">
+	<div class="row col-md-12">
+		<div class="col-md-4">
+		<h1 class="text-white"> Footer 4 </h1>
+		</div>
+		<div class="col-md-4">
 
+		</div>
+		<div class="col-md-4">
+
+		</div>
+
+	</div>
+</div>
 
 
 

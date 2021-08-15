@@ -675,7 +675,7 @@ return [
 	'Loading' => 'Loading',
 	'Processing' => 'Processing',
 	'Your picture has been reorder successfully' => 'Your picture has been reorder successfully',
-	'Add Listing' => 'Add Listing',
+	'Add Listing' => 'Submit Yours',
 	'Choose a city or region' => 'Choose a city or region',
 	'Choose a state or region' => 'Choose a state or region',
 	'Received at' => 'Received at',

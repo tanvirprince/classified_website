@@ -163,6 +163,28 @@ if (request()->segment(1) != 'countries') {
 						</li>
 					@endif
 					
+						<li class="nav-item pricing">
+							<a href="{{ url('sitemap') }}" class="nav-link">
+								<i class="fas fa-book"></i> Blog
+							</a>
+						</li>
+						<li class="nav-item pricing">
+							<a href="{{ url('category/local-events') }}" class="nav-link">
+								<i class="fas fa-calendar"></i> Events
+							</a>
+						</li>
+						<li class="nav-item pricing">
+							<a href="{{ url('category/jobs') }}" class="nav-link">
+								<i class="fas fa-keyboard"></i> Jobs
+							</a>
+						</li>
+						<li class="nav-item pricing">
+							<a href="{{ url('page/faq') }}" class="nav-link">
+								<i class="fas fa-kiwi-bird"></i> FAQ
+							</a>
+						</li>
+					
+					
 					<?php
 						$addListingUrl = \App\Helpers\UrlGen::addPost();
 						$addListingAttr = '';

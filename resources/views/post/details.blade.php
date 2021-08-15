@@ -279,6 +279,7 @@
 															   data-original-title="{{ t('Report abuse') }}"
 															></i>
 														</a>
+														
 													</div>
 												@endif
 											</div>
@@ -480,14 +481,20 @@
 						</div>
 						<div class="col-4">
 							{{-- @include('post.report') --}}
-							
+							{{-- <i class="far fa-heart" class="tooltipHere" data-toggle="tooltip"data-original-title="{{ t('Save ad') }}"></i> --}}
+
 							<a href="{{ url('posts/' . $post->id . '/report') }}"><button class="btn btn-danger center"><i class="fa icon-info-circled-alt tooltipHere">Report this ads</i> </button></a>
-							{{-- <a href="{{ url('posts/' . $post->id . '/report') }}">
-								<i class="fa icon-info-circled-alt tooltipHere"
-								   data-toggle="tooltip"
-								   data-original-title="{{ t('Report abuse') }}"
-								></i>
-							</a> --}}
+							<br>
+							<hr>
+							<div class="list-group" style="width: 250px; ">
+								<a href="#" class="list-group-item ">Fraud Duplicate</a>
+								<a href="#" class="list-group-item ">Duplicate</a>
+								<a href="#" class="list-group-item ">Spam</a>
+								<a href="#" class="list-group-item ">Wrong category</a>
+							  </div>
+							  <br/>
+							  <a href="{{ url('posts/' . $post->id . '/report') }}"><button class="btn btn-danger"> Submit Report </button></a>
+
 						</div>
 						<br>
 
@@ -529,7 +536,7 @@
 
 		</div>
 		
-		@if (config('settings.single.similar_posts') == '1' || config('settings.single.similar_posts') == '2')
+		{{-- @if (config('settings.single.similar_posts') == '1' || config('settings.single.similar_posts') == '2')
 			@includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.featured', 'home.inc.featured'], ['firstSection' => false])
 		@endif
 		
@@ -537,7 +544,7 @@
 		
 		@if (isVerifiedPost($post))
 			@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.tools.facebook-comments', 'layouts.inc.tools.facebook-comments'], ['firstSection' => false])
-		@endif
+		@endif --}}
 		
 	</div>
 @endsection
