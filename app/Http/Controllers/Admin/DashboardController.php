@@ -15,12 +15,14 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Admin\Traits\Charts\ChartjsTrait;
-use App\Http\Controllers\Admin\Traits\Charts\MorrisTrait;
+use App\Models\Menu;
 use App\Models\Post;
-use App\Models\Country;
 use App\Models\User;
+use App\Models\Country;
+use Illuminate\Http\Request;
 use Larapen\Admin\app\Http\Controllers\PanelController;
+use App\Http\Controllers\Admin\Traits\Charts\MorrisTrait;
+use App\Http\Controllers\Admin\Traits\Charts\ChartjsTrait;
 
 class DashboardController extends PanelController
 {
@@ -115,6 +117,29 @@ class DashboardController extends PanelController
 		$this->data['title'] = trans('admin.dashboard');
 		
 		return view('admin::dashboard.index', $this->data);
+	}
+
+	public function menu(){
+		$menu = Menu::get();
+		return view('admin::menu.menu',compact('menu'));
+	}
+
+	public function storeMenu(Request $request){
+		
+		$menu = new Menu();
+		$menu->title = $request->title;
+		$menu->link = $request->link;
+		$menu->icon = $request->icon;
+		$menu->save();
+		return redirect()->route('menu.create')->with('message','added successfully');
+	}
+
+	public function menuDestroy($id){
+		
+		$menu = Menu::findOrFail($id);
+		$menu->delete();
+		return redirect()->route('menu.create')->with('deleted','Menu Deleted successfully');
+
 	}
 	
 	/**

@@ -210,6 +210,14 @@
 										</a>
 									</li>
 								@endif
+								@if (userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('menu') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Menu </span>
+										</a>
+									</li>
+								@endif
 								@if (auth()->user()->can('language-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('languages') }}" class="sidebar-link">

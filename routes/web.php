@@ -93,6 +93,11 @@ Route::group([
 		// Dashboard
 		Route::get('dashboard', 'DashboardController@dashboard');
 		Route::get('/', 'DashboardController@redirect');
+		// Menu
+		Route::get('menu', 'DashboardController@menu')->name('menu.create');
+		Route::post('menu', 'DashboardController@storeMenu')->name('menu.store');
+		Route::get('/menu/destroy/{id}', 'DashboardController@menuDestroy')->name('menu.destroy');
+
 		
 		// Extra (must be called before CRUD)
 		Route::get('homepage/{action}', 'HomeSectionController@reset')->where('action', 'reset_(.*)');

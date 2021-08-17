@@ -162,8 +162,23 @@ if (request()->segment(1) != 'countries') {
 							</a>
 						</li>
 					@endif
-					
+
+					@php
+					$menu = App\Models\Menu::get()	
+					@endphp 
+					@if (!empty($menu))
+						@foreach ($menu as $menus)
 						<li class="nav-item pricing">
+							<a href="{{ $menus->link }}" class="nav-link">
+								<i class="{{ $menus->icon}}"></i> {{$menus->title}}
+							</a>
+						</li>	
+						@endforeach
+					
+						
+					@endif
+					
+						{{-- <li class="nav-item pricing">
 							<a href="{{ url('sitemap') }}" class="nav-link">
 								<i class="fas fa-book"></i> Blog
 							</a>
@@ -182,7 +197,7 @@ if (request()->segment(1) != 'countries') {
 							<a href="{{ url('page/faq') }}" class="nav-link">
 								<i class="fas fa-kiwi-bird"></i> FAQ
 							</a>
-						</li>
+						</li> --}}
 					
 					
 					<?php
