@@ -97,6 +97,11 @@ Route::group([
 		Route::get('menu', 'DashboardController@menu')->name('menu.create');
 		Route::post('menu', 'DashboardController@storeMenu')->name('menu.store');
 		Route::get('/menu/destroy/{id}', 'DashboardController@menuDestroy')->name('menu.destroy');
+		// footer set from admin
+		Route::get('footer', 'DashboardController@footer')->name('footer.create');
+		Route::post('footer/store', 'DashboardController@storeFooter')->name('footer.store');
+
+
 
 		
 		// Extra (must be called before CRUD)

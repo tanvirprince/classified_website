@@ -164,7 +164,7 @@ if (request()->segment(1) != 'countries') {
 					@endif
 
 					@php
-					$menu = App\Models\Menu::get()	
+					$menu = App\Models\Menu::where('status',null)->get()	
 					@endphp 
 					@if (!empty($menu))
 						@foreach ($menu as $menus)

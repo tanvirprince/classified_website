@@ -20,11 +20,13 @@ if (
 	$colClass4 = 'col-lg-4 col-md-4 col-sm-4 col-xs-12';
 }
 ?>
-
+@php
+	$footer = App\Models\Footer::where('id',1)->first()
+@endphp
 <div class="container-fluid bg-dark">
 	<div class="row col-md-12">
 		<div class="col-md-4">
-		<h1 class="text-white"> Footer 1 </h1>
+		<h1 class="text-white"> </h1>
 		</div>
 		<div class="col-md-4">
 
@@ -41,7 +43,7 @@ if (
 		
 		</div>
 		<div class="col-md-4">
-			<h1> Footer 2 </h1>
+			<h1>  </h1>
 		</div>
 		<div class="col-md-4">
 
@@ -58,22 +60,25 @@ if (
 
 		</div>
 		<div class="col-md-4">
-			<h1> Footer 3 </h1>
+			<h1>  </h1>
 		</div>
 
 	</div>
 </div>
-<div class="container-fluid bg-danger">
-	<div class="row col-md-12">
-		<div class="col-md-4">
-		<h1 class="text-white"> Footer 4 </h1>
+<div class="container">
+	<div class="row col-md-12 ">
+		<div class="col-md-6">
+			<h2 class="footer-title"> Contact Us </h2>
+			<h4>Address : {{ $footer->address }}</h4>
+			<h4>Email : {{ $footer->email }}</h4>
+			<h4>Mobile : {{ $footer->mobile_number }}</h4>
 		</div>
-		<div class="col-md-4">
-
+		<div class="col-md-6">
+			<h2 class="footer-title"> Company Details </h2>
+			<h4>Comapny Name : {{ $footer->title }}</h4>
+			<h4>Company Details : {{ $footer->company_details }}</h4>
 		</div>
-		<div class="col-md-4">
-
-		</div>
+		<br>
 
 	</div>
 </div>

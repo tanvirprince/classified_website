@@ -53,6 +53,14 @@
                           <label for="exampleInputPassword2"> Icon Class </label>
                           <input type="text" name="icon" class="form-control" id="exampleInputPassword2" placeholder="fas fa-kiwi-bird">
                         </div>
+
+						<div class="form-group form-check">
+							<label class="form-check-label">
+							  <input class="form-check-input" name="status" type="checkbox"> Menu Add in Footer?
+							</label>
+							<small id="emailHelp" class="form-text text-muted"> Do you want to add Events , Recomandation ? Please Checked first. </small>
+
+						  </div>
                         
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
@@ -70,6 +78,7 @@
                                     <th scope="col">Title</th>
                                     <th scope="col">Link</th>
                                     <th scope="col">Icon</th>
+                                    <th scope="col">Footer Menu</th>
                                     <th scope="col">Action</th>
                                   </tr>
                                 </thead>
@@ -82,6 +91,13 @@
                                             <td>{{ $menus->title }}</td>
                                             <td><a href="{{ $menus->link }}" class="badge badge-danger">{{ $menus->link }}</a></td>
                                             <td>{{$menus->icon}}</td>
+                                            <td>
+												@if ($menus->status == '1')
+												<a class="badge badge-success"> Yes </a>
+												@else
+												<a class="badge badge-warning"> No </a>
+												@endif
+											</td>
                                             <td>
                                             <a href="{{ route('menu.destroy',$menus->id) }}"><i class="fa fa-trash" aria-hidden="true"></i>   </a>
                                             </td>

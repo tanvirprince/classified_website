@@ -18,6 +18,7 @@ namespace App\Http\Controllers\Admin;
 use App\Models\Menu;
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Footer;
 use App\Models\Country;
 use Illuminate\Http\Request;
 use Larapen\Admin\app\Http\Controllers\PanelController;
@@ -130,6 +131,9 @@ class DashboardController extends PanelController
 		$menu->title = $request->title;
 		$menu->link = $request->link;
 		$menu->icon = $request->icon;
+		if($request->status != null){
+			$menu->status = $request->status = 1;
+		}
 		$menu->save();
 		return redirect()->route('menu.create')->with('message','added successfully');
 	}
@@ -141,6 +145,66 @@ class DashboardController extends PanelController
 		return redirect()->route('menu.create')->with('deleted','Menu Deleted successfully');
 
 	}
+
+	public function footer(){
+
+		$footer = Footer::find(1)->first();
+
+		return view('admin::footer.footer',compact('footer'));
+	}
+
+	public function storeFooter(Request $request){
+		$footers = Footer::get();
+		// $footer = $footers::updateOrCreate(
+		// 	['title' =>  request('title')],
+		// 	['email' => request('email')],
+		// 	['mobile_number' => request('mobile_number')],
+		// 	['time' => request('time')],
+		// 	['company_details' => request('company_details')],
+		// 	['address' => request('address')],
+		// 	['link' => request('link')],
+		// 	['facebook' => request('facebook')],
+		// 	['youtube' => request('youtube')],
+		// 	['linkedIn' => request('linkedIn')],
+		// 	['pinterest' => request('pinterest')]
+		// );
+			if($footers == null){
+
+				$footer = new Footer();
+				$footer->title = $request->title;
+				$footer->email = $request->email;
+				$footer->mobile_number = $request->mobile_number;
+				$footer->time = $request->time;
+				$footer->company_details = $request->company_details;
+				$footer->address = $request->address;
+				$footer->link = $request->link;
+				$footer->facebook = $request->facebook;
+				$footer->youtube = $request->youtube;
+				$footer->linkedIn = $request->linkedIn;
+				$footer->pinterest = $request->pinterest;
+				$footer->save();
+
+			}else{
+				$footer = Footer::find(1)->first();
+				$footer->title = $request->title;
+				$footer->email = $request->email;
+				$footer->mobile_number = $request->mobile_number;
+				$footer->time = $request->time;
+				$footer->company_details = $request->company_details;
+				$footer->address = $request->address;
+				$footer->link = $request->link;
+				$footer->facebook = $request->facebook;
+				$footer->youtube = $request->youtube;
+				$footer->linkedIn = $request->linkedIn;
+				$footer->pinterest = $request->pinterest;
+				$footer->save();
+
+			}
+		
+		return redirect()->route('footer.create')->with('message','added successfully');
+	}
+
+
 	
 	/**
 	 * Redirect to the dashboard.

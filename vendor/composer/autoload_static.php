@@ -1341,6 +1341,7 @@ class ComposerStaticInitb4548076d0c4757b181be99040401eca
         'App\\Models\\Currency' => __DIR__ . '/../..' . '/app/Models/Currency.php',
         'App\\Models\\Field' => __DIR__ . '/../..' . '/app/Models/Field.php',
         'App\\Models\\FieldOption' => __DIR__ . '/../..' . '/app/Models/FieldOption.php',
+        'App\\Models\\Footer' => __DIR__ . '/../..' . '/app/Models/Footer.php',
         'App\\Models\\Gender' => __DIR__ . '/../..' . '/app/Models/Gender.php',
         'App\\Models\\HomeSection' => __DIR__ . '/../..' . '/app/Models/HomeSection.php',
         'App\\Models\\HomeSection\\GetBottomAdvertising' => __DIR__ . '/../..' . '/app/Models/HomeSection/GetBottomAdvertising.php',

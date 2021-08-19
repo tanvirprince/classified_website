@@ -4,6 +4,45 @@ if (isset($statsOptions, $statsOptions['hide_on_mobile']) and $statsOptions['hid
 	$hideOnMobile = ' hidden-sm';
 }
 ?>
+
+@php
+	$footer_menu = App\Models\Menu::where('status',1)->get()
+@endphp
+
+<div class="container{{ $hideOnMobile }} mt-3" style=" color: rgb(52, 61, 71);">
+	<div class="page-info page-info-lite rounded">
+		<div class="text-center section-promo">
+			<div class="row">
+				@foreach ($footer_menu as $list)
+					
+				
+				<div class="col-sm-4 col-xs-6 col-xxs-12">
+					<div class="iconbox-wrap">
+						<div class="iconbox">
+							<div class="iconbox-wrap-icon" >
+								<i style=" color: Dodgerblue;" class="{{$list->icon}}"></i>
+							</div>
+							<div class="iconbox-wrap-content">
+							<a href="{{ $list->link }}">
+								<h5><span style=" color: Dodgerblue;"> {{$list->title}} </span></h5>
+								{{-- <div class="iconbox-wrap-text"> {{title}} </div> --}}
+							</a>
+							</div>
+						</div>
+					</div>
+				</div>		
+
+				@endforeach
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<br>
+
+
+
 @if (isset($countPosts) and isset($countUsers) and isset($countCities))
 @includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'], ['hideOnMobile' => $hideOnMobile])
 <div class="container{{ $hideOnMobile }}">

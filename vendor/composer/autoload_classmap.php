@@ -266,6 +266,7 @@ return array(
     'App\\Models\\Currency' => $baseDir . '/app/Models/Currency.php',
     'App\\Models\\Field' => $baseDir . '/app/Models/Field.php',
     'App\\Models\\FieldOption' => $baseDir . '/app/Models/FieldOption.php',
+    'App\\Models\\Footer' => $baseDir . '/app/Models/Footer.php',
     'App\\Models\\Gender' => $baseDir . '/app/Models/Gender.php',
     'App\\Models\\HomeSection' => $baseDir . '/app/Models/HomeSection.php',
     'App\\Models\\HomeSection\\GetBottomAdvertising' => $baseDir . '/app/Models/HomeSection/GetBottomAdvertising.php',
