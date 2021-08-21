@@ -125,6 +125,11 @@ class DashboardController extends PanelController
 		return view('admin::menu.menu',compact('menu'));
 	}
 
+	public function menuEdit($id){
+		$menu = Menu::where('id',$id)->first();
+		return view('admin::menu.edit_menu',compact('menu'));
+	}
+
 	public function storeMenu(Request $request){
 		
 		$menu = new Menu();
@@ -135,8 +140,25 @@ class DashboardController extends PanelController
 			$menu->status = $request->status = 1;
 		}
 		$menu->save();
-		return redirect()->route('menu.create')->with('message','added successfully');
+		return redirect()->route('menu.create')->with('message','Menu added successfully');
 	}
+
+
+	public function menuUpdate(Request $request,$id){
+		
+		
+		$menu = Menu::find($id);
+		$menu->title = $request->title;
+		$menu->link = $request->link;
+		$menu->icon = $request->icon;
+		if($request->status != null){
+			$menu->status = $request->status = 1;
+		}
+		$menu->save();
+		return redirect()->route('menu.create')->with('message','Menu Updated Successfully added successfully');
+	}
+
+
 
 	public function menuDestroy($id){
 		

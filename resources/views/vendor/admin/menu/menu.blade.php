@@ -99,6 +99,8 @@
 												@endif
 											</td>
                                             <td>
+
+                                            <a href="{{ route('menu.edit',$menus->id) }}"><i class="fa fa-edit" aria-hidden="true"></i>   </a>
                                             <a href="{{ route('menu.destroy',$menus->id) }}"><i class="fa fa-trash" aria-hidden="true"></i>   </a>
                                             </td>
                                           </tr>
