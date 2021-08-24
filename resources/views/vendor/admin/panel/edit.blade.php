@@ -1,6 +1,42 @@
 @extends('admin::layouts.master')
 
 @section('header')
+
+
+
+
+<div class="card card-default">
+    <div class="card-header">
+        <h4 class="card-title">
+            <a href="#photoPanel" data-toggle="collapse" data-parent="#accordion">{{ t('Photo or Avatar') }}</a>
+        </h4>
+    </div>
+    <div class="panel-collapse collapse {{ (old('panel')=='' or old('panel')=='photoPanel') ? 'show' : '' }}" id="photoPanel">
+        <div class="card-body">
+            <form name="details" class="form-horizontal" role="form" method="POST" action="{{ url('account/' . auth()->user()->id . '/photo') }}">
+                <div class="row">
+                    <div class="col-xl-12 text-center">
+                        
+                        <?php $photoError = (isset($errors) and $errors->has('photo')) ? ' is-invalid' : ''; ?>
+                        <div class="photo-field">
+                            <div class="file-loading">
+                                <input id="photoField" name="photo" type="file" class="file {{ $photoError }}">
+                            </div>
+                        </div>
+                    
+                    </div>
+                </div>
+                <button class="btn btn-primary" type="submit"> Upload Profile Picture </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
     <div class="row page-titles">
         <div class="col-md-5 col-12 align-self-center">
             <h2 class="mb-0">

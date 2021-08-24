@@ -68,15 +68,16 @@ if (
 <div class="container">
 	<div class="row col-md-12 ">
 		<div class="col-md-6">
-			<h2 class="footer-title"> Contact Us </h2>
-			<h4>Address : {{ $footer->address }}</h4>
-			<h4>Email : {{ $footer->email }}</h4>
-			<h4>Mobile : {{ $footer->mobile_number }}</h4>
+			<h2 class="footer-title"> {{ $footer->title }} </h2>
+			
+			<h4>{{ $footer->email }}</h4>
+			<h4>{{ $footer->mobile_number }}</h4>
 		</div>
 		<div class="col-md-6">
-			<h2 class="footer-title"> Company Details </h2>
-			<h4>Comapny Name : {{ $footer->title }}</h4>
-			<h4>Company Details : {{ $footer->company_details }}</h4>
+			<h2 class="footer-title"> {{ $footer->title1 }}</h2>
+			{{-- <h4>{{ $footer->title }}</h4> --}}
+			<h4>{{ $footer->company_details }}</h4>
+			<h4> {{ $footer->address }}</h4>
 		</div>
 		<br>
 
@@ -93,43 +94,41 @@ if (
 				@if (!config('settings.footer.hide_links'))
 					<div class="{{ $colClass1 }}">
 						<div class="footer-col">
-							<h4 class="footer-title">{{ t('about_us') }}</h4>
+							<h4 class="footer-title">{{ $footer->title2 }}</h4>
 							<ul class="list-unstyled footer-nav">
-								@if (isset($pages) and $pages->count() > 0)
-									@foreach($pages as $page)
-										<li>
-											<?php
-												$linkTarget = '';
-												if ($page->target_blank == 1) {
-													$linkTarget = 'target="_blank"';
-												}
-											?>
-											@if (!empty($page->external_link))
-												<a href="{!! $page->external_link !!}" rel="nofollow" {!! $linkTarget !!}> {{ $page->name }} </a>
-											@else
-												<a href="{{ \App\Helpers\UrlGen::page($page) }}" {!! $linkTarget !!}> {{ $page->name }} </a>
-											@endif
-										</li>
-									@endforeach
-								@endif
+								<li><a href="{{ $footer->link1 }}"> {{ $footer->menu1 }} </a></li>
+								<li><a href="{{ $footer->link2 }}"> {{ $footer->menu2 }} </a></li>
+								<li><a href="{{ $footer->link3 }}"> {{ $footer->menu3 }} </a></li>
+								
+
+							
 							</ul>
 						</div>
 					</div>
 					
 					<div class="{{ $colClass2 }}">
 						<div class="footer-col">
-							<h4 class="footer-title">{{ t('Contact and Sitemap') }}</h4>
+							<h4 class="footer-title">{{ $footer->title3 }}</h4>
 							<ul class="list-unstyled footer-nav">
-								<li><a href="{{ \App\Helpers\UrlGen::contact() }}"> {{ t('Contact') }} </a></li>
-								<li><a href="{{ \App\Helpers\UrlGen::sitemap() }}"> {{ t('sitemap') }} </a></li>
-								@if (isset($countries) && $countries->count() > 1)
-									<li><a href="{{ \App\Helpers\UrlGen::countries() }}"> {{ t('countries') }} </a></li>
-								@endif
+								<li><a href="{{ $footer->link4 }}"> {{ $footer->menu4 }} </a></li>
+								<li><a href="{{ $footer->link5 }}"> {{ $footer->menu5 }} </a></li>
+								<li><a href="{{ $footer->link6 }}"> {{ $footer->menu6 }} </a></li>
+							</ul>
+						</div>
+					</div>
+
+					<div class="{{ $colClass3 }}">
+						<div class="footer-col">
+							<h4 class="footer-title">{{ $footer->title4 }}</h4>
+							<ul class="list-unstyled footer-nav">
+								<li> {{ $footer->link }} </li>
+								<li> {{ $footer->facebook }} </li>
+								<li> {{ $footer->youtube }} </li>
 							</ul>
 						</div>
 					</div>
 					
-					<div class="{{ $colClass3 }}">
+					{{-- <div class="{{ $colClass3 }}">
 						<div class="footer-col">
 							<h4 class="footer-title">{{ t('My Account') }}</h4>
 							<ul class="list-unstyled footer-nav">
@@ -149,7 +148,7 @@ if (
 								@endif
 							</ul>
 						</div>
-					</div>
+					</div> --}}
 					
 					@if (
 						config('settings.other.ios_app_url') or

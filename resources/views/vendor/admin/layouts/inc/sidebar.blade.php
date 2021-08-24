@@ -69,6 +69,14 @@
 										</a>
 									</li>
 								@endif
+								@if (auth()->user()->can('post-list') || userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('ads/suggest') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu">Ads Suggest </span>
+										</a>
+									</li>
+								@endif
 								@if (auth()->user()->can('category-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('categories') }}" class="sidebar-link">

@@ -20,11 +20,11 @@ if (isset($statsOptions, $statsOptions['hide_on_mobile']) and $statsOptions['hid
 					<div class="iconbox-wrap">
 						<div class="iconbox">
 							<div class="iconbox-wrap-icon" >
-								<i style=" color: Dodgerblue;" class="{{$list->icon}}"></i>
+								<i  class="{{$list->icon}}"></i>
 							</div>
 							<div class="iconbox-wrap-content">
 							<a href="{{ $list->link }}">
-								<h5><span style=" color: Dodgerblue;"> {{$list->title}} </span></h5>
+								<h5><span > {{$list->title}} </span></h5>
 								{{-- <div class="iconbox-wrap-text"> {{title}} </div> --}}
 							</a>
 							</div>
@@ -43,7 +43,7 @@ if (isset($statsOptions, $statsOptions['hide_on_mobile']) and $statsOptions['hid
 
 
 
-@if (isset($countPosts) and isset($countUsers) and isset($countCities))
+{{-- @if (isset($countPosts) and isset($countUsers) and isset($countCities))
 @includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'], ['hideOnMobile' => $hideOnMobile])
 <div class="container{{ $hideOnMobile }}">
 	<div class="page-info page-info-lite rounded">
@@ -102,4 +102,4 @@ if (isset($statsOptions, $statsOptions['hide_on_mobile']) and $statsOptions['hid
 		</div>
 	</div>
 </div>
-@endif
+@endif --}}

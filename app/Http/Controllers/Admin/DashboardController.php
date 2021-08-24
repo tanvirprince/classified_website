@@ -20,6 +20,7 @@ use App\Models\Post;
 use App\Models\User;
 use App\Models\Footer;
 use App\Models\Country;
+use App\Models\Picture;
 use Illuminate\Http\Request;
 use Larapen\Admin\app\Http\Controllers\PanelController;
 use App\Http\Controllers\Admin\Traits\Charts\MorrisTrait;
@@ -177,23 +178,32 @@ class DashboardController extends PanelController
 
 	public function storeFooter(Request $request){
 		$footers = Footer::get();
-		// $footer = $footers::updateOrCreate(
-		// 	['title' =>  request('title')],
-		// 	['email' => request('email')],
-		// 	['mobile_number' => request('mobile_number')],
-		// 	['time' => request('time')],
-		// 	['company_details' => request('company_details')],
-		// 	['address' => request('address')],
-		// 	['link' => request('link')],
-		// 	['facebook' => request('facebook')],
-		// 	['youtube' => request('youtube')],
-		// 	['linkedIn' => request('linkedIn')],
-		// 	['pinterest' => request('pinterest')]
-		// );
+		
 			if($footers == null){
 
 				$footer = new Footer();
 				$footer->title = $request->title;
+
+				$footer->title = $request->title;
+				$footer->title1 = $request->title1;
+				$footer->title2 = $request->title2;
+				$footer->title3 = $request->title3;
+				$footer->title4 = $request->title4;
+
+				$footer->menu1 = $request->menu1;
+				$footer->menu2 = $request->menu2;
+				$footer->menu3 = $request->menu3;
+				$footer->menu4 = $request->menu4;
+				$footer->menu5 = $request->menu5;
+				$footer->menu6 = $request->menu6;
+
+				$footer->link1 = $request->link1;
+				$footer->link2 = $request->link2;
+				$footer->link3 = $request->link3;
+				$footer->link4 = $request->link4;
+				$footer->link5 = $request->link5;
+				$footer->link6 = $request->link6;
+
 				$footer->email = $request->email;
 				$footer->mobile_number = $request->mobile_number;
 				$footer->time = $request->time;
@@ -209,6 +219,26 @@ class DashboardController extends PanelController
 			}else{
 				$footer = Footer::find(1)->first();
 				$footer->title = $request->title;
+				$footer->title1 = $request->title1;
+				$footer->title2 = $request->title2;
+				$footer->title3 = $request->title3;
+				$footer->title4 = $request->title4;
+
+				$footer->menu1 = $request->menu1;
+				$footer->menu2 = $request->menu2;
+				$footer->menu3 = $request->menu3;
+				$footer->menu4 = $request->menu4;
+				$footer->menu5 = $request->menu5;
+				$footer->menu6 = $request->menu6;
+
+				$footer->link1 = $request->link1;
+				$footer->link2 = $request->link2;
+				$footer->link3 = $request->link3;
+				$footer->link4 = $request->link4;
+				$footer->link5 = $request->link5;
+				$footer->link6 = $request->link6;
+
+
 				$footer->email = $request->email;
 				$footer->mobile_number = $request->mobile_number;
 				$footer->time = $request->time;
@@ -237,5 +267,32 @@ class DashboardController extends PanelController
 	{
 		// The '/admin' route is not to be used as a page, because it breaks the menu's active state.
 		return redirect(admin_uri('dashboard'));
+	}
+
+
+	public function suggest()
+	{
+		$post = Post::paginate(15);
+		// $image = Picture::where('post_id', $post->id)->pluck('filename')->first();
+		return view('admin::suggest',compact('post'));
+
+	}
+	public function storeSuggestion($id)
+	{
+		// return $id;
+		$post = Post::findOrFail($id);
+		$post->status = 1;
+		$post->save();
+		return redirect()->route('ads.suggest')->with('message','Recommanded Suggestion ads successfully');
+
+	}
+	public function suggestionOff($id)
+	{
+		$post = Post::find($id)->first();
+		$post->status = 0;
+		$post->save();
+		return redirect()->route('ads.suggest')->with('message','Recomanded Remove successfully');
+
+
 	}
 }

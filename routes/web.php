@@ -103,6 +103,11 @@ Route::group([
 		Route::get('footer', 'DashboardController@footer')->name('footer.create');
 		Route::post('footer/store', 'DashboardController@storeFooter')->name('footer.store');
 
+		// ramdom ads suggest 
+		Route::get('ads/suggest', 'DashboardController@suggest')->name('ads.suggest');
+		Route::get('suggest/store/{$id}', 'DashboardController@storeSuggestion')->name('suggest.store');
+		Route::get('suggest/off/{$id}', 'DashboardController@suggestionOff')->name('suggest.off');
+
 
 
 		
