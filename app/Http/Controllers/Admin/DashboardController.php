@@ -123,13 +123,27 @@ class DashboardController extends PanelController
 
 	public function menu(){
 		$menu = Menu::get();
-		return view('admin::menu.menu',compact('menu'));
+		$footer = Footer::find(1)->first();
+		return view('admin::menu.menu',compact('menu','footer'));
 	}
 
 	public function menuEdit($id){
 		$menu = Menu::where('id',$id)->first();
 		return view('admin::menu.edit_menu',compact('menu'));
 	}
+
+
+	public function dropdownUpdate(Request $request){
+		$footer = Footer::find(1)->first();
+		$footer->dropdown_1 = $request->dropdown_1;
+		$footer->dropdown_2 = $request->dropdown_2;
+		$footer->dropdown_1_status = $request->dropdown_1_status;
+		$footer->dropdown_2_status = $request->dropdown_2_status;
+		$footer->save();
+		return redirect()->route('menu.create')->with('message','Dropdown Menu Data Inserted Successfully');
+	}
+
+	
 
 	public function storeMenu(Request $request){
 		
@@ -142,6 +156,9 @@ class DashboardController extends PanelController
 		}
 		if($request->dropdown_status != null){
 			$menu->status =  2;
+		}
+		if($request->dropdown_2_menu != null){
+			$menu->status =  3;
 		}
 		$menu->save();
 		return redirect()->route('menu.create')->with('message','Menu added successfully');
@@ -160,6 +177,9 @@ class DashboardController extends PanelController
 		}
 		if($request->dropdown_status != null){
 			$menu->status = 2;
+		}
+		if($request->dropdown_2_menu != null){
+			$menu->status =  3;
 		}
 		$menu->save();
 		return redirect()->route('menu.create')->with('message','Menu Updated Successfully added successfully');

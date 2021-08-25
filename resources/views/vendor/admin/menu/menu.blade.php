@@ -36,48 +36,103 @@
                         {{ session()->get('deleted') }}
                     </div>
                 @endif
-                <div class="card-body">
+				<div class="col-md-12">
+					<div class="row">
+						<div class="col-md-6 col-sm-12">
+							<div class="card-body">
 
-                    <form method="POST" action="{{route('menu.store')}}">
-                        @csrf
-                        <div class="form-group">
-                          <label for="exampleInputEmail1">Menu Title</label>
-                          <input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Menu Title">
-                          <small id="emailHelp" class="form-text text-muted"> Please Create a Title for Frontend Menu.</small>
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword1"> Link </label>
-                          <input type="text" name="link" class="form-control" id="exampleInputPassword1" placeholder="Redirection Link">
-                        </div>
-                        <div class="form-group">
-                          <label for="exampleInputPassword2"> Icon Class </label>
-                          <input type="text" name="icon" class="form-control" id="exampleInputPassword2" placeholder="fas fa-kiwi-bird">
-                        </div>
+								<form method="POST" action="{{route('menu.store')}}">
+									@csrf
+									<div class="form-group">
+									<label for="exampleInputEmail1">Menu Title</label>
+									<input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Menu Title">
+									<small id="emailHelp" class="form-text text-muted"> Please Create a Title for Frontend Menu.</small>
+									</div>
+									<div class="form-group">
+									<label for="exampleInputPassword1"> Link </label>
+									<input type="text" name="link" class="form-control" id="exampleInputPassword1" placeholder="Redirection Link">
+									</div>
+									<div class="form-group">
+									<label for="exampleInputPassword2"> Icon Class </label>
+									<input type="text" name="icon" class="form-control" id="exampleInputPassword2" placeholder="fas fa-kiwi-bird">
+									</div>
+		
+									<div class="form-group form-check">
+										<label class="form-check-label">
+										<input class="form-check-input" name="status" type="checkbox"> Menu Add in Footer?
+										</label>
+										<small id="emailHelp" class="form-text text-muted"> Do you want to add Events , Recomandation ? Please Checked first. </small>
+		
+									</div>
+		
+									<div class="form-group form-check">
+										<label class="form-check-label text-dark-primary">
+										<input class="form-check-input" name="dropdown_status" type="checkbox"> Menu Add For Dropdown 1
+										</label>
+										<small id="emailHelp" class="form-text text-muted"> This is for Dowpdow 1. </small>
+		
+									</div>
 
-						<div class="form-group form-check">
-							<label class="form-check-label">
-							  <input class="form-check-input" name="status" type="checkbox"> Menu Add in Footer?
-							</label>
-							<small id="emailHelp" class="form-text text-muted"> Do you want to add Events , Recomandation ? Please Checked first. </small>
+									<div class="form-group form-check">
+										<label class="form-check-label text-dark-primary">
+										<input class="form-check-input" name="dropdown_2_menu" type="checkbox"> Menu Add For Dropdown 2
+										</label>
+										<small id="emailHelp" class="form-text text-muted"> This is for Dowpdow 2. </small>
+		
+									</div>
+									
+									<button type="submit" class="btn btn-primary">Submit</button>
+								</form>
+		
+							</div>
+						</div>
+						<div class="col-md-6 col-sm-12">
+							<div class="card-body">
 
+								<form method="POST" action="{{route('dropdown.update')}}">
+									@csrf
+									<div class="form-group">
+									<label for="exampleInputEmail1">Dropdown Menu 1 Ttile</label>
+									<input type="text" value="{{ $footer->dropdown_1 }}" name="dropdown_1" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Drop Down Menu Title">
+									{{-- <small id="emailHelp" class="form-text text-muted"> Please Create a Title for Frontend Menu.</small> --}}
+									</div>
+									<div class="form-group">
+										<label for="exampleInputEmail1">Dropdown 1 Menu Status </label>
+										<select name="dropdown_1_status" class="custom-select mb-3">
+											<option selected>Select Status </option>
+											<option @if($footer->dropdown_1_status == '1') selected @endif  value="1">Active</option>
+											<option @if($footer->dropdown_1_status == '2') selected @endif value="2">Inactive</option>
+										</select>
+										</div>
+									<div class="form-group">
+									<label for="exampleInputPassword1"> Dropdown Menu 2 Ttile </label>
+									<input type="text" value="{{ $footer->dropdown_2 }}" name="dropdown_2" class="form-control" id="exampleInputPassword1" placeholder="Drop Down Menu Title">
+									</div>
+									
+									<div class="form-group">
+										<label for="exampleInputEmail1">Dropdown 2 Menu Status </label>
+									<select name="dropdown_2_status" class="custom-select mb-3">
+										<option selected>Select Status</option>
+										<option @if($footer->dropdown_2_status == '1') selected @endif value="1"> Active  </option>
+										<option @if($footer->dropdown_2_status == '2') selected @endif value="2">Inactive</option>
+									</select>
+									</div>
+									
+									
+									<button type="submit" class="btn btn-primary">Update</button>
+								</form>
+
+							</div>
 						</div>
 
-						<div class="form-group form-check">
-							<label class="form-check-label">
-							  <input class="form-check-input" name="dropdown_status" type="checkbox"> Menu Add in Dropdown?
-							</label>
-							<small id="emailHelp" class="form-text text-muted"> Do you want to add menu at dropdown? check please. </small>
-
-						</div>
-                        
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                      </form>
-
-                </div>
+					</div>
+				</div>
+				
+					
 				
 				<div class="card-body">
 					<div class="row">
-						<div class="col-md-12">
+						<div class="col-md-12 col-sm-12">
 
                             <table class="table">
                                 <thead>
@@ -109,7 +164,9 @@
 											</td>
                                             <td>
 												@if ($menus->status == '2')
-												<a class="badge badge-success"> Yes </a>
+												<a class="badge badge-success"> Dropdown 1 </a>
+												@elseif ($menus->status == '3')
+												<a class="badge badge-dark-success"> Dropdown 2 </a>
 												@else
 												<a class="badge badge-warning"> No </a>
 												@endif

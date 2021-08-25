@@ -105,6 +105,7 @@ Route::group([
 		Route::get('/menu/destroy/{id}', 'DashboardController@menuDestroy')->name('menu.destroy');
 		Route::get('/menu/edit/{id}', 'DashboardController@menuEdit')->name('menu.edit');
 		Route::post('/menu/update/{id}', 'DashboardController@menuUpdate')->name('menu.update');
+		Route::post('/dropdown/update', 'DashboardController@dropdownUpdate')->name('dropdown.update');
 		// footer set from admin
 		Route::get('footer', 'DashboardController@footer')->name('footer.create');
 		Route::post('footer/store', 'DashboardController@storeFooter')->name('footer.store');

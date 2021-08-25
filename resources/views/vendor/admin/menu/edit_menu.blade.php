@@ -62,12 +62,20 @@
 
 						  </div>
 						<div class="form-group form-check">
-							<label class="form-check-label">
-							  <input class="form-check-input" @if ($menu->status == '2') checked @endif name="dropdown_status" type="checkbox"> Menu Add in Footer?
+							<label class="form-check-label text-dark-primary">
+							  <input class="form-check-input" @if ($menu->status == '2') checked @endif name="dropdown_status" type="checkbox"> Menu Add For Dropdown 1
 							</label>
 							{{-- <small id="emailHelp" class="form-text text-muted"> Do you want to add Events , Recomandation ? Please Checked first. </small> --}}
 
-						  </div>
+						</div>
+
+						<div class="form-group form-check">
+							<label class="form-check-label text-primary">
+							<input class="form-check-input" @if ($menu->status == '3') checked @endif name="dropdown_2_menu" type="checkbox"> Menu Add For Dropdown 2
+							</label>
+							{{-- <small id="emailHelp" class="form-text text-muted"> This is for Dowpdow 2. </small> --}}
+
+						</div>
                         
                         <button type="submit" class="btn btn-primary">Update</button>
                       </form>
