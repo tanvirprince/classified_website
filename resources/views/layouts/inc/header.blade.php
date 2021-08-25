@@ -177,6 +177,37 @@ if (request()->segment(1) != 'countries') {
 					
 						
 					@endif
+
+
+
+
+
+
+						{{-- hello  --}}
+						@php
+							$menu7 = App\Models\Footer::get()->pluck('menu7')->first();
+						@endphp
+						<li class="nav-item dropdown no-arrow">
+							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+								<span>{{ $menu7 }}</span>
+								{{-- <i class="icon-user fa hidden-sm">  </i> --}}
+								<i class="icon-down-open-big fa"></i>
+							</a>
+							@php
+								$drop = App\Models\Menu::where('status','2')->get();
+							@endphp
+							<ul id="userMenuDropdown" class="dropdown-menu user-menu dropdown-menu-right shadow-sm">
+								{{-- <li class="dropdown-item"><a href="{{ url('account/my-posts') }}"><i class="icon-th-thumb"></i> {{ t('my_ads') }} </a></li> --}}
+								@foreach ($drop as $list)
+								<li class="dropdown-item"><a href="{{ $list->link }}"> {{ $list->title }} </a></li>
+
+								@endforeach
+							</ul>
+						</li>
+						{{-- hello  --}}
+
+
+
 					
 						{{-- <li class="nav-item pricing">
 							<a href="{{ url('sitemap') }}" class="nav-link">

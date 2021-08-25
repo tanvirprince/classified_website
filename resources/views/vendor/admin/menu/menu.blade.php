@@ -60,7 +60,15 @@
 							</label>
 							<small id="emailHelp" class="form-text text-muted"> Do you want to add Events , Recomandation ? Please Checked first. </small>
 
-						  </div>
+						</div>
+
+						<div class="form-group form-check">
+							<label class="form-check-label">
+							  <input class="form-check-input" name="dropdown_status" type="checkbox"> Menu Add in Dropdown?
+							</label>
+							<small id="emailHelp" class="form-text text-muted"> Do you want to add menu at dropdown? check please. </small>
+
+						</div>
                         
                         <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
@@ -79,6 +87,7 @@
                                     <th scope="col">Link</th>
                                     <th scope="col">Icon</th>
                                     <th scope="col">Footer Menu</th>
+                                    <th scope="col"> Dropdown Status </th>
                                     <th scope="col">Action</th>
                                   </tr>
                                 </thead>
@@ -93,6 +102,13 @@
                                             <td>{{$menus->icon}}</td>
                                             <td>
 												@if ($menus->status == '1')
+												<a class="badge badge-success"> Yes </a>
+												@else
+												<a class="badge badge-warning"> No </a>
+												@endif
+											</td>
+                                            <td>
+												@if ($menus->status == '2')
 												<a class="badge badge-success"> Yes </a>
 												@else
 												<a class="badge badge-warning"> No </a>

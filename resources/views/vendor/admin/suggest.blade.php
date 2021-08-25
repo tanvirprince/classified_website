@@ -25,12 +25,49 @@
 @section('content')
 
 
-	
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+    Suggest Title Update
+</button>
+
+<br>
+
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <form method="POST" action="{{route('footer.store')}}">
+        @csrf
+        <div class="form-group">
+            
+                <label for="exampleInputEmail1">Ads Suggustion Title</label>
+                <input type="text" value="{{ $footer->field17 }}" name="field17" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ads Suggestion Ttile">
+
+            
+            
+        </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save changes</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
 	<div class="row">
 		<div class="col-12">
 			<div class="card rounded">
 				<div class="card-header">
-					<h3 class="card-title"><i class="fas fa-info-circle"></i> Ads Suggestion (In Details page side) </h3>
+					<h3 class="card-title"><i class="fas fa-info-circle"></i> Ads Suggestion ( <span class="badge badge-dark-info"> Recomanded Title:  {{ $footer->field17 }} </span> ) </h3>
+                    {{-- <a class="btn btn-secondary" href="{{ route('footer.create') }}" >Ads Title Update </a> --}}
 				</div>
                 @if(session()->has('message'))
                     <div class="alert alert-success">
@@ -86,8 +123,8 @@
                                         @endif
                                     </td>
                                     <td>
-                                        <a href="{{ route('suggest.store',$posts->id) }}"><i class="fa fa-database" aria-hidden="true"></i>   </a>
-                                        {{-- <a class="btn btn-dark-primary" href="{{ route('suggest.store',$posts->id) }}"> Recomand </a> --}}
+                                        {{-- <a href="{{ route('suggest.store',$posts->id) }}"><i class="fa fa-database" aria-hidden="true"></i>   </a> --}}
+                                        <a class="btn btn-dark-primary" href="{{ route('suggest.store',$posts->id) }}"> Recomand </a>
                                     </td>
                                     <td>
                                         <a class="btn btn-dark-danger" href="{{ route('suggest.off',$posts->id) }}"> Remove </a>

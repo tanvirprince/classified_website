@@ -72,12 +72,18 @@ if (
 			
 			<h4>{{ $footer->email }}</h4>
 			<h4>{{ $footer->mobile_number }}</h4>
+			<h4>{{ $footer->field11 }}</h4>
+			<h4>{{ $footer->field12 }}</h4>
+			<h4>{{ $footer->field13 }}</h4>
 		</div>
 		<div class="col-md-6">
 			<h2 class="footer-title"> {{ $footer->title1 }}</h2>
 			{{-- <h4>{{ $footer->title }}</h4> --}}
-			<h4>{{ $footer->company_details }}</h4>
+			<h4>{{ $footer->time }}</h4>
 			<h4> {{ $footer->address }}</h4>
+			<h4> {{ $footer->field14 }}</h4>
+			<h4> {{ $footer->field15 }}</h4>
+			<h4> {{ $footer->field16 }}</h4>
 		</div>
 		<br>
 
@@ -99,7 +105,8 @@ if (
 								<li><a href="{{ $footer->link1 }}"> {{ $footer->menu1 }} </a></li>
 								<li><a href="{{ $footer->link2 }}"> {{ $footer->menu2 }} </a></li>
 								<li><a href="{{ $footer->link3 }}"> {{ $footer->menu3 }} </a></li>
-								
+								<li><a href="{{ $footer->link4 }}"> {{ $footer->menu4 }} </a></li>
+								<li><a href="{{ $footer->link5 }}"> {{ $footer->menu5 }} </a></li>
 
 							
 							</ul>
@@ -110,9 +117,12 @@ if (
 						<div class="footer-col">
 							<h4 class="footer-title">{{ $footer->title3 }}</h4>
 							<ul class="list-unstyled footer-nav">
-								<li><a href="{{ $footer->link4 }}"> {{ $footer->menu4 }} </a></li>
-								<li><a href="{{ $footer->link5 }}"> {{ $footer->menu5 }} </a></li>
+								
 								<li><a href="{{ $footer->link6 }}"> {{ $footer->menu6 }} </a></li>
+								<li><a href="{{ $footer->link7 }}"> {{ $footer->menu7 }} </a></li>
+								<li><a href="{{ $footer->link8 }}"> {{ $footer->menu8 }} </a></li>
+								<li><a href="{{ $footer->link9 }}"> {{ $footer->menu9 }} </a></li>
+								<li><a href="{{ $footer->link10 }}"> {{ $footer->menu10 }} </a></li>
 							</ul>
 						</div>
 					</div>
@@ -121,9 +131,11 @@ if (
 						<div class="footer-col">
 							<h4 class="footer-title">{{ $footer->title4 }}</h4>
 							<ul class="list-unstyled footer-nav">
+								<li> {{ $footer->company_details }} </li>
 								<li> {{ $footer->link }} </li>
 								<li> {{ $footer->facebook }} </li>
 								<li> {{ $footer->youtube }} </li>
+								<li> {{ $footer->linkedIn }} </li>
 							</ul>
 						</div>
 					</div>
@@ -207,7 +219,7 @@ if (
 									)
 									<div class="col-sm-12 col-xs-6 col-xxs-12 no-padding-lg">
 										<div class="{!! $footerSocialClass !!}">
-											<h4 class="footer-title {!! $footerSocialTitleClass !!}">{{ t('Follow us on') }}</h4>
+											<h4 class="footer-title {!! $footerSocialTitleClass !!}">{{ $footer->title5 }}</h4>
 											<ul class="list-unstyled list-inline footer-nav social-list-footer social-list-color footer-nav-inline">
 												@if (config('settings.social_link.facebook_page_url'))
 												<li>

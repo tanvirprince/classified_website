@@ -323,6 +323,37 @@
 
 				<div class="col-lg-3 page-sidebar-right">
 					<aside>
+						@php
+						$popular = App\Models\Post::where('status',1)->get()->take(6);	
+						@endphp
+						<div class="card sidebar-card">
+							<div class="card-header">Recommanded for you</div>
+							<div class="card-content">
+								<div class="card-body text-left">
+									@foreach ($popular as $all)
+									@php
+											$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+											$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+											$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+											$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+
+									@endphp
+									
+									<div class="card">
+										<img class="card-img-top" src="{{asset('/')}}storage/{{$image }}" alt="Card image cap">
+										<hr>
+										<div class="card-body">
+										  {{-- <a href="{{ url("/$all->slug/$all->id")}}"><h3> {{ $all->title }}</h3></a> --}}
+										  <h4 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h4>
+										</div>
+									</div>
+									<hr/>
+									
+									@endforeach
+									
+								</div>
+							</div>
+						</div>
 						<div class="card card-user-info sidebar-card">
 							@if (auth()->check() && auth()->id() == $post->user_id)
 								<div class="card-header">{{ t('Manage Ad') }}</div>
@@ -499,37 +530,7 @@
 						<br>
 
 
-						@php
-						$popular = App\Models\Post::get()->random(2);	
-						@endphp
-						<div class="card sidebar-card">
-							<div class="card-header">Recommanded for you</div>
-							<div class="card-content">
-								<div class="card-body text-left">
-									@foreach ($popular as $all)
-									@php
-											$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
-											$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
-											$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
-											$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
-
-									@endphp
-									
-									<div class="card">
-										<img class="card-img-top" src="{{asset('/')}}storage/{{$image }}" alt="Card image cap">
-										<hr>
-										<div class="card-body">
-										  {{-- <a href="{{ url("/$all->slug/$all->id")}}"><h3> {{ $all->title }}</h3></a> --}}
-										  <h4 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h4>
-										</div>
-									</div>
-									<hr/>
-									
-									@endforeach
-									
-								</div>
-							</div>
-						</div>
+						
 					</aside>
 				</div>
 			</div>

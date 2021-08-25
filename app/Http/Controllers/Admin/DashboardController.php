@@ -138,7 +138,10 @@ class DashboardController extends PanelController
 		$menu->link = $request->link;
 		$menu->icon = $request->icon;
 		if($request->status != null){
-			$menu->status = $request->status = 1;
+			$menu->status = 1;
+		}
+		if($request->dropdown_status != null){
+			$menu->status =  2;
 		}
 		$menu->save();
 		return redirect()->route('menu.create')->with('message','Menu added successfully');
@@ -153,7 +156,10 @@ class DashboardController extends PanelController
 		$menu->link = $request->link;
 		$menu->icon = $request->icon;
 		if($request->status != null){
-			$menu->status = $request->status = 1;
+			$menu->status = 1;
+		}
+		if($request->dropdown_status != null){
+			$menu->status = 2;
 		}
 		$menu->save();
 		return redirect()->route('menu.create')->with('message','Menu Updated Successfully added successfully');
@@ -182,6 +188,13 @@ class DashboardController extends PanelController
 			if($footers == null){
 
 				$footer = new Footer();
+
+				if($request->field17){
+					$footer->field17 = $request->field17;
+					$footer->save();
+					return redirect()->route('ads.suggest')->with('message','Added successfully');
+				}
+
 				$footer->title = $request->title;
 
 				$footer->title = $request->title;
@@ -189,6 +202,16 @@ class DashboardController extends PanelController
 				$footer->title2 = $request->title2;
 				$footer->title3 = $request->title3;
 				$footer->title4 = $request->title4;
+				$footer->title5 = $request->title5;
+
+				$footer->field11 = $request->field11;
+				$footer->field12 = $request->field12;
+				$footer->field13 = $request->field13;
+				$footer->field14 = $request->field14;
+				$footer->field15 = $request->field15;
+				$footer->field16 = $request->field16;
+				
+				// $footer->field18 = $request->field18;
 
 				$footer->menu1 = $request->menu1;
 				$footer->menu2 = $request->menu2;
@@ -196,6 +219,10 @@ class DashboardController extends PanelController
 				$footer->menu4 = $request->menu4;
 				$footer->menu5 = $request->menu5;
 				$footer->menu6 = $request->menu6;
+				$footer->menu7 = $request->menu7;
+				$footer->menu8 = $request->menu8;
+				$footer->menu9 = $request->menu9;
+				$footer->menu10 = $request->menu10;
 
 				$footer->link1 = $request->link1;
 				$footer->link2 = $request->link2;
@@ -203,6 +230,10 @@ class DashboardController extends PanelController
 				$footer->link4 = $request->link4;
 				$footer->link5 = $request->link5;
 				$footer->link6 = $request->link6;
+				$footer->link7 = $request->link7;
+				$footer->link8 = $request->link8;
+				$footer->link9 = $request->link9;
+				$footer->link10 = $request->link10;
 
 				$footer->email = $request->email;
 				$footer->mobile_number = $request->mobile_number;
@@ -218,11 +249,26 @@ class DashboardController extends PanelController
 
 			}else{
 				$footer = Footer::find(1)->first();
+
+				if($request->field17){
+					$footer->field17 = $request->field17;
+					$footer->save();
+					return redirect()->route('ads.suggest')->with('message','Added successfully');
+				}
 				$footer->title = $request->title;
 				$footer->title1 = $request->title1;
 				$footer->title2 = $request->title2;
 				$footer->title3 = $request->title3;
 				$footer->title4 = $request->title4;
+				$footer->title5 = $request->title5;
+
+				$footer->field11 = $request->field11;
+				$footer->field12 = $request->field12;
+				$footer->field13 = $request->field13;
+				$footer->field14 = $request->field14;
+				$footer->field15 = $request->field15;
+				$footer->field16 = $request->field16;
+				// $footer->field17 = $request->field17;
 
 				$footer->menu1 = $request->menu1;
 				$footer->menu2 = $request->menu2;
@@ -230,6 +276,10 @@ class DashboardController extends PanelController
 				$footer->menu4 = $request->menu4;
 				$footer->menu5 = $request->menu5;
 				$footer->menu6 = $request->menu6;
+				$footer->menu7 = $request->menu7;
+				$footer->menu8 = $request->menu8;
+				$footer->menu9 = $request->menu9;
+				$footer->menu10 = $request->menu10;
 
 				$footer->link1 = $request->link1;
 				$footer->link2 = $request->link2;
@@ -237,6 +287,10 @@ class DashboardController extends PanelController
 				$footer->link4 = $request->link4;
 				$footer->link5 = $request->link5;
 				$footer->link6 = $request->link6;
+				$footer->link7 = $request->link7;
+				$footer->link8 = $request->link8;
+				$footer->link9 = $request->link9;
+				$footer->link10 = $request->link10;
 
 
 				$footer->email = $request->email;
@@ -273,23 +327,24 @@ class DashboardController extends PanelController
 	public function suggest()
 	{
 		$post = Post::paginate(15);
-		// $image = Picture::where('post_id', $post->id)->pluck('filename')->first();
-		return view('admin::suggest',compact('post'));
+		$footer = Footer::where('id', 1)->first();
+
+		return view('admin::suggest',compact('post','footer'));
 
 	}
 	public function storeSuggestion($id)
 	{
 		// return $id;
 		$post = Post::findOrFail($id);
-		$post->status = 1;
+		$post->status = '1';
 		$post->save();
 		return redirect()->route('ads.suggest')->with('message','Recommanded Suggestion ads successfully');
 
 	}
 	public function suggestionOff($id)
 	{
-		$post = Post::find($id)->first();
-		$post->status = 0;
+		$post = Post::findOrFail($id);
+		$post->status = '0';
 		$post->save();
 		return redirect()->route('ads.suggest')->with('message','Recomanded Remove successfully');
 

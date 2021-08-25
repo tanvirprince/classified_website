@@ -230,7 +230,7 @@
 									<li class="sidebar-item">
 										<a href="{{ admin_url('footer') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
-											<span class="hide-menu"> Footer Setup </span>
+											<span class="hide-menu"> Footer Menu & Title </span>
 										</a>
 									</li>
 								@endif

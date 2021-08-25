@@ -61,6 +61,13 @@
 							<small id="emailHelp" class="form-text text-muted"> Do you want to add Events , Recomandation ? Please Checked first. </small>
 
 						  </div>
+						<div class="form-group form-check">
+							<label class="form-check-label">
+							  <input class="form-check-input" @if ($menu->status == '2') checked @endif name="dropdown_status" type="checkbox"> Menu Add in Footer?
+							</label>
+							{{-- <small id="emailHelp" class="form-text text-muted"> Do you want to add Events , Recomandation ? Please Checked first. </small> --}}
+
+						  </div>
                         
                         <button type="submit" class="btn btn-primary">Update</button>
                       </form>
