@@ -21,7 +21,9 @@ use App\Models\User;
 use App\Models\Footer;
 use App\Models\Country;
 use App\Models\Picture;
+use App\Models\Fb_foote;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Larapen\Admin\app\Http\Controllers\PanelController;
 use App\Http\Controllers\Admin\Traits\Charts\MorrisTrait;
 use App\Http\Controllers\Admin\Traits\Charts\ChartjsTrait;
@@ -198,8 +200,16 @@ class DashboardController extends PanelController
 	public function footer(){
 
 		$footer = Footer::find(1)->first();
+		$footer_fb = Fb_foote::find(1)->first();
 
-		return view('admin::footer.footer',compact('footer'));
+		return view('admin::footer.footer',compact('footer','footer_fb'));
+	}
+	public function storeFb(){
+
+		$footer = Footer::find(1)->first();
+		$footer_fb = Fb_foote::find(1)->first();
+
+		return view('admin::fb.footer',compact('footer','footer_fb'));
 	}
 
 	public function storeFooter(Request $request){
@@ -330,6 +340,34 @@ class DashboardController extends PanelController
 		return redirect()->route('footer.create')->with('message','added successfully');
 	}
 
+	public function updateFb(Request $request){
+
+		if($request->image){
+
+				
+			$file = '';
+			if ($request->hasFile('image')){
+				$file = Storage::disk('public')->put('about', $request->file('image'));
+			}
+			$about = Fb_foote::find(1)->first();
+			if ($request->hasFile('image')){
+				$about->title = $request->title;
+				$about->link = $request->link;
+				$about->image = $file;
+				$about->save();
+	
+			}else{
+				$about->title = $request->title;
+				$about->body = $request->body;
+				$about->save();
+			}
+			return redirect()->back()
+				->with('success', 'about has been Added successfully');
+
+		}
+		
+	}
+
 
 	
 	/**
@@ -352,6 +390,43 @@ class DashboardController extends PanelController
 		return view('admin::suggest',compact('post','footer'));
 
 	}
+
+	public function imageAdd()
+	{
+		$post = Post::paginate(15);
+		$footer = Footer::where('id', 1)->first();
+
+		return view('admin::add_image',compact('post','footer'));
+
+	}
+
+	public function selectImage($id)
+	{
+		
+		$post = Post::get();
+		$url = $id;
+
+		return view('admin::show-image',compact('post','url'));
+
+	}
+
+
+	public function updateImage($id,$url)
+	{
+		
+		$picture = Picture::where('post_id', $id)->pluck('filename')->first();
+		$pic = new Picture();
+		$pic->post_id = $url;
+		$pic->filename = $picture;
+		$pic->position = 1;
+		$pic->active = 1;
+		// dd($pic);
+		$pic->save();
+		return redirect()->route('ads.image-upload')->with('message',' Picture added successfully! Thankyou');
+
+	}
+
+
 	public function storeSuggestion($id)
 	{
 		// return $id;

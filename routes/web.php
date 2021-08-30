@@ -96,8 +96,14 @@ Route::group([
 
 		// ramdom ads suggest 
 		Route::get('ads/suggest', 'DashboardController@suggest')->name('ads.suggest');
+		
 		Route::get('/suggest/store/{id}', 'DashboardController@storeSuggestion')->name('suggest.store');
 		Route::get('/suggest/off/{id}', 'DashboardController@suggestionOff')->name('suggest.off');
+
+		// image upload from application
+		Route::get('ads/image-add', 'DashboardController@imageAdd')->name('ads.image-upload');
+		Route::get('ads/image-upload/{id}', 'DashboardController@selectImage')->name('ads.image-up');
+		Route::get('ads/image-update/{id}/{url}', 'DashboardController@updateImage')->name('update.image-up');
 
 		// Menu
 		Route::get('menu', 'DashboardController@menu')->name('menu.create');
@@ -109,6 +115,9 @@ Route::group([
 		// footer set from admin
 		Route::get('footer', 'DashboardController@footer')->name('footer.create');
 		Route::post('footer/store', 'DashboardController@storeFooter')->name('footer.store');
+
+		Route::get('facebook_footer', 'DashboardController@storeFb')->name('facebook_footer.create');
+		Route::post('facebook_footer/store', 'DashboardController@updateFb')->name('facebook_footer.store');
 
 		
 

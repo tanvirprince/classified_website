@@ -1339,6 +1339,7 @@ class ComposerStaticInitb4548076d0c4757b181be99040401eca
         'App\\Models\\Continent' => __DIR__ . '/../..' . '/app/Models/Continent.php',
         'App\\Models\\Country' => __DIR__ . '/../..' . '/app/Models/Country.php',
         'App\\Models\\Currency' => __DIR__ . '/../..' . '/app/Models/Currency.php',
+        'App\\Models\\Fb_foote' => __DIR__ . '/../..' . '/app/Models/Fb_foote.php',
         'App\\Models\\Field' => __DIR__ . '/../..' . '/app/Models/Field.php',
         'App\\Models\\FieldOption' => __DIR__ . '/../..' . '/app/Models/FieldOption.php',
         'App\\Models\\Footer' => __DIR__ . '/../..' . '/app/Models/Footer.php',

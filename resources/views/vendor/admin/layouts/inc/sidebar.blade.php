@@ -73,7 +73,15 @@
 									<li class="sidebar-item">
 										<a href="{{ admin_url('ads/suggest') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
-											<span class="hide-menu">Ads Suggest </span>
+											<span class="hide-menu"> Ads Suggest   </span>
+										</a>
+									</li>
+								@endif
+								@if (auth()->user()->can('post-list') || userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('ads/image-add') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu">Add Image From App</span>
 										</a>
 									</li>
 								@endif
@@ -231,6 +239,14 @@
 										<a href="{{ admin_url('footer') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
 											<span class="hide-menu"> Footer Menu & Title </span>
+										</a>
+									</li>
+								@endif
+								@if (userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('facebook_footer') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Footer FB </span>
 										</a>
 									</li>
 								@endif

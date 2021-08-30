@@ -264,6 +264,7 @@ return array(
     'App\\Models\\Continent' => $baseDir . '/app/Models/Continent.php',
     'App\\Models\\Country' => $baseDir . '/app/Models/Country.php',
     'App\\Models\\Currency' => $baseDir . '/app/Models/Currency.php',
+    'App\\Models\\Fb_foote' => $baseDir . '/app/Models/Fb_foote.php',
     'App\\Models\\Field' => $baseDir . '/app/Models/Field.php',
     'App\\Models\\FieldOption' => $baseDir . '/app/Models/FieldOption.php',
     'App\\Models\\Footer' => $baseDir . '/app/Models/Footer.php',
