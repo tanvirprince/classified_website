@@ -1,7 +1,7 @@
 @if (is_array(getSupportedLanguages()) && count(getSupportedLanguages()) > 1)
 	<!-- Language Selector -->
 	<li class="dropdown lang-menu nav-item">
-		<button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown">
+		<button type="button" class="btn btn-secondary dropdown-toggle tooltipHere" data-toggle="dropdown" data-toggle="tooltip" data-placement="right" title="Select a Language">
 			<span class="lang-title">{{ strtoupper(config('app.locale')) }}</span>
 		</button>
 		<ul id="langMenuDropdown" class="dropdown-menu dropdown-menu-right user-menu shadow-sm" role="menu">

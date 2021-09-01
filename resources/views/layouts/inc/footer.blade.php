@@ -265,6 +265,26 @@ if (
 												@endif
 											</ul>
 										</div>
+										@php
+											$fb_footer = App\Models\Fb_foote::where('id',1)->first();
+											@endphp
+											<br>
+											<div class="col-8">
+											<div class="card">
+												
+												<div class="card-body">
+													<h3> {{ $fb_footer->title }} </h3>
+													<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}storage/{{$fb_footer->image }}" style="width:50px;height:50px;" alt="footer link">
+													
+													<a href="//{{ $fb_footer->link }}">
+													<button type="button" class="btn" style="color: blue;">
+														<i class="fab fa-facebook"></i>
+														Visit Page
+													</button>
+												</a>
+												</div>
+											</div>
+										</div>
 									</div>
 								@endif
 							</div>

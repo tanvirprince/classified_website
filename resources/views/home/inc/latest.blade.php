@@ -22,9 +22,9 @@ if (isset($latestOptions, $latestOptions['hide_on_mobile']) and $latestOptions['
 
 
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">ALL ADS</button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')">POPULAR ADS</button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')">LATEST ADS</button>
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen"><span class="footer-title">ALL ADS</span></button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')"><span class="footer-title">POPULAR ADS</span></button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')"><span class="footer-title">LATEST ADS</span></button>
 </div>
 @php
 $all_ads = App\Models\Post::latest()->get()->take(4);

@@ -89,6 +89,10 @@ if (request()->segment(1) != 'countries') {
 						@endif
 					@endif
 				</ul>
+
+				
+				@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.menu.select-language', 'layouts.inc.menu.select-language'])
+
 				
 				<ul class="nav navbar-nav ml-auto navbar-right">
 					@if (!auth()->check())
@@ -270,7 +274,6 @@ if (request()->segment(1) != 'countries') {
 						</a>
 					</li>
 					
-					@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.menu.select-language', 'layouts.inc.menu.select-language'])
 					
 				</ul>
 			</div>

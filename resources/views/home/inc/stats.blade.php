@@ -24,8 +24,8 @@ if (isset($statsOptions, $statsOptions['hide_on_mobile']) and $statsOptions['hid
 							</div>
 							<div class="iconbox-wrap-content">
 							<a href="{{ $list->link }}">
-								<h5><span > {{$list->title}} </span></h5>
-								{{-- <div class="iconbox-wrap-text"> {{title}} </div> --}}
+								{{-- <h5><span > {{$list->title}} </span></h5> --}}
+								<div class="iconbox-wrap-text" style="font-size: 30px; font-weight: bold;"> {{$list->title}} </div>
 							</a>
 							</div>
 						</div>

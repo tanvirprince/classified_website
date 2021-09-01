@@ -98,39 +98,44 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 			<div class="dtable-cell hw100">
 				<div class="container text-center">
 					
-					@if ($sForm['hideTitles'] != '1')
+					{{-- @if ($sForm['hideTitles'] != '1')
 						<h1 class="intro-title animated fadeInDown"> {{ $sForm['title'] }} </h1>
 						<p class="sub animateme fittext3 animated fadeIn">
 							{!! $sForm['subTitle'] !!}
 						</p>
-					@endif
-					
+					@endif --}}
+
+					<div class="text-center mb-5"> 
+						<h1> <span class="color-world-black">World</span>  <span class="color-classified">Classifieds Ads & More </span>.</h1> 
+						<h2> <span class="color-bjourney-black">Level up your Personal &</span> <span class="color-bjourney-red">Business Journey</span> </h2>
+					</div>
+				
 					@if ($sForm['hideForm'] != '1')
 						<div class="search-row animated fadeInUp rounded">
 							<form id="search" name="search" action="{{ \App\Helpers\UrlGen::search() }}" method="GET">
 								<div class="row m-0">
 									<div class="col-md-5 col-sm-12 mb-1 mb-xl-0 mb-lg-0 mb-md-0 search-col relative">
-										<i class="icon-docs icon-append"></i>
-										<input type="text" name="q" class="form-control keyword has-icon" placeholder="{{ t('what') }}" value="">
+										<i class="icon-keyboard icon-append"></i>
+										<input type="text" name="q" class="form-control keyword has-icon" placeholder="Enter Keyword" value="">
 									</div>
 									
 									<div class="col-md-5 col-sm-12 search-col relative locationicon">
-										<i class="icon-location-2 icon-append"></i>
+										<i class="icon-location-circled icon-append"></i>
 										<input type="hidden" id="lSearch" name="l" value="">
 										@if ($showMap)
 											<input type="text" id="locSearch" name="location" class="form-control locinput input-rel searchtag-input has-icon tooltipHere"
-												   placeholder="{{ t('where') }}" value="" title="" data-placement="bottom"
+												   placeholder="Please Enter Your Location" value="" title="" data-placement="bottom"
 												   data-toggle="tooltip"
 												   data-original-title="{{ t('Enter a city name OR a state name with the prefix', ['prefix' => t('area')]) . t('State Name') }}">
 										@else
 											<input type="text" id="locSearch" name="location" class="form-control locinput input-rel searchtag-input has-icon"
-												   placeholder="{{ t('where') }}" value="">
+												   placeholder="Please Enter Your Location" value="">
 										@endif
 									</div>
 									
 									<div class="col-md-2 col-sm-12 search-col">
-										<button class="btn btn-primary btn-search btn-block">
-											<i class="icon-search"></i> <strong>{{ t('find') }}</strong>
+										<button class="btn btn-search btn-block">
+											<i class="icon-search"></i> <strong class="text-black"> SEARCH </strong>
 										</button>
 									</div>
 								</div>
