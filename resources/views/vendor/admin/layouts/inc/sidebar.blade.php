@@ -119,6 +119,32 @@
 								@endif
 							</ul>
 						</li>
+
+						{{-- ***** blog  --}}
+
+						<li class="sidebar-item">
+							<a href="#" class="sidebar-link has-arrow waves-effect waves-dark">
+								<i data-feather="edit"></i> <span class="hide-menu">Blog</span>
+							</a>
+							<ul aria-expanded="false" class="collapse first-level">
+								@if (auth()->user()->can('blog-create') || auth()->user()->can('blog-create') ||userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('blog-create') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Create Blog  </span>
+										</a>
+									</li>
+									<li class="sidebar-item">
+										<a href="{{ admin_url('blog-manage') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Manage Blog  </span>
+										</a>
+									</li>
+								@endif
+								
+							</ul>
+						</li>
+
 					@endif
 					
 					@if (

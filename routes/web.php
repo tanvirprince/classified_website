@@ -99,6 +99,14 @@ Route::group([
 		
 		Route::get('/suggest/store/{id}', 'DashboardController@storeSuggestion')->name('suggest.store');
 		Route::get('/suggest/off/{id}', 'DashboardController@suggestionOff')->name('suggest.off');
+		
+		// blog admin 
+		Route::get('blog-create', 'BlogAdminController@create')->name('blog.create');
+		Route::post('blog-store', 'BlogAdminController@store')->name('blog.store');
+		Route::get('blog-manage', 'BlogAdminController@manage')->name('blog.manage');
+		Route::get('/blog/edit/{id}', 'BlogAdminController@blogEdit')->name('blog.edit');
+		Route::get('/blog/destroy/{id}', 'BlogAdminController@blogDestroy')->name('blog.destroy');
+		Route::post('/blog/update/{id}', 'BlogAdminController@blogUpdate')->name('blog.update');
 
 		// image upload from application
 		Route::get('ads/image-add', 'DashboardController@imageAdd')->name('ads.image-upload');
@@ -258,7 +266,12 @@ Route::group([
 		Route::get('/', 'HomeController@index');
 		Route::get(dynamicRoute('routes.countries'), 'CountriesController@index');
 		
-		
+		// blog frontend
+		Route::get('/blog', 'BlogController@index')->name('blog.index');
+		Route::get('/blog/{id}', 'BlogController@show')->name('blog.show');
+
+
+
 		// AUTH
 		Route::group(['middleware' => ['guest', 'no.http.cache']], function ($router) {
 			// Registration Routes...

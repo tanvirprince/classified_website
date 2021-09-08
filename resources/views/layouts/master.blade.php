@@ -18,8 +18,10 @@
 <!DOCTYPE html>
 <html lang="{{ ietfLangTag(config('app.locale')) }}"{!! (config('lang.direction')=='rtl') ? ' dir="rtl"' : '' !!}>
 <head>
+
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
+	
 	@includeFirst([config('larapen.core.customizedViewPath') . 'common.meta-robots', 'common.meta-robots'])
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="apple-mobile-web-app-title" content="{{ config('settings.app.app_name') }}">
@@ -73,6 +75,10 @@
 			</style>
 	{!! MetaTag::tag('description') !!}{!! MetaTag::tag('keywords') !!}
 	<link rel="canonical" href="{{ request()->fullUrl() }}"/>
+	@if (Request::is('blog') || Request::is('blog/*'))
+	
+	@else
+
 	@if (isset($post))
 		@if (isVerifiedPost($post))
 			@if (config('services.facebook.client_id'))
@@ -87,6 +93,8 @@
 		@endif
 		{!! $og->renderTags() !!}
 		{!! MetaTag::twitterCard() !!}
+	@endif
+	
 	@endif
 	@include('feed::links')
 	{!! seoSiteVerification() !!}
@@ -128,12 +136,12 @@
 	@if (config('settings.other.js_code'))
 		{!! printJs(config('settings.other.js_code')) . "\n" !!}
 	@endif
-
 	<!--[if lt IE 9]>
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
- 
+	
+
 	<script>
 		paceOptions = {
 			elements: true
