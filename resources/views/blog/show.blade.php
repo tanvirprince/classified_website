@@ -158,8 +158,8 @@
         <!-- Featured blog post-->
         <div class="card mb-4">
           <div class="card-body">
-            <div class="small text-muted">{{ \Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}
-            </div>
+            {{-- <div class="small text-muted">{{ \Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}
+            </div> --}}
             <h2 class="card-title">{{$blog->title}}</h2>
             <p class="card-text">{{ $blog->short_description }}</p>
         </div>
@@ -171,22 +171,61 @@
             </div>
         </div>
       </div>
+
+      <div class="col-lg-3">
+        @php
+						$popular = App\Models\Post::where('status',1)->get()->take(6);
+						$footer = App\Models\Footer::where('id', 1)->first();
+	
+						@endphp
+						<div class="card sidebar-card">
+							<div class="card-header">{{$footer->field17}}</div>
+							<div class="card-content">
+								<div class="card-body text-left">
+									@foreach ($popular as $all)
+									@php
+											$image = App\Models\Picture::where('post_id', $all->id)->pluck('filename')->first();
+											$category = App\Models\Category::where('id', $all->category_id)->pluck('name')->first();
+											$country = App\Models\Country::where('code', $all->country_code)->pluck('capital')->first();
+											$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
+
+									@endphp
+									
+									<div class="card">
+										<img class="card-img-top" src="{{asset('/')}}storage/{{$image }}" alt="Card image cap">
+										<hr>
+										<div class="card-body">
+										  {{-- <a href="{{ url("/$all->slug/$all->id")}}"><h3> {{ $all->title }}</h3></a> --}}
+										  <h4 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h4>
+										</div>
+									</div>
+									<hr/>
+									
+									@endforeach
+									
+								</div>
+							</div>
+						</div>
+            
+      </div>
       
-          
+      {{-- @php
+      $footer = App\Models\Footer::where('id', 1)->first();
+
+      @endphp   
       
       <div class="col-lg-3">
-        <h2 class="text-center mt-3"> Recomanded </h2>
+        <div class="card-header">{{$footer->field18}}</div>
         @foreach ($recommanded as $blog)
         <div class="card mb-4 mt-3">
           <a href="#!"><img class="card-img-top" src="{{asset('/')}}assets/blog/blog_post/{{$blog->image }}" alt="..."></a>
           <div class="card-body">
               <div class="small text-muted">{{ \Carbon\Carbon::parse($blog->created_at)->diffForHumans() }}</div>
               <h2 class="card-title h4">{{$blog->title}}</h2>
-              {{-- <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p> --}}
               <a class="btn btn-primary" href="{{route('blog.show',$blog->id)}}">Read more →</a>
           </div>
           @endforeach
-      </div>
+      </div> --}}
       
       </div>
     </div>

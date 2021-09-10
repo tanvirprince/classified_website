@@ -324,10 +324,12 @@
 				<div class="col-lg-3 page-sidebar-right">
 					<aside>
 						@php
-						$popular = App\Models\Post::where('status',1)->get()->take(6);	
+						$popular = App\Models\Post::where('status',1)->get()->take(6);
+						$footer = App\Models\Footer::where('id', 1)->first();
+	
 						@endphp
 						<div class="card sidebar-card">
-							<div class="card-header">Recommanded for you</div>
+							<div class="card-header">{{$footer->field17}}</div>
 							<div class="card-content">
 								<div class="card-body text-left">
 									@foreach ($popular as $all)

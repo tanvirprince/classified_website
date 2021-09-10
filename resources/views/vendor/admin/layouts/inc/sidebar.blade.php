@@ -146,6 +146,13 @@
 						</li>
 
 					@endif
+					@if (auth()->user()->can('recom.suggest') || userHasSuperAdminPermissions())
+						<li class="sidebar-item">
+							<a href="{{ admin_url('ads/recomandation') }}" class="sidebar-link">
+								<i data-feather="edit" class="feather-icon"></i> <span class="hide-menu"> Side Suggestion Title </span>
+							</a>
+						</li>
+					@endif
 					
 					@if (
 						auth()->user()->can('user-list') ||
@@ -195,6 +202,7 @@
 						</li>
 					@endif
 					
+					
 					@if (auth()->user()->can('payment-list') || userHasSuperAdminPermissions())
 						<li class="sidebar-item">
 							<a href="{{ admin_url('payments') }}" class="sidebar-link">
@@ -202,6 +210,7 @@
 							</a>
 						</li>
 					@endif
+					
 					@if (auth()->user()->can('page-list') || userHasSuperAdminPermissions())
 						<li class="sidebar-item">
 							<a href="{{ admin_url('pages') }}" class="sidebar-link">

@@ -20,11 +20,11 @@ if (isset($latestOptions, $latestOptions['hide_on_mobile']) and $latestOptions['
 {{-- <p>In this example, we use JavaScript to "click" on the London button, to open the tab on page load.</p> --}}
 <div class="container">
 
-
+	{{-- <span class="title-3">Browse by <span style="font-weight: bold;">Category</span></span> --}}
 <div class="tab">
-  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen"><span class="footer-title">ALL ADS</span></button>
-  <button class="tablinks" onclick="openCity(event, 'Paris')"><span class="footer-title">POPULAR ADS</span></button>
-  <button class="tablinks" onclick="openCity(event, 'Tokyo')"><span class="footer-title">LATEST ADS</span></button>
+  <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">All<span class="footer-title"> ADS</span></button>
+  <button class="tablinks" onclick="openCity(event, 'Paris')">Popular<span class="footer-title"> ADS</span></button>
+  <button class="tablinks" onclick="openCity(event, 'Tokyo')">Latest<span class="footer-title"> ADS</span></button>
 </div>
 @php
 $all_ads = App\Models\Post::latest()->get()->take(4);

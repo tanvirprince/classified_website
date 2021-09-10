@@ -96,6 +96,8 @@ Route::group([
 
 		// ramdom ads suggest 
 		Route::get('ads/suggest', 'DashboardController@suggest')->name('ads.suggest');
+		// title suggestion recom
+		Route::get('ads/recomandation', 'DashboardController@recom')->name('recom.suggest');
 		
 		Route::get('/suggest/store/{id}', 'DashboardController@storeSuggestion')->name('suggest.store');
 		Route::get('/suggest/off/{id}', 'DashboardController@suggestionOff')->name('suggest.off');
@@ -127,7 +129,10 @@ Route::group([
 		Route::get('facebook_footer', 'DashboardController@storeFb')->name('facebook_footer.create');
 		Route::post('facebook_footer/store', 'DashboardController@updateFb')->name('facebook_footer.store');
 
-		
+		// recomaded text route
+		// Route::post('suggest/recommanded', 'DashboardController@recommandedSuggest')->name('suggest.recommanded');
+		Route::post('blog/recommanded', 'DashboardController@recommandedBlog')->name('blog.recommanded');
+
 
 
 

@@ -211,6 +211,11 @@ class DashboardController extends PanelController
 
 		return view('admin::fb.footer',compact('footer','footer_fb'));
 	}
+	public function recom(){
+		$footer = Footer::find(1)->first();
+		$footer_fb = Fb_foote::find(1)->first();
+		return view('admin::suggest_title',compact('footer','footer_fb'));
+	}
 
 	public function storeFooter(Request $request){
 		$footers = Footer::get();
@@ -222,7 +227,7 @@ class DashboardController extends PanelController
 				if($request->field17){
 					$footer->field17 = $request->field17;
 					$footer->save();
-					return redirect()->route('ads.suggest')->with('message','Added successfully');
+					return redirect()->back()->with('message','Added successfully');
 				}
 
 				$footer->title = $request->title;
@@ -283,7 +288,7 @@ class DashboardController extends PanelController
 				if($request->field17){
 					$footer->field17 = $request->field17;
 					$footer->save();
-					return redirect()->route('ads.suggest')->with('message','Added successfully');
+					return redirect()->back()->with('message','Added successfully');
 				}
 				$footer->title = $request->title;
 				$footer->title1 = $request->title1;
@@ -390,6 +395,19 @@ class DashboardController extends PanelController
 		return view('admin::suggest',compact('post','footer'));
 
 	}
+
+	public function recommandedBlog(Request $request)
+	{
+		
+		$footer = Footer::find(1)->first();
+		$footer->field18 = $request->field18;
+		$footer->save();
+		
+		return redirect()->route('blog.manage')->with('message','Added successfully');
+
+	}
+
+
 
 	public function imageAdd()
 	{

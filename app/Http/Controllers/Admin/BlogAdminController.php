@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Models\Blog;
+use App\Models\Footer;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -44,7 +45,9 @@ class BlogAdminController extends Controller
 
     public function manage(){
         $blog = Blog::get();
-        return view('admin::blog.blog-manage',compact('blog'));
+        $footer = Footer::where('id', 1)->first();
+
+        return view('admin::blog.blog-manage',compact('blog','footer'));
     }
 
     public function blogEdit($id){
