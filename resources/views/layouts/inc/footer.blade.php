@@ -269,7 +269,9 @@ if (
 											$fb_footer = App\Models\Fb_foote::where('id',1)->first();
 											@endphp
 											<br>
-											<div class="col-8">
+											<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBusinessJourneynet&tabs&width=340&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=true&appId=872948206507683" width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>												
+
+											{{-- <div class="col-8">
 											<div class="card">
 												
 												<div class="card-body">
@@ -283,7 +285,7 @@ if (
 													</button>
 												</a>
 												</div>
-											</div>
+											</div> --}}
 										</div>
 									</div>
 								@endif

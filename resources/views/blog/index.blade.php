@@ -85,10 +85,7 @@
         grid-template-columns: repeat(2,1fr);
     }
 
-    .container{
-        padding: 50px 20px;
-        padding-top: 80px;
-    }
+    
 }
 
 @media screen and (max-width: 600px) {

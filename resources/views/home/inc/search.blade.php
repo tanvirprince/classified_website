@@ -124,7 +124,7 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 										<input type="hidden" id="lSearch" name="l" value="">
 										@if ($showMap)
 											<input type="text" id="locSearch" name="location" class="form-control locinput input-rel searchtag-input has-icon tooltipHere"
-												   placeholder="Please Enter Your Location" value="" title="" data-placement="bottom"
+												   placeholder="Enter Location" value="" title="" data-placement="bottom"
 												   data-toggle="tooltip"
 												   data-original-title="{{ t('Enter a city name OR a state name with the prefix', ['prefix' => t('area')]) . t('State Name') }}">
 										@else

@@ -66,7 +66,7 @@
 		<div class="col-12">
 			<div class="card rounded">
 				<div class="card-header">
-					<h3 class="card-title"><i class="fas fa-info-circle"></i> Ads Suggestion ( <span class="badge badge-dark-info"> Recomanded Title:  {{ $footer->field17 }} </span> ) </h3>
+					<h3 class="card-title"><i class="fas fa-info-circle"></i> Paid Ads Zone 6 ( <span class="badge badge-dark-info"> Recomanded Title:  {{ $footer->field17 }} </span> ) </h3>
                     {{-- <a class="btn btn-secondary" href="{{ route('footer.create') }}" >Ads Title Update </a> --}}
 				</div>
                 @if(session()->has('message'))

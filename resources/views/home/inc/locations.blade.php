@@ -89,9 +89,9 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 						<div class="relative location-content">
 							
 							@if ($loc['show'] && $map['show'])
-								<h2 class="title-3 pt-1 pr-3 pb-3 pl-3" style="white-space: nowrap;">
-									<i class="icon-location-2"></i>&nbsp;{{ t('Choose a city or region') }}
-								</h2>
+								<p class="title-3 pt-1 pr-3 pb-3 pl-3" style="font-weight: lighter; white-space: nowrap;">
+									<i class="icon-location-2"></i>&nbsp; Choose <span style="font-weight: bold;">a City or Region</span>
+								</p>
 							@endif
 							<div class="col-xl-12 tab-inner">
 								<div class="row">
@@ -118,11 +118,11 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 							
 							@if ($loc['showButton'])
 								@if (!auth()->check() and config('settings.single.guests_can_post_ads') != '1')
-									<a class="btn btn-lg btn-add-listing" href="#quickLogin" data-toggle="modal">
+									<a class="btn btn-lg" style="background-color: red; color:white;" href="#quickLogin" data-toggle="modal">
 										<i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
 									</a>
 								@else
-									<a class="btn btn-lg btn-add-listing pl-4 pr-4" href="{{ \App\Helpers\UrlGen::addPost() }}" style="text-transform: none;">
+									<a class="btn btn-lg pl-4 pr-4" style="background-color: red; color:white;" href="{{ \App\Helpers\UrlGen::addPost() }}" style="text-transform: none;">
 										<i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
 									</a>
 								@endif

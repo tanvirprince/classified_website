@@ -69,14 +69,14 @@
 										</a>
 									</li>
 								@endif
-								@if (auth()->user()->can('post-list') || userHasSuperAdminPermissions())
+								{{-- @if (auth()->user()->can('post-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('ads/suggest') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
 											<span class="hide-menu"> Ads Suggest   </span>
 										</a>
 									</li>
-								@endif
+								@endif --}}
 								@if (auth()->user()->can('post-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('ads/image-add') }}" class="sidebar-link">
@@ -146,10 +146,17 @@
 						</li>
 
 					@endif
-					@if (auth()->user()->can('recom.suggest') || userHasSuperAdminPermissions())
+					{{-- @if (auth()->user()->can('recom.suggest') || userHasSuperAdminPermissions())
 						<li class="sidebar-item">
 							<a href="{{ admin_url('ads/recomandation') }}" class="sidebar-link">
-								<i data-feather="edit" class="feather-icon"></i> <span class="hide-menu"> Side Suggestion Title </span>
+								<i data-feather="edit" class="feather-icon"></i> <span class="hide-menu"> Paid Add Zone 6 </span>
+							</a>
+						</li>
+					@endif --}}
+					@if (auth()->user()->can('recom.suggest') || userHasSuperAdminPermissions())
+						<li class="sidebar-item">
+							<a href="{{ admin_url('ads/suggest') }}" class="sidebar-link">
+								<i data-feather="edit" class="feather-icon"></i> <span class="hide-menu"> New Ads Suggestion </span>
 							</a>
 						</li>
 					@endif
