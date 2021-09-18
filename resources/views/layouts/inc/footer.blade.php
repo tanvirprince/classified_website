@@ -67,7 +67,7 @@ if (
 </div>
 <div class="container">
 	<div class="row col-md-12 ">
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<h2 class="footer-title"> {{ $footer->title }} </h2>
 			
 			<h4>{{ $footer->email }}</h4>
@@ -76,7 +76,7 @@ if (
 			<h4>{{ $footer->field12 }}</h4>
 			<h4>{{ $footer->field13 }}</h4>
 		</div>
-		<div class="col-md-6">
+		<div class="col-md-4">
 			<h2 class="footer-title"> {{ $footer->title1 }}</h2>
 			{{-- <h4>{{ $footer->title }}</h4> --}}
 			<h4>{{ $footer->time }}</h4>
@@ -84,6 +84,12 @@ if (
 			<h4> {{ $footer->field14 }}</h4>
 			<h4> {{ $footer->field15 }}</h4>
 			<h4> {{ $footer->field16 }}</h4>
+		</div>
+		<div class="col-md-4">
+			{{-- <h2 class="footer-title"> {{ $footer->title1 }}</h2> --}}
+			
+			<iframe src="https://www.facebook.com/plugins/group.php?href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fbusinessjourneynet&width=250&show_metadata=false&appId=872948206507683&height=241" width="250" height="241" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+
 		</div>
 		<br>
 
@@ -269,7 +275,7 @@ if (
 											$fb_footer = App\Models\Fb_foote::where('id',1)->first();
 											@endphp
 											<br>
-											<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBusinessJourneynet&tabs&width=340&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=true&appId=872948206507683" width="340" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>												
+											<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBusinessJourneynet&tabs&width=280&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=872948206507683" width="280" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
 											{{-- <div class="col-8">
 											<div class="card">

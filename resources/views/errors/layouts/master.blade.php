@@ -64,7 +64,9 @@
 <div id="wrapper">
 
 	@section('header')
-		@includeFirst([config('larapen.core.customizedViewPath') . 'errors.layouts.inc.header', 'errors.layouts.inc.header'])
+	{{-- error page header change  --}}
+		{{-- @includeFirst([config('larapen.core.customizedViewPath') . 'errors.layouts.inc.header', 'errors.layouts.inc.header']) --}}
+		@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.header', 'layouts.inc.header'])
 	@show
 
 	@section('search')
@@ -76,7 +78,9 @@
 	@show
 	
 	@section('footer')
-		@includeFirst([config('larapen.core.customizedViewPath') . 'errors.layouts.inc.footer', 'errors.layouts.inc.footer'])
+	{{-- error page footer chnage directories  --}}
+		{{-- @includeFirst([config('larapen.core.customizedViewPath') . 'errors.layouts.inc.footer', 'errors.layouts.inc.footer']) --}}
+		@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.footer', 'layouts.inc.footer'])
 	@show
 
 </div>
