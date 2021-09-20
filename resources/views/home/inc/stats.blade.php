@@ -4,6 +4,16 @@ if (isset($statsOptions, $statsOptions['hide_on_mobile']) and $statsOptions['hid
 	$hideOnMobile = ' hidden-sm';
 }
 ?>
+@php
+$image = App\Models\GoogleAds::where('id',1)->first();
+@endphp
+@if (!empty($image->ads_2))
+<div class="container mt-3">
+<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_2/{{$image->ads_2 }}" style="max-height:150px;" alt="ads2">
+</div>
+@else
+
+@endif
 
 @php
 	$footer_menu = App\Models\Menu::where('status',1)->get()

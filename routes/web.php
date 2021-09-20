@@ -115,6 +115,10 @@ Route::group([
 		Route::get('ads/image-upload/{id}', 'DashboardController@selectImage')->name('ads.image-up');
 		Route::get('ads/image-update/{id}/{url}', 'DashboardController@updateImage')->name('update.image-up');
 
+		// google ads
+		Route::get('/banner-image', 'GoogleAdsController@adsGoogle')->name('banner.img');
+		Route::post('banner', 'GoogleAdsController@updateAds')->name('update.banner');
+
 		// Menu
 		Route::get('menu', 'DashboardController@menu')->name('menu.create');
 		Route::post('menu', 'DashboardController@storeMenu')->name('menu.store');

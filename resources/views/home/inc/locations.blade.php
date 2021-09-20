@@ -36,6 +36,18 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 }
 ?>
 @if ($loc['show'] || $map['show'])
+
+@php
+	$image = App\Models\GoogleAds::where('id',1)->first();
+@endphp
+@if (!empty($image->ads_1))
+<div class="container mt-3">
+	<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_1/{{$image->ads_1 }}" style="max-height:150px;" alt="ads1">
+</div>
+@else
+
+@endif
+
 @includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'], ['hideOnMobile' => $hideOnMobile])
 <div class="container{{ $hideOnMobile }}">
 	<div class="col-xl-12 page-content p-0">

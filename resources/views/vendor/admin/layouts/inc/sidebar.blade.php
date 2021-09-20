@@ -144,6 +144,25 @@
 								
 							</ul>
 						</li>
+						{{-- ***** blog  --}}
+
+						<li class="sidebar-item">
+							<a href="#" class="sidebar-link has-arrow waves-effect waves-dark">
+								<i data-feather="edit"></i> <span class="hide-menu">Google Ads</span>
+							</a>
+							<ul aria-expanded="false" class="collapse first-level">
+								@if (auth()->user()->can('banner-image') || auth()->user()->can('banner-image') ||userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('banner-image') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Place Ads  </span>
+										</a>
+									</li>
+									
+								@endif
+								
+							</ul>
+						</li>
 
 					@endif
 					{{-- @if (auth()->user()->can('recom.suggest') || userHasSuperAdminPermissions())

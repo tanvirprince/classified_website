@@ -29,6 +29,17 @@
 		</div>
 		<?php Session::forget('flash_notification.message'); ?>
 	@endif
+
+	@php
+	$image = App\Models\GoogleAds::where('id',1)->first();
+	@endphp
+	@if (!empty($image->ads_3))
+	<div class="container mt-3">
+	<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_3/{{$image->ads_3 }}" style="max-height:150px;" alt="ads3">
+	</div>
+	@else
+
+	@endif
 	
 	<div class="main-container">
 		
@@ -39,7 +50,7 @@
 		endif;
 		?>
 		
-		<div class="container {{ (isset($topAdvertising) and !empty($topAdvertising)) ? 'mt-3' : 'mt-2' }}">
+		<div class="container {{ (isset($topAdvertising) and !empty($topAdvertising)) ? 'mt-2' : 'mt-1' }}">
 			<div class="row">
 				<div class="col-md-12">
 					
@@ -121,8 +132,15 @@
 								@include('reviews::ratings-single')
 							@endif
 						@endif
-						
+						{{-- ads 4  --}}
+						@if (!empty($image->ads_4))
+						<div class="container mt-2 mb-2">
+						<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_4/{{$image->ads_4 }}" style="max-height:150px;" alt="ads4">
+						</div>
+						@else
+						{{-- ads 4  --}}
 
+						@endif
 						<div class="items-details">
 							<ul class="nav nav-tabs" id="itemsDetailsTabs" role="tablist">
 								<li class="nav-item">
@@ -164,6 +182,7 @@
 									<div class="row">
 										<div class="items-details-info col-md-12 col-sm-12 col-xs-12 enable-long-words from-wysiwyg">
 											
+
 											<div class="row">
 												<!-- Location -->
 												<div class="detail-line-lite col-md-6 col-sm-6 col-xs-6">
@@ -317,9 +336,18 @@
 						
 					</div>
 					<!--/.items-details-wrapper-->
+					{{-- ads 5  --}}
+					@if (!empty($image->ads_5))
+					<div class="container mt-2 mb-2">
+					<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_5/{{$image->ads_5 }}" style="max-height:150px;" alt="ads5">
+					</div>
+					@else
+					@endif
+					{{-- ads 5  --}}
 					
 				</div>
 				<!--/.page-content-->
+
 
 				<div class="col-lg-3 page-sidebar-right">
 					<aside>
