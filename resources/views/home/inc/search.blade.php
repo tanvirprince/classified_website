@@ -134,8 +134,8 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 									</div>
 									
 									<div class="col-md-2 col-sm-12 search-col">
-										<button class="btn btn-search btn-block postadd" style="color: white;">
-											<i class="icon-search"></i> <strong class="text-white"> Search </strong>
+										<button class="btn btn-search btn-block" style="color: white;">
+											<i class="icon-search"></i> <strong class=""> Search </strong>
 										</button>
 									</div>
 								</div>
