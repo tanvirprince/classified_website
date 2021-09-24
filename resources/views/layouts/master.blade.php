@@ -182,6 +182,7 @@
 			@endif
 		@endif
 	@show
+	
 </head>
 <body class="{{ config('app.skin') }}">
 <div id="wrapper">

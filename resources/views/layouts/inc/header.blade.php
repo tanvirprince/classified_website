@@ -22,6 +22,7 @@ if (request()->segment(1) != 'countries') {
 	}
 }
 ?>
+
 <div class="header">
 	<nav class="navbar fixed-top navbar-site navbar-light bg-light navbar-expand-md" role="navigation">
 		<div class="container">

@@ -34,8 +34,13 @@
 	$image = App\Models\GoogleAds::where('id',1)->first();
 	@endphp
 	@if (!empty($image->ads_3))
-	<div class="container mt-3">
+	<ul class="list-unstyled footer-nav text-center">
+		<li> Advertise zone 8 </li>
+	</ul>
+	<div class="container mt-1">
+	<a href="//{{ $image->ads_3_link }}" target="_blank">
 	<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_3/{{$image->ads_3 }}" style="max-height:150px;" alt="ads3">
+	</a>
 	</div>
 	@else
 
@@ -135,7 +140,12 @@
 						{{-- ads 4  --}}
 						@if (!empty($image->ads_4))
 						<div class="container mt-2 mb-2">
+							<ul class="list-unstyled footer-nav text-center">
+								<li> Advertise zone 9 </li>
+							</ul>
+						<a href="//{{ $image->ads_4_link }}" target="_blank">
 						<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_4/{{$image->ads_4 }}" style="max-height:150px;" alt="ads4">
+						</a>
 						</div>
 						@else
 						{{-- ads 4  --}}
@@ -339,7 +349,12 @@
 					{{-- ads 5  --}}
 					@if (!empty($image->ads_5))
 					<div class="container mt-2 mb-2">
-					<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_5/{{$image->ads_5 }}" style="max-height:150px;" alt="ads5">
+						<ul class="list-unstyled footer-nav text-center">
+							<li> Advertise zone 10 </li>
+						</ul>
+					<a href="//{{ $image->ads_5_link }}" target="_blank">
+					<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_5/{{$image->ads_5 }}" style="max-height:600px;" alt="ads5">
+					</a>
 					</div>
 					@else
 					@endif

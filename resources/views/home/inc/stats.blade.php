@@ -8,14 +8,20 @@ if (isset($statsOptions, $statsOptions['hide_on_mobile']) and $statsOptions['hid
 $image = App\Models\GoogleAds::where('id',1)->first();
 @endphp
 @if (!empty($image->ads_2))
-<div class="container mt-3">
-<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_2/{{$image->ads_2 }}" style="max-height:150px;" alt="ads2">
+<div class="container mt-1">
+	<ul class="list-unstyled footer-nav text-center">
+		<li> Advertise zone 2 </li>
+	</ul>
+	<a href="//{{ $image->ads_2_link }}" target="_blank">
+		<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_2/{{$image->ads_2 }}" style="max-height:150px;" alt="ads2">
+	</a>	
 </div>
 @else
 
 @endif
 
-@php
+{{-- temporay commetn for client request  --}}
+{{-- @php
 	$footer_menu = App\Models\Menu::where('status',1)->get()
 @endphp
 
@@ -34,7 +40,6 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 							</div>
 							<div class="iconbox-wrap-content">
 							<a href="{{ $list->link }}">
-								{{-- <h5><span > {{$list->title}} </span></h5> --}}
 								<div class="iconbox-wrap-text" style="font-size: 30px; font-weight: bold;"> {{$list->title}} </div>
 							</a>
 							</div>
@@ -49,7 +54,8 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 	</div>
 </div>
 
-<br>
+<br> --}}
+{{-- temporay commetn for client request  --}}
 
 
 

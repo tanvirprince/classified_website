@@ -418,6 +418,7 @@ class DashboardController extends PanelController
 
 	}
 
+
 	public function selectImage($id)
 	{
 		

@@ -117,6 +117,7 @@ Route::group([
 
 		// google ads
 		Route::get('/banner-image', 'GoogleAdsController@adsGoogle')->name('banner.img');
+		Route::get('/delete-image/{column}', 'GoogleAdsController@deleteAdsGoogle')->name('delete.img');
 		Route::post('banner', 'GoogleAdsController@updateAds')->name('update.banner');
 
 		// Menu
