@@ -148,14 +148,32 @@
 
 						<li class="sidebar-item">
 							<a href="#" class="sidebar-link has-arrow waves-effect waves-dark">
-								<i data-feather="edit"></i> <span class="hide-menu">Google Ads</span>
+								<i data-feather="edit"></i> <span class="hide-menu"> Advertisment </span>
 							</a>
 							<ul aria-expanded="false" class="collapse first-level">
 								@if (auth()->user()->can('banner-image') || auth()->user()->can('banner-image') ||userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('banner-image') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
-											<span class="hide-menu"> Place Ads  </span>
+											<span class="hide-menu"> Manual Ads  </span>
+										</a>
+									</li>
+									
+								@endif
+								@if (auth()->user()->can('advertising-list') ||userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('advertisings') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Google Ads  </span>
+										</a>
+									</li>
+									
+								@endif
+								@if (auth()->user()->can('recom.suggest') ||userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('ads/suggest') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Inside Ads Right Bar  </span>
 										</a>
 									</li>
 									
@@ -172,13 +190,13 @@
 							</a>
 						</li>
 					@endif --}}
-					@if (auth()->user()->can('recom.suggest') || userHasSuperAdminPermissions())
+					{{-- @if (auth()->user()->can('recom.suggest') || userHasSuperAdminPermissions())
 						<li class="sidebar-item">
 							<a href="{{ admin_url('ads/suggest') }}" class="sidebar-link">
 								<i data-feather="edit" class="feather-icon"></i> <span class="hide-menu"> New Ads Suggestion </span>
 							</a>
 						</li>
-					@endif
+					@endif --}}
 					
 					@if (
 						auth()->user()->can('user-list') ||
@@ -343,14 +361,14 @@
 										</a>
 									</li>
 								@endif
-								@if (auth()->user()->can('advertising-list') || userHasSuperAdminPermissions())
+								{{-- @if (auth()->user()->can('advertising-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('advertisings') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
 											<span class="hide-menu">{{ trans('admin.advertising') }}</span>
 										</a>
 									</li>
-								@endif
+								@endif --}}
 								@if (
 									auth()->user()->can('country-list') ||
 									auth()->user()->can('currency-list') ||
