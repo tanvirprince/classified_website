@@ -166,7 +166,7 @@ class Post extends BaseModel implements Feedable
 	{
 		$postsPerPage = (int)config('settings.listing.items_per_page', 50);
 		
-		$posts = Post::reviewed()->unarchived();
+		$posts = Post::reviewed()->unarchived()->Paidads();
 		
 		if (request()->has('d') || config('plugins.domainmapping.installed')) {
 			$countryCode = config('country.code');
@@ -375,6 +375,11 @@ class Post extends BaseModel implements Feedable
 	public function scopeArchived($builder)
 	{
 		return $builder->where('archived', 1);
+	}
+
+	public function scopePaidads($builder)
+	{
+		return $builder->where('status', 1);
 	}
 	
 	public function scopeUnarchived($builder)

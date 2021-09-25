@@ -270,6 +270,22 @@ class DashboardController extends PanelController
 				$footer->link9 = $request->link9;
 				$footer->link10 = $request->link10;
 
+				$footer->link11 = $request->link11;
+				$footer->link12 = $request->link12;
+				$footer->link13 = $request->link13;
+				$footer->link14 = $request->link14;
+				$footer->link15 = $request->link15;
+				$footer->link16 = $request->link16;
+				$footer->link17 = $request->link17;
+				$footer->link18 = $request->link18;
+				$footer->link19 = $request->link19;
+				$footer->link20 = $request->link20;
+				$footer->link21 = $request->link21;
+				$footer->link22 = $request->link22;
+				$footer->link23 = $request->link23;
+				$footer->link24 = $request->link24;
+				$footer->link25 = $request->link25;
+
 				$footer->email = $request->email;
 				$footer->mobile_number = $request->mobile_number;
 				$footer->time = $request->time;
@@ -326,6 +342,21 @@ class DashboardController extends PanelController
 				$footer->link8 = $request->link8;
 				$footer->link9 = $request->link9;
 				$footer->link10 = $request->link10;
+				$footer->link11 = $request->link11;
+				$footer->link12 = $request->link12;
+				$footer->link13 = $request->link13;
+				$footer->link14 = $request->link14;
+				$footer->link15 = $request->link15;
+				$footer->link16 = $request->link16;
+				$footer->link17 = $request->link17;
+				$footer->link18 = $request->link18;
+				$footer->link19 = $request->link19;
+				$footer->link20 = $request->link20;
+				$footer->link21 = $request->link21;
+				$footer->link22 = $request->link22;
+				$footer->link23 = $request->link23;
+				$footer->link24 = $request->link24;
+				$footer->link25 = $request->link25;
 
 
 				$footer->email = $request->email;
@@ -342,7 +373,7 @@ class DashboardController extends PanelController
 
 			}
 		
-		return redirect()->route('footer.create')->with('message','added successfully');
+		return redirect()->route('footer.create')->with('message','Footer Updated successfully');
 	}
 
 	public function updateFb(Request $request){

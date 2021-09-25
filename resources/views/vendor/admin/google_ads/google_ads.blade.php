@@ -23,9 +23,6 @@
 	<div class="row">
 		<div class="col-12">
 			<div class="card rounded">
-				<div class="card-header">
-					<h3 class="card-title"><i class="fas fa-info-circle"></i> Menu </h3>
-				</div>
                 @if(session()->has('message'))
                     <div class="alert alert-success">
                         {{ session()->get('message') }}
@@ -38,7 +35,7 @@
                 @endif
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-6 col-sm-12">
+						<div class="col-md-6 col-sm-12 bg-light-info">
 							<div class="card-body">
 
 								<form method="POST" action="{{route('update.banner')}}" enctype="multipart/form-data">
@@ -71,7 +68,7 @@
 									</div>
 
 									<div class="form-group">
-									<label for="exampleInputPassword2"> Ads 3</label>
+									<label for="exampleInputPassword2">Inside Page Ads 3</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_3_link}}" name="ads_3_link" placeholder="link">
 
 									{{-- ads 3 image  --}}
@@ -84,7 +81,7 @@
 									<input type="file" name="ads_3" class="form-control" id="exampleInputPassword2">
 									</div>
 									<div class="form-group">
-									<label for="exampleInputPassword2"> Ads 4</label>
+									<label for="exampleInputPassword2">Inside Page Ads 4</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_4_link}}" name="ads_4_link" placeholder="link">
 									{{-- ads 4 image  --}}
 									@if (!empty($image->ads_4))
@@ -96,7 +93,7 @@
 									<input type="file" name="ads_4" class="form-control" id="exampleInputPassword2">
 									</div>
 									<div class="form-group">
-									<label for="exampleInputPassword2"> Ads 5</label>
+									<label for="exampleInputPassword2">Inside Page Ads 5</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_5_link}}" name="ads_5_link" placeholder="link">									
 										{{-- ads 5 image  --}}
 									@if (!empty($image->ads_5))
@@ -115,12 +112,47 @@
 		
 							</div>
 						</div>
-						<div class="col-md-6 col-sm-12">
-							<div class="card-body">
+						<div class="col-md-6 col-sm-12 bg-light-primary">
+							<div class="card-body ">
+								<form method="POST" action="{{route('update.seo-image')}}" enctype="multipart/form-data">
 
-								<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_ads/ads_2/{{$image->ads_2 }}" style="max-height:150px;" alt="Web Developer">
-
-
+									<div class="form-group">
+										<div class="alert alert-success text-center" role="alert"> SEO Section (Home page ads 1) </div>
+										<label for="exampleInputPassword2"> SEO Meta Title </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_1_title }}" name="ads_1_title" placeholder="SEO Meta Title">
+										<label for="exampleInputPassword2"> SEO Meta Tag Name </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_1_tag }}" name="ads_1_tag" placeholder="SEO Meta Tag">
+									</div>
+									<div class="form-group">
+										<div class="alert alert-success text-center" role="alert"> SEO Section (Home page ads 2) </div>
+										<label for="exampleInputPassword2"> SEO Meta Title </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_2_title }}" name="ads_2_title" placeholder="SEO Meta Title">
+										<label for="exampleInputPassword2"> SEO Meta Tag Name </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_2_tag }}" name="ads_2_tag" placeholder="SEO Meta Tag">
+									</div>
+									<div class="form-group">
+										<div class="alert alert-success text-center" role="alert"> SEO Section (Inside Page ads 3) </div>
+										<label for="exampleInputPassword2"> SEO Meta Title </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_3_title }}" name="ads_3_title" placeholder="SEO Meta Title">
+										<label for="exampleInputPassword2"> SEO Meta Tag Name </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_3_tag }}" name="ads_3_tag" placeholder="SEO Meta Tag">
+									</div>
+									<div class="form-group">
+										<div class="alert alert-success text-center" role="alert"> SEO Section (Inside Page ads 4) </div>
+										<label for="exampleInputPassword2"> SEO Meta Title </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_4_title }}" name="ads_4_title" placeholder="SEO Meta Title">
+										<label for="exampleInputPassword2"> SEO Meta Tag Name </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_4_tag }}" name="ads_4_tag" placeholder="SEO Meta Tag">
+									</div>
+									<div class="form-group">
+										<div class="alert alert-success text-center" role="alert"> SEO Section (Inside Page ads 5) </div>
+										<label for="exampleInputPassword2"> SEO Meta Title </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_5_title }}" name="ads_5_title" placeholder="SEO Meta Title">
+										<label for="exampleInputPassword2"> SEO Meta Tag Name </label>
+										<input type="text" class="form-control" id="exampleInputEmail1" value="{{ $image->ads_5_tag }}" name="ads_5_tag" placeholder="SEO Meta Tag">
+									</div>
+									<button type="submit" class="btn btn-primary">Updated SEO </button>
+								</form>
 							</div>
 						</div>
 

@@ -70,20 +70,20 @@ if (
 		<div class="col-md-4">
 			<h2 class="footer-title"> {{ $footer->title }} </h2>
 			
-			<h4>{{ $footer->email }}</h4>
-			<h4>{{ $footer->mobile_number }}</h4>
-			<h4>{{ $footer->field11 }}</h4>
-			<h4>{{ $footer->field12 }}</h4>
-			<h4>{{ $footer->field13 }}</h4>
+			<h4><a href="{{ $footer->link11 }}" style="color: black;">{{ $footer->email }}</a></h4>
+			<h4><a href="{{ $footer->link12 }}" style="color: black;">{{ $footer->mobile_number }}</a></h4>
+			<h4><a href="{{ $footer->link13 }}" style="color: black;">{{ $footer->field11 }}</a></h4>
+			<h4><a href="{{ $footer->link14 }}" style="color: black;">{{ $footer->field12 }}</a></h4>
+			<h4><a href="{{ $footer->link15 }}" style="color: black;">{{ $footer->field13 }}</a></h4>
 		</div>
 		<div class="col-md-4">
 			<h2 class="footer-title"> {{ $footer->title1 }}</h2>
-			{{-- <h4>{{ $footer->title }}</h4> --}}
-			<h4>{{ $footer->time }}</h4>
-			<h4> {{ $footer->address }}</h4>
-			<h4> {{ $footer->field14 }}</h4>
-			<h4> {{ $footer->field15 }}</h4>
-			<h4> {{ $footer->field16 }}</h4>
+			<h4><a href="{{ $footer->link16 }}" style="color: black;">{{ $footer->time }}</a></h4>
+			<h4><a href="{{ $footer->link17 }}" style="color: black;">{{ $footer->address }}</a></h4>
+			<h4><a href="{{ $footer->link18 }}" style="color: black;">{{ $footer->field14 }}</a></h4>
+			<h4><a href="{{ $footer->link19 }}" style="color: black;">{{ $footer->field15 }}</a></h4>
+			<h4><a href="{{ $footer->link20 }}" style="color: black;">{{ $footer->field16 }}</a></h4>
+			
 		</div>
 		<div class="col-md-4">
 			{{-- <h2 class="footer-title"> {{ $footer->title1 }}</h2> --}}
@@ -137,11 +137,11 @@ if (
 						<div class="footer-col">
 							<h4 class="footer-title">{{ $footer->title4 }}</h4>
 							<ul class="list-unstyled footer-nav">
-								<li> {{ $footer->company_details }} </li>
-								<li> {{ $footer->link }} </li>
-								<li> {{ $footer->facebook }} </li>
-								<li> {{ $footer->youtube }} </li>
-								<li> {{ $footer->linkedIn }} </li>
+								<li><a href="{{ $footer->link21 }}"> {{ $footer->company_details }} </a></li>
+								<li><a href="{{ $footer->link22 }}"> {{ $footer->link }} </a></li>
+								<li><a href="{{ $footer->link23 }}"> {{ $footer->facebook }} </a></li>
+								<li><a href="{{ $footer->link24 }}"> {{ $footer->youtube }} </a></li>
+								<li><a href="{{ $footer->link25 }}"> {{ $footer->linkedIn }} </a></li>
 							</ul>
 						</div>
 					</div>

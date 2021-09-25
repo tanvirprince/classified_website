@@ -119,6 +119,7 @@ Route::group([
 		Route::get('/banner-image', 'GoogleAdsController@adsGoogle')->name('banner.img');
 		Route::get('/delete-image/{column}', 'GoogleAdsController@deleteAdsGoogle')->name('delete.img');
 		Route::post('banner', 'GoogleAdsController@updateAds')->name('update.banner');
+		Route::post('seo/banner', 'GoogleAdsController@updateSeoAds')->name('update.seo-image');
 
 		// Menu
 		Route::get('menu', 'DashboardController@menu')->name('menu.create');

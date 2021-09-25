@@ -14,6 +14,29 @@ class GoogleAdsController extends Controller
         return view('admin::google_ads.google_ads',compact('image'));
 
     }
+    public function updateSeoAds(Request $request){
+
+        $googleAds = GoogleAds::first();
+        
+        $googleAds->ads_1_title = $request->ads_1_title;
+        $googleAds->ads_1_tag = $request->ads_1_tag;
+
+        $googleAds->ads_2_title = $request->ads_2_title;
+        $googleAds->ads_2_tag = $request->ads_2_tag;
+
+        $googleAds->ads_3_title = $request->ads_3_title;
+        $googleAds->ads_3_tag = $request->ads_3_tag;
+
+        $googleAds->ads_4_title = $request->ads_4_title;
+        $googleAds->ads_4_tag = $request->ads_4_tag;
+
+        $googleAds->ads_5_title = $request->ads_5_title;
+        $googleAds->ads_5_tag = $request->ads_5_tag;
+        $googleAds->save();
+
+        return redirect()->back()->with('message','You have successfully Updated. Thankyou');
+        
+    }
     public function updateAds(Request $request){
         
         $googleAds = GoogleAds::first();
