@@ -270,7 +270,7 @@ if (request()->segment(1) != 'countries') {
 						}
 					?>
 					<li class="nav-item postadd">
-						<a class="btn btn-block btn-border" style="background-color: red; color: white;" href="{{ $addListingUrl }}"{!! $addListingAttr !!}>
+						<a class="btn btn-block" style="background-color: red; color: white;" href="{{ $addListingUrl }}"{!! $addListingAttr !!}>
 							<i class="fa fa-plus-circle"></i> <strong>{{ t('Add Listing') }}</strong>
 						</a>
 					</li>
