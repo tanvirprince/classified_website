@@ -42,7 +42,7 @@
 							</li>
 						</ul>
 					</li>
-					
+
 					<li class="sidebar-item">
 						<a href="{{ admin_url('dashboard') }}" class="sidebar-link waves-effect waves-dark">
 							<i data-feather="home" class="feather-icon"></i> <span class="hide-menu">{{ trans('admin.dashboard') }}</span>
@@ -141,7 +141,32 @@
 										</a>
 									</li>
 								@endif
-								
+
+							</ul>
+						</li>
+						{{-- ***** blog  --}}
+						{{-- ***** right bar inside ads  --}}
+
+						<li class="sidebar-item">
+							<a href="#" class="sidebar-link has-arrow waves-effect waves-dark">
+								<i data-feather="edit"></i> <span class="hide-menu"> Inside Page Right Bar Ads </span>
+							</a>
+							<ul aria-expanded="false" class="collapse first-level">
+								@if (auth()->user()->can('rightbar') || auth()->user()->can('manage-right-bar') ||userHasSuperAdminPermissions())
+									<li class="sidebar-item">
+										<a href="{{ admin_url('inside-page-right-bar') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Create  </span>
+										</a>
+									</li>
+									<li class="sidebar-item">
+										<a href="{{ admin_url('manage-right-bar') }}" class="sidebar-link">
+											<i class="mdi mdi-adjust"></i>
+											<span class="hide-menu"> Manage   </span>
+										</a>
+									</li>
+								@endif
+
 							</ul>
 						</li>
 						{{-- ***** blog  --}}
@@ -158,7 +183,7 @@
 											<span class="hide-menu"> Manual Ads  </span>
 										</a>
 									</li>
-									
+
 								@endif
 								@if (auth()->user()->can('advertising-list') ||userHasSuperAdminPermissions())
 									<li class="sidebar-item">
@@ -167,7 +192,7 @@
 											<span class="hide-menu"> Google Ads  </span>
 										</a>
 									</li>
-									
+
 								@endif
 								@if (auth()->user()->can('recom.suggest') ||userHasSuperAdminPermissions())
 									<li class="sidebar-item">
@@ -176,9 +201,9 @@
 											<span class="hide-menu"> Inside Ads Right Bar  </span>
 										</a>
 									</li>
-									
+
 								@endif
-								
+
 							</ul>
 						</li>
 
@@ -197,7 +222,7 @@
 							</a>
 						</li>
 					@endif --}}
-					
+
 					@if (
 						auth()->user()->can('user-list') ||
 						auth()->user()->can('role-list') ||
@@ -245,8 +270,8 @@
 							</ul>
 						</li>
 					@endif
-					
-					
+
+
 					@if (auth()->user()->can('payment-list') || userHasSuperAdminPermissions())
 						<li class="sidebar-item">
 							<a href="{{ admin_url('payments') }}" class="sidebar-link">
@@ -254,7 +279,7 @@
 							</a>
 						</li>
 					@endif
-					
+
 					@if (auth()->user()->can('page-list') || userHasSuperAdminPermissions())
 						<li class="sidebar-item">
 							<a href="{{ admin_url('pages') }}" class="sidebar-link">
@@ -263,7 +288,7 @@
 						</li>
 					@endif
 					{!! $pluginsMenu !!}
-					
+
 					{{-- ======================================= --}}
 					@if (
 						auth()->user()->can('setting-list') ||
@@ -283,7 +308,7 @@
 							<i class="mdi mdi-dots-horizontal"></i>
 							<span class="hide-menu">{{ trans('admin.configuration') }}</span>
 						</li>
-						
+
 						<li  class="sidebar-item">
 							<a href="#" class="sidebar-link has-arrow waves-effect waves-dark">
 								<i data-feather="settings" class="feather-icon"></i> <span class="hide-menu">{{ trans('admin.setup') }}</span>
@@ -417,7 +442,7 @@
 							</ul>
 						</li>
 					@endif
-					
+
 					@if (auth()->user()->can('plugin-list') || userHasSuperAdminPermissions())
 						<li class="sidebar-item">
 							<a href="{{ admin_url('plugins') }}" class="sidebar-link">
@@ -439,7 +464,7 @@
 							</a>
 						</li>
 					@endif
-					
+
 					@if (
 						auth()->user()->can('system-info') ||
 						auth()->user()->can('maintenance') ||
@@ -490,11 +515,11 @@
 							</ul>
 						</li>
 					@endif
-					
+
 				</ul>
 			</nav>
-			
+
 		</div>
-		
+
 	</aside>
 @endif

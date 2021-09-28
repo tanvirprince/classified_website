@@ -75,17 +75,17 @@ Route::group([
 	Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
 	Route::post('login', 'Auth\LoginController@login');
 	Route::get('logout', 'Auth\LoginController@logout')->name('logout');
-	
+
 	// Registration Routes...
 	Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
 	Route::post('register', 'Auth\RegisterController@register');
-	
+
 	// Password Reset Routes...
 	Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
 	Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')->name('password.email');
 	Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')->name('password.reset');
 	Route::post('password/reset', 'Auth\ResetPasswordController@reset')->name('password.update');
-	
+
 	// Admin Panel Area
 	Route::group([
 		'middleware' => ['admin', 'clearance', 'banned.user', 'no.http.cache'],
@@ -94,15 +94,15 @@ Route::group([
 		Route::get('dashboard', 'DashboardController@dashboard');
 		Route::get('/', 'DashboardController@redirect');
 
-		// ramdom ads suggest 
+		// ramdom ads suggest
 		Route::get('ads/suggest', 'DashboardController@suggest')->name('ads.suggest');
 		// title suggestion recom
 		Route::get('ads/recomandation', 'DashboardController@recom')->name('recom.suggest');
-		
+
 		Route::get('/suggest/store/{id}', 'DashboardController@storeSuggestion')->name('suggest.store');
 		Route::get('/suggest/off/{id}', 'DashboardController@suggestionOff')->name('suggest.off');
-		
-		// blog admin 
+
+		// blog admin
 		Route::get('blog-create', 'BlogAdminController@create')->name('blog.create');
 		Route::post('blog-store', 'BlogAdminController@store')->name('blog.store');
 		Route::get('blog-manage', 'BlogAdminController@manage')->name('blog.manage');
@@ -138,11 +138,17 @@ Route::group([
 		// recomaded text route
 		// Route::post('suggest/recommanded', 'DashboardController@recommandedSuggest')->name('suggest.recommanded');
 		Route::post('blog/recommanded', 'DashboardController@recommandedBlog')->name('blog.recommanded');
+		Route::post('right-bar/title', 'DashboardController@title')->name('right-bar.title');
+
+        // right bar ads
+        Route::get('inside-page-right-bar', 'BlogAdminController@rightBar')->name('rightbar');
+        Route::post('inside-page-right-bar', 'BlogAdminController@storeRightBar')->name('right-bar.store');
+        Route::get('manage-right-bar', 'BlogAdminController@manageRightBar')->name('manage-right-bar');
+		Route::get('/right-bar/destroy/{id}', 'BlogAdminController@rightBarDestroy')->name('right-bar.destroy');
 
 
 
 
-		
 		// Extra (must be called before CRUD)
 		Route::get('homepage/{action}', 'HomeSectionController@reset')->where('action', 'reset_(.*)');
 		Route::get('languages/sync_files', 'LanguageController@syncFilesLines');
@@ -151,7 +157,7 @@ Route::group([
 		Route::get('permissions/create_default_entries', 'PermissionController@createDefaultEntries');
 		Route::get('blacklists/add', 'BlacklistController@banUserByEmail');
 		Route::get('categories/rebuild-nested-set-nodes', 'CategoryController@rebuildNestedSetNodes');
-		
+
 		// CRUD
 		CRUD::resource('advertisings', 'AdvertisingController');
 		CRUD::resource('blacklists', 'BlacklistController');
@@ -186,35 +192,35 @@ Route::group([
 		CRUD::resource('settings', 'SettingController');
 		CRUD::resource('time_zones', 'TimeZoneController');
 		CRUD::resource('users', 'UserController');
-		
+
 		// Others
 		Route::get('account', 'UserController@account');
 		Route::post('ajax/{table}/{field}', 'InlineRequestController@make');
-		
+
 		// Backup
 		Route::get('backups', 'BackupController@index');
 		Route::put('backups/create', 'BackupController@create');
 		Route::get('backups/download/{file_name?}', 'BackupController@download');
 		Route::delete('backups/delete/{file_name?}', 'BackupController@delete')->where('file_name', '(.*)');
-		
+
 		// Actions
 		Route::get('actions/clear_cache', 'ActionController@clearCache');
 		Route::get('actions/clear_images_thumbnails', 'ActionController@clearImagesThumbnails');
 		Route::get('actions/maintenance/{mode}', 'ActionController@maintenance')->where('mode', '(down|up)');
-		
+
 		// Re-send Email or Phone verification message
 		Route::get('verify/user/{id}/resend/email', 'UserController@reSendVerificationEmail');
 		Route::get('verify/user/{id}/resend/sms', 'UserController@reSendVerificationSms');
 		Route::get('verify/post/{id}/resend/email', 'PostController@reSendVerificationEmail');
 		Route::get('verify/post/{id}/resend/sms', 'PostController@reSendVerificationSms');
-		
+
 		// Plugins
 		Route::get('plugins', 'PluginController@index');
 		Route::post('plugins/{plugin}/install', 'PluginController@install');
 		Route::get('plugins/{plugin}/install', 'PluginController@install');
 		Route::get('plugins/{plugin}/uninstall', 'PluginController@uninstall');
 		Route::get('plugins/{plugin}/delete', 'PluginController@delete');
-		
+
 		// System Info
 		Route::get('system', 'SystemController@systemInfo');
 	});
@@ -235,14 +241,14 @@ Route::group([
 ], function ($router) {
 	// Select Language
 	Route::get('lang/{code}', 'Locale\SetLocaleController@redirect');
-	
+
 	// FILES
 	Route::get('file', 'FileController@show');
 	Route::get('js/fileinput/locales/{code}.js', 'FileController@fileInputLocales');
-	
+
 	// SEO
 	Route::get('sitemaps.xml', 'SitemapsController@index');
-	
+
 	// Impersonate (As admin user, login as an another user)
 	Route::group(['middleware' => 'auth'], function ($router) {
 		Route::impersonate();
@@ -271,12 +277,12 @@ Route::group([
 		 */
 		$countryCodePattern = '(?i:' . $countryCodePattern . ')';
 		$router->pattern('countryCode', $countryCodePattern);
-		
-		
+
+
 		// HOMEPAGE
 		Route::get('/', 'HomeController@index');
 		Route::get(dynamicRoute('routes.countries'), 'CountriesController@index');
-		
+
 		// blog frontend
 		Route::get('/blog', 'BlogController@index')->name('blog.index');
 		Route::get('/blog/{id}', 'BlogController@show')->name('blog.show');
@@ -289,40 +295,40 @@ Route::group([
 			Route::get(dynamicRoute('routes.register'), 'Auth\RegisterController@showRegistrationForm');
 			Route::post(dynamicRoute('routes.register'), 'Auth\RegisterController@register');
 			Route::get('register/finish', 'Auth\RegisterController@finish');
-			
+
 			// Authentication Routes...
 			Route::get(dynamicRoute('routes.login'), 'Auth\LoginController@showLoginForm');
 			Route::post(dynamicRoute('routes.login'), 'Auth\LoginController@login');
-			
+
 			// Forgot Password Routes...
 			Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm');
 			Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
-			
+
 			// Reset Password using Token
 			Route::get('password/token', 'Auth\ForgotPasswordController@showTokenRequestForm');
 			Route::post('password/token', 'Auth\ForgotPasswordController@sendResetToken');
-			
+
 			// Reset Password using Link (Core Routes...)
 			Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm');
 			Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-			
+
 			// Social Authentication
 			$router->pattern('provider', 'facebook|linkedin|twitter|google');
 			Route::get('auth/{provider}', 'Auth\SocialController@redirectToProvider');
 			Route::get('auth/{provider}/callback', 'Auth\SocialController@handleProviderCallback');
 		});
-		
+
 		// Email Address or Phone Number verification
 		$router->pattern('field', 'email|phone');
 		Route::get('verify/user/{id}/resend/email', 'Auth\RegisterController@reSendVerificationEmail');
 		Route::get('verify/user/{id}/resend/sms', 'Auth\RegisterController@reSendVerificationSms');
 		Route::get('verify/user/{field}/{token?}', 'Auth\RegisterController@verification');
 		Route::post('verify/user/{field}/{token?}', 'Auth\RegisterController@verification');
-		
+
 		// User Logout
 		Route::get(dynamicRoute('routes.logout'), 'Auth\LoginController@logout');
-		
-		
+
+
 		// POSTS
 		Route::group(['namespace' => 'Post'], function ($router) {
 			$router->pattern('id', '[0-9]+');
@@ -341,18 +347,18 @@ Route::group([
 			} else {
 				$router->pattern('slug', '^(?=.*)((?!\/).)*$');
 			}
-			
+
 			// SingleStep Post creation
 			Route::group(['namespace' => 'CreateOrEdit\SingleStep'], function ($router) {
 				Route::get('create', 'CreateController@getForm');
 				Route::post('create', 'CreateController@postForm');
 				Route::get('create/finish', 'CreateController@finish');
-				
+
 				// Payment Gateway Success & Cancel
 				Route::get('create/payment/success', 'CreateController@paymentConfirmation');
 				Route::get('create/payment/cancel', 'CreateController@paymentCancel');
 				Route::post('create/payment/success', 'CreateController@paymentConfirmation');
-				
+
 				// Email Address or Phone Number verification
 				$router->pattern('field', 'email|phone');
 				Route::get('verify/post/{id}/resend/email', 'CreateController@reSendVerificationEmail');
@@ -360,7 +366,7 @@ Route::group([
 				Route::get('verify/post/{field}/{token?}', 'CreateController@verification');
 				Route::post('verify/post/{field}/{token?}', 'CreateController@verification');
 			});
-			
+
 			// MultiSteps Post creation
 			Route::group(['namespace' => 'CreateOrEdit\MultiSteps'], function ($router) {
 				Route::get('posts/create/{tmpToken?}', 'CreateController@getForm');
@@ -372,12 +378,12 @@ Route::group([
 				Route::get('posts/create/{tmpToken}/payment', 'PaymentController@getForm');
 				Route::post('posts/create/{tmpToken}/payment', 'PaymentController@postForm');
 				Route::get('posts/create/{tmpToken}/finish', 'CreateController@finish');
-				
+
 				// Payment Gateway Success & Cancel
 				Route::get('posts/create/{tmpToken}/payment/success', 'PaymentController@paymentConfirmation');
 				Route::get('posts/create/{tmpToken}/payment/cancel', 'PaymentController@paymentCancel');
 				Route::post('posts/create/{tmpToken}/payment/success', 'PaymentController@paymentConfirmation');
-				
+
 				// Email Address or Phone Number verification
 				$router->pattern('field', 'email|phone');
 				Route::get('verify/post/{id}/resend/email', 'CreateController@reSendVerificationEmail');
@@ -385,21 +391,21 @@ Route::group([
 				Route::get('verify/post/{field}/{token?}', 'CreateController@verification');
 				Route::post('verify/post/{field}/{token?}', 'CreateController@verification');
 			});
-			
+
 			Route::group(['middleware' => 'auth'], function ($router) {
 				$router->pattern('id', '[0-9]+');
-				
+
 				// SingleStep Post edition
 				Route::group(['namespace' => 'CreateOrEdit\SingleStep'], function ($router) {
 					Route::get('edit/{id}', 'EditController@getForm');
 					Route::put('edit/{id}', 'EditController@postForm');
-					
+
 					// Payment Gateway Success & Cancel
 					Route::get('edit/{id}/payment/success', 'EditController@paymentConfirmation');
 					Route::get('edit/{id}/payment/cancel', 'EditController@paymentCancel');
 					Route::post('edit/{id}/payment/success', 'EditController@paymentConfirmation');
 				});
-				
+
 				// MultiSteps Post edition
 				Route::group(['namespace' => 'CreateOrEdit\MultiSteps'], function ($router) {
 					Route::get('posts/{id}/edit', 'EditController@getForm');
@@ -409,23 +415,23 @@ Route::group([
 					Route::post('posts/{token}/photos/{id}/delete', 'PhotoController@delete');
 					Route::get('posts/{id}/payment', 'PaymentController@getForm');
 					Route::post('posts/{id}/payment', 'PaymentController@postForm');
-					
+
 					// Payment Gateway Success & Cancel
 					Route::get('posts/{id}/payment/success', 'PaymentController@paymentConfirmation');
 					Route::get('posts/{id}/payment/cancel', 'PaymentController@paymentCancel');
 					Route::post('posts/{id}/payment/success', 'PaymentController@paymentConfirmation');
 				});
 			});
-			
+
 			// Post's Details
 			Route::get(dynamicRoute('routes.post'), 'DetailsController@index');
-			
+
 			// Send report abuse
 			Route::get('posts/{id}/report', 'ReportController@showReportForm');
 			Route::post('posts/{id}/report', 'ReportController@sendReport');
 		});
-		
-		
+
+
 		// ACCOUNT
 		Route::group(['prefix' => 'account'], function ($router) {
 			// Messenger
@@ -436,13 +442,13 @@ Route::group([
 			], function ($router) {
 				Route::post('posts/{id}', 'MessagesController@store');
 			});
-			
+
 			Route::group([
 				'middleware' => ['auth', 'banned.user', 'no.http.cache'],
 				'namespace'  => 'Account',
 			], function ($router) {
 				$router->pattern('id', '[0-9]+');
-				
+
 				// Users
 				Route::get('/', 'EditController@index');
 				Route::group(['middleware' => 'impersonate.protect'], function () {
@@ -456,7 +462,7 @@ Route::group([
 				Route::group(['middleware' => 'impersonate.protect'], function () {
 					Route::post('close', 'CloseController@submit');
 				});
-				
+
 				// Posts
 				Route::get('saved-search', 'PostsController@getSavedSearch');
 				$router->pattern('pagePath', '(my-posts|archived|favourite|pending-approval|saved-search)+');
@@ -465,7 +471,7 @@ Route::group([
 				Route::get('archived/{id}/repost', 'PostsController@getArchivedPosts');
 				Route::get('{pagePath}/{id}/delete', 'PostsController@destroy');
 				Route::post('{pagePath}/delete', 'PostsController@destroy');
-				
+
 				// Messenger
 				Route::group(['prefix' => 'messages'], function ($router) {
 					$router->pattern('id', '[0-9]+');
@@ -479,13 +485,13 @@ Route::group([
 					Route::post('actions', 'MessagesController@actions');
 					Route::post('mark-as-read', 'MessagesController@markAllAsRead');
 				});
-				
+
 				// Transactions
 				Route::get('transactions', 'TransactionsController@index');
 			});
 		});
-		
-		
+
+
 		// AJAX
 		Route::group(['prefix' => 'ajax'], function ($router) {
 			Route::get('countries/{countryCode}/admins/{adminType}', 'Ajax\LocationController@getAdmins');
@@ -500,29 +506,29 @@ Route::group([
 			Route::post('post/phone', 'Ajax\PostController@getPhone');
 			Route::post('post/pictures/reorder', 'Ajax\PostController@picturesReorder');
 		});
-		
-		
+
+
 		// FEEDS
 		Route::feeds();
-		
-		
+
+
 		// SITEMAPS (XML)
 		Route::get('{countryCode}/sitemaps.xml', 'SitemapsController@site');
 		Route::get('{countryCode}/sitemaps/pages.xml', 'SitemapsController@pages');
 		Route::get('{countryCode}/sitemaps/categories.xml', 'SitemapsController@categories');
 		Route::get('{countryCode}/sitemaps/cities.xml', 'SitemapsController@cities');
 		Route::get('{countryCode}/sitemaps/posts.xml', 'SitemapsController@posts');
-		
-		
+
+
 		// PAGES
 		Route::get(dynamicRoute('routes.pricing'), 'PageController@pricing');
 		Route::get(dynamicRoute('routes.pageBySlug'), 'PageController@cms');
 		Route::get(dynamicRoute('routes.contact'), 'PageController@contact');
 		Route::post(dynamicRoute('routes.contact'), 'PageController@contactPost');
-		
+
 		// SITEMAP (HTML)
 		Route::get(dynamicRoute('routes.sitemap'), 'SitemapController@index');
-		
+
 		// SEARCH
 		Route::group(['namespace' => 'Search'], function ($router) {
 			$router->pattern('id', '[0-9]+');

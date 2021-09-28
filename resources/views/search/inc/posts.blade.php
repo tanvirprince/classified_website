@@ -8,10 +8,10 @@ if (!isset($cacheExpiration)) {
 	if (!isset($cats)) {
 		$cats = collect([]);
 	}
-
+// $postss = $posts->where('status', null)->all();
 	foreach($posts->items() as $key => $post):
 		if (empty($post->city)) continue;
-		
+
 		// Main Picture
 		if ($post->pictures->count() > 0) {
 			$postImg = imgUrl($post->pictures->get(0)->filename, 'medium');
@@ -29,7 +29,7 @@ if (!isset($cacheExpiration)) {
 				@endif
 			@endif
 		@endif
-		
+
 		<div class="row">
 			<div class="col-sm-2 col-12 no-padding photobox">
 				<div class="add-image">
@@ -39,13 +39,13 @@ if (!isset($cacheExpiration)) {
 					</a>
 				</div>
 			</div>
-	
+
 			<div class="col-sm-7 col-12 add-desc-box">
 				<div class="items-details">
 					<h5 class="add-title">
 						<a href="{{ \App\Helpers\UrlGen::post($post) }}">{{ \Illuminate\Support\Str::limit($post->title, 70) }} </a>
 					</h5>
-					
+
 					<span class="info-row">
 						@if (isset($post->postType) && !empty($post->postType))
 							<span class="add-type business-ads tooltipHere"
@@ -80,15 +80,15 @@ if (!isset($cacheExpiration)) {
 						</span>
 					</span>
 				</div>
-	
+
 				@if (config('plugins.reviews.installed'))
 					@if (view()->exists('reviews::ratings-list'))
 						@include('reviews::ratings-list')
 					@endif
 				@endif
-				
+
 			</div>
-			
+
 			<div class="col-sm-3 col-12 text-right price-box" style="white-space: nowrap;">
 				<h4 class="item-price">
 					@if (isset($post->category->type))
@@ -154,7 +154,7 @@ if (!isset($cacheExpiration)) {
 		if (!listingDisplayMode) {
 			createCookie('listing_display_mode', '{{ config('settings.listing.display_mode', '.grid-view') }}', 7);
 		}
-		
+
 		/* Favorites Translation */
 		var lang = {
 			labelSavePostSave: "{!! t('Save ad') !!}",

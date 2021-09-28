@@ -1375,6 +1375,7 @@ class ComposerStaticInitb4548076d0c4757b181be99040401eca
         'App\\Models\\Post\\SimilarByCategory' => __DIR__ . '/../..' . '/app/Models/Post/SimilarByCategory.php',
         'App\\Models\\Post\\SimilarByLocation' => __DIR__ . '/../..' . '/app/Models/Post/SimilarByLocation.php',
         'App\\Models\\ReportType' => __DIR__ . '/../..' . '/app/Models/ReportType.php',
+        'App\\Models\\RightBar' => __DIR__ . '/../..' . '/app/Models/RightBar.php',
         'App\\Models\\Role' => __DIR__ . '/../..' . '/app/Models/Role.php',
         'App\\Models\\SavedPost' => __DIR__ . '/../..' . '/app/Models/SavedPost.php',
         'App\\Models\\SavedSearch' => __DIR__ . '/../..' . '/app/Models/SavedSearch.php',

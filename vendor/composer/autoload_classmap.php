@@ -300,6 +300,7 @@ return array(
     'App\\Models\\Post\\SimilarByCategory' => $baseDir . '/app/Models/Post/SimilarByCategory.php',
     'App\\Models\\Post\\SimilarByLocation' => $baseDir . '/app/Models/Post/SimilarByLocation.php',
     'App\\Models\\ReportType' => $baseDir . '/app/Models/ReportType.php',
+    'App\\Models\\RightBar' => $baseDir . '/app/Models/RightBar.php',
     'App\\Models\\Role' => $baseDir . '/app/Models/Role.php',
     'App\\Models\\SavedPost' => $baseDir . '/app/Models/SavedPost.php',
     'App\\Models\\SavedSearch' => $baseDir . '/app/Models/SavedSearch.php',

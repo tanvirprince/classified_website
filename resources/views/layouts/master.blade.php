@@ -21,7 +21,7 @@
 
 	<meta charset="utf-8">
 	<meta name="csrf-token" content="{{ csrf_token() }}">
-	
+
 	@includeFirst([config('larapen.core.customizedViewPath') . 'common.meta-robots', 'common.meta-robots'])
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="apple-mobile-web-app-title" content="{{ config('settings.app.app_name') }}">
@@ -32,17 +32,17 @@
 	<link rel="apple-touch-icon-precomposed" href="{{ $publicDisk->url('app/default/ico/apple-touch-icon-57-precomposed.png') . getPictureVersion() }}">
 	<link rel="shortcut icon" href="{{ imgUrl(config('settings.app.favicon'), 'favicon') }}">
 	<title>{!! MetaTag::get('title') !!}</title>
-	
+
 		<style>
 			body {font-family: Arial;}
-			
+
 			/* Style the tab */
 			.tab {
 			  overflow: hidden;
 			  border: 1px solid #ccc;
 			  background-color: #f1f1f1;
 			}
-			
+
 			/* Style the buttons inside the tab */
 			.tab button {
 			  background-color: inherit;
@@ -54,17 +54,17 @@
 			  transition: 0.3s;
 			  font-size: 17px;
 			}
-			
+
 			/* Change background color of buttons on hover */
 			.tab button:hover {
 			  background-color: #ddd;
 			}
-			
+
 			/* Create an active/current tablink class */
 			.tab button.active {
 			  background-color: #ccc;
 			}
-			
+
 			/* Style the tab content */
 			.tabcontent {
 			  display: none;
@@ -76,7 +76,7 @@
 	{!! MetaTag::tag('description') !!}{!! MetaTag::tag('keywords') !!}
 	<link rel="canonical" href="{{ request()->fullUrl() }}"/>
 	@if (Request::is('blog') || Request::is('blog/*'))
-	
+
 	@else
 
 	@if (isset($post))
@@ -94,18 +94,18 @@
 		{!! $og->renderTags() !!}
 		{!! MetaTag::twitterCard() !!}
 	@endif
-	
+
 	@endif
 	@include('feed::links')
 	{!! seoSiteVerification() !!}
-	
+
 	@if (file_exists(public_path('manifest.json')))
 		<link rel="manifest" href="/manifest.json">
 	@endif
-	
+
 	@stack('before_styles_stack')
     @yield('before_styles')
-	
+
 	@if (config('lang.direction') == 'rtl')
 		<link href="https://fonts.googleapis.com/css?family=Cairo|Changa" rel="stylesheet">
 		<link href="{{ url(mix('css/app.rtl.css')) }}" rel="stylesheet">
@@ -115,24 +115,24 @@
 	@if (config('plugins.detectadsblocker.installed'))
 		<link href="{{ url('assets/detectadsblocker/css/style.css') . getPictureVersion() }}" rel="stylesheet">
 	@endif
-	
+
 	@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.tools.style', 'layouts.inc.tools.style'])
-	
+
 	<link href="{{ url()->asset('css/custom.css') . getPictureVersion() }}" rel="stylesheet">
-	
+
 	@stack('after_styles_stack')
     @yield('after_styles')
-	
+
 	@if (isset($plugins) and !empty($plugins))
 		@foreach($plugins as $plugin)
 			@yield($plugin . '_styles')
 		@endforeach
 	@endif
-    
+
     @if (config('settings.style.custom_css'))
 		{!! printCss(config('settings.style.custom_css')) . "\n" !!}
     @endif
-	
+
 	@if (config('settings.other.js_code'))
 		{!! printJs(config('settings.other.js_code')) . "\n" !!}
 	@endif
@@ -140,7 +140,7 @@
 	<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
 	<script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
 	<![endif]-->
-	
+
 
 	<script>
 		paceOptions = {
@@ -149,7 +149,6 @@
 	</script>
 	<script src="{{ url()->asset('assets/js/pace.min.js') }}"></script>
 	<script src="{{ url()->asset('assets/plugins/modernizr/modernizr-custom.js') }}"></script>
-	
 	@section('recaptcha_scripts')
 		@if (
 			config('settings.security.recaptcha_activation')
@@ -167,7 +166,7 @@
 					function myCustomValidation(token){
 						/* read HTTP status */
 						/* console.log(token); */
-						
+
 						if ($('#gRecaptchaResponse').length) {
 							$('#gRecaptchaResponse').val(token);
 						}
@@ -182,21 +181,23 @@
 			@endif
 		@endif
 	@show
-	
+
+	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6481939822625674" crossorigin="anonymous"></script>
+
 </head>
 <body class="{{ config('app.skin') }}">
 <div id="wrapper">
-	
+
 	@section('header')
 		@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.header', 'layouts.inc.header'])
 	@show
 
 	@section('search')
 	@show
-		
+
 	@section('wizard')
 	@show
-	
+
 	@if (isset($siteCountryInfo))
 		<div class="h-spacer"></div>
 		<div class="container">
@@ -215,9 +216,9 @@
 
 	@section('info')
 	@show
-	
+
 	@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.advertising.auto', 'layouts.inc.advertising.auto'])
-	
+
 	@section('footer')
 		@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.footer', 'layouts.inc.footer'])
 	@show
@@ -255,7 +256,7 @@
 	  document.getElementById(cityName).style.display = "block";
 	  evt.currentTarget.className += " active";
 	}
-	
+
 	// Get the element with id="defaultOpen" and click on it
 	document.getElementById("defaultOpen").click();
 	</script>
@@ -268,7 +269,7 @@
 	var timerNewMessagesChecking = <?php echo (int)config('settings.other.timer_new_messages_checking', 0); ?>;
 	var isLogged = <?php echo (auth()->check()) ? 'true' : 'false'; ?>;
 	var isLoggedAdmin = <?php echo (auth()->check() && auth()->user()->can(\App\Models\Permission::getStaffPermissions())) ? 'true' : 'false'; ?>;
-	
+
 	{{-- Init. Translation Vars --}}
 	var langLayout = {
 		'hideMaxListItems': {
@@ -331,14 +332,14 @@
 			minimumResultsForSearch: Infinity,
 			width: '100%'
 		});
-		
+
 		{{-- Searchable Select Boxes --}}
 		$('.sselecter').select2({
 			language: langLayout.select2,
 			dropdownAutoWidth: 'true',
 			width: '100%'
 		});
-		
+
 		{{-- Social Share --}}
 		$('.share').ShareLink({
 			title: '{{ addslashes(MetaTag::get('title')) }}',
@@ -347,10 +348,10 @@
 			width: 640,
 			height: 480
 		});
-		
+
 		{{-- popper.js --}}
 		$('[data-toggle="popover"]').popover();
-		
+
 		{{-- Modal Login --}}
 		@if (isset($errors) and $errors->any())
 			@if ($errors->any() and old('quickLoginForm')=='1')

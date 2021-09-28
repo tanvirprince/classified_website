@@ -29,30 +29,30 @@ use Illuminate\Support\Facades\DB;
 class PostQueries
 {
 	use Select, Relations, Filters, GroupBy, Having, OrderBy;
-	
+
 	protected static $cacheExpiration = 300; // 5mn (60s * 5)
-	
+
 	public $country;
 	public $lang;
 	public $perPage = 12;
-	
+
 	// Pre-Search Objects
 	public $cat = null;
 	public $city = null;
 	public $admin = null;
-	
+
 	// Default Columns Selected
 	protected $select = [];
 	protected $groupBy = [];
 	protected $having = [];
 	protected $orderBy = [];
-	
+
 	protected $posts;
 	protected $postsTable;
-	
+
 	// 'queryStringKey' => ['name' => 'column', 'order' => 'direction']
 	public $orderByParametersFields = [];
-	
+
 	/**
 	 * PostQueries constructor.
 	 *
@@ -70,23 +70,23 @@ class PostQueries
 		if (isset($preSearch['admin']) && !empty($preSearch['admin'])) {
 			$this->admin = $preSearch['admin'];
 		}
-		
+
 		// Entries per page
 		$this->perPage = (is_numeric(config('settings.listing.items_per_page'))) ? config('settings.listing.items_per_page') : $this->perPage;
 		if ($this->perPage < 4) $this->perPage = 4;
 		if ($this->perPage > 40) $this->perPage = 40;
-		
+
 		// Init. Builder
 		$this->posts = Post::query();
 		$this->postsTable = (new Post())->getTable();
-		
+
 		// Add Default Select Columns
 		$this->setSelect();
-		
+
 		// Relations
 		$this->setRelations();
 	}
-	
+
 	/**
 	 * Get the results
 	 *
@@ -96,26 +96,26 @@ class PostQueries
 	{
 		// Apply Requested Filters
 		$this->applyFilters();
-		
+
 		// Apply Aggregation & Reorder Statements
 		$this->applyGroupBy();
 		$this->applyHaving();
 		$this->applyOrderBy();
-		
+
 		if (config('settings.single.show_post_types')) {
 			// Get Count PostTypes Results
 			$count = $this->countFetch();
 		}
-		
+
 		// Get Results
 		$posts = $this->posts->paginate((int)$this->perPage);
-		
+
 		// Use the current URL in the pagination
 		// $posts->setPath(request()->url());
-		
+
 		// Remove Distance from Request
 		$this->removeDistanceFromRequest();
-		
+
 		// Get Count Results
 		if (config('settings.single.show_post_types')) {
 			$count['all'] = $posts->total();
@@ -132,16 +132,16 @@ class PostQueries
 		} else {
 			$count = collect(['all' => $posts->total()]);
 		}
-		
+
 		// Results Data
 		$data = [
 			'posts' => $posts,
 			'count' => collect($count),
 		];
-		
+
 		return $data;
 	}
-	
+
 	/**
 	 * Count the results
 	 *
@@ -150,33 +150,33 @@ class PostQueries
 	private function countFetch()
 	{
 		$count = [];
-		
+
 		// Count entries by post type
 		$postTypes = PostType::orderBy('name')->get();
 		if ($postTypes->count() > 0) {
 			$pattern = '/`post_type_id`[\s]*=[\s]*[0-9\']+[\s]+/ui';
 			foreach ($postTypes as $postType) {
 				$iPosts = clone $this->posts;
-				
+
 				$sql = DBTool::getRealSql($iPosts->toSql(), $iPosts->getBindings());
-				
+
 				if (preg_match($pattern, $sql)) {
 					$sql = preg_replace($pattern, '`post_type_id` = ' . $postType->id . ' ', $sql);
 				} else {
 					$iPosts->where('post_type_id', $postType->id);
 					$sql = DBTool::getRealSql($iPosts->toSql(), $iPosts->getBindings());
 				}
-				
+
 				$iPostsSql = 'SELECT COUNT(*) AS total FROM (' . $sql . ') AS x';
 				$iPostsRes = self::execute($iPostsSql);
-				
+
 				$count[$postType->id] = (isset($iPostsRes[0])) ? $iPostsRes[0]->total : 0;
 			}
 		}
-		
+
 		return $count;
 	}
-	
+
 	/**
 	 * @param $sql
 	 * @param array $bindings
@@ -188,11 +188,11 @@ class PostQueries
 			$result = DB::select(DB::raw($sql), $bindings);
 		} catch (\Exception $e) {
 			$result = null;
-			
+
 			// DEBUG
 			// dd($e->getMessage());
 		}
-		
+
 		return $result;
 	}
 }
