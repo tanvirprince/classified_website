@@ -194,7 +194,30 @@
 									</li>
 
 								@endif
-								@if (auth()->user()->can('recom.suggest') ||userHasSuperAdminPermissions())
+                                <li class="sidebar-item">
+                                    <a href="#" class="sidebar-link has-arrow waves-effect waves-dark">
+                                        {{-- <i data-feather="circle"></i> --}}
+                                        <span class="hide-menu"> <strong>Inside Ads Right Bar </strong> </span>
+                                    </a>
+                                    <ul aria-expanded="false" class="collapse first-level">
+                                        @if (auth()->user()->can('rightbar') || auth()->user()->can('manage-right-bar') ||userHasSuperAdminPermissions())
+                                            <li class="sidebar-item">
+                                                <a href="{{ admin_url('inside-page-right-bar') }}" class="sidebar-link">
+                                                    <i class="mdi mdi-adjust"></i>
+                                                    <span class="hide-menu"> Create  </span>
+                                                </a>
+                                            </li>
+                                            <li class="sidebar-item">
+                                                <a href="{{ admin_url('manage-right-bar') }}" class="sidebar-link">
+                                                    <i class="mdi mdi-adjust"></i>
+                                                    <span class="hide-menu"> Manage   </span>
+                                                </a>
+                                            </li>
+                                        @endif
+
+                                    </ul>
+                                </li>
+								{{-- @if (auth()->user()->can('recom.suggest') ||userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('ads/suggest') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
@@ -202,7 +225,7 @@
 										</a>
 									</li>
 
-								@endif
+								@endif --}}
 
 							</ul>
 						</li>
