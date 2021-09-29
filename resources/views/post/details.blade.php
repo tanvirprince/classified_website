@@ -16,7 +16,7 @@
 @section('content')
 	{!! csrf_field() !!}
 	<input type="hidden" id="postId" name="post_id" value="{{ $post->id }}">
-	
+
 	@if (Session::has('flash_notification'))
 		@includeFirst([config('larapen.core.customizedViewPath') . 'common.spacer', 'common.spacer'])
 		<?php $paddingTopExists = true; ?>
@@ -45,20 +45,20 @@
 	@else
 
 	@endif
-	
+
 	<div class="main-container">
-		
+
 		<?php if (isset($topAdvertising) and !empty($topAdvertising)): ?>
 			@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.advertising.top', 'layouts.inc.advertising.top'], ['paddingTopExists' => $paddingTopExists ?? false])
 		<?php
 			$paddingTopExists = false;
 		endif;
 		?>
-		
+
 		<div class="container {{ (isset($topAdvertising) and !empty($topAdvertising)) ? 'mt-2' : 'mt-1' }}">
 			<div class="row">
 				<div class="col-md-12">
-					
+
 					<nav aria-label="breadcrumb" role="navigation" class="pull-left">
 						<ol class="breadcrumb">
 							<li class="breadcrumb-item"><a href="{{ url('/') }}"><i class="icon-home fa"></i></a></li>
@@ -75,15 +75,15 @@
 							<li class="breadcrumb-item active" aria-current="page">{{ \Illuminate\Support\Str::limit($post->title, 70) }}</li>
 						</ol>
 					</nav>
-					
+
 					<div class="pull-right backtolist">
 						<a href="{{ rawurldecode(url()->previous()) }}"><i class="fa fa-angle-double-left"></i> {{ t('back_to_results') }}</a>
 					</div>
-				
+
 				</div>
 			</div>
 		</div>
-		
+
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-9 page-content col-thin-right">
@@ -130,8 +130,8 @@
 						@if (view()->exists($picturesSlider))
 							@includeFirst([config('larapen.core.customizedViewPath') . $picturesSlider, $picturesSlider])
 						@endif
-						
-						
+
+
 						@if (config('plugins.reviews.installed'))
 							@if (view()->exists('reviews::ratings-single'))
 								@include('reviews::ratings-single')
@@ -185,13 +185,13 @@
 									</li>
 								@endif
 							</ul>
-							
+
 							<!-- Tab panes -->
 							<div class="tab-content p-3 mb-3" id="itemsDetailsTabsContent">
 								<div class="tab-pane show active" id="item-details" role="tabpanel" aria-labelledby="item-details-tab">
 									<div class="row">
 										<div class="items-details-info col-md-12 col-sm-12 col-xs-12 enable-long-words from-wysiwyg">
-											
+
 
 											<div class="row">
 												<!-- Location -->
@@ -205,7 +205,7 @@
 														</span>
 													</div>
 												</div>
-												
+
 												@if (!in_array($post->category->type, ['not-salable']))
 													<!-- Price / Salary -->
 													<div class="detail-line-lite col-md-6 col-sm-6 col-xs-6">
@@ -230,17 +230,17 @@
 												@endif
 											</div>
 											<hr>
-											
+
 											<!-- Description -->
 											<div class="row">
 												<div class="col-12 detail-line-content">
 													{!! transformDescription($post->description) !!}
 												</div>
 											</div>
-											
+
 											<!-- Custom Fields -->
 											@includeFirst([config('larapen.core.customizedViewPath') . 'post.inc.fields-values', 'post.inc.fields-values'])
-										
+
 											<!-- Tags -->
 											@if (!empty($post->tags))
 												<?php $tags = array_map('trim', explode(',', $post->tags)); ?>
@@ -257,7 +257,7 @@
 													</div>
 												@endif
 											@endif
-											
+
 											<!-- Actions -->
 											<div class="row detail-line-action text-center">
 												<div class="col-4">
@@ -308,26 +308,26 @@
 															   data-original-title="{{ t('Report abuse') }}"
 															></i>
 														</a>
-														
+
 													</div>
 												@endif
 											</div>
 										</div>
-										
+
 										<br>&nbsp;<br>
 									</div>
 								</div>
-								
-								
+
+
 								@if (config('plugins.reviews.installed'))
 									@if (view()->exists('reviews::comments'))
 										@include('reviews::comments')
 									@endif
 								@endif
 							</div>
-							
+
 							<!-- /.tab content -->
-									
+
 							<div class="content-footer text-left">
 								@if (auth()->check())
 									@if (auth()->user()->id == $post->user_id)
@@ -341,9 +341,9 @@
 									{!! genEmailContactBtn($post) !!}
 								@endif
 							</div>
-							
+
 						</div>
-						
+
 					</div>
 					<!--/.items-details-wrapper-->
 					{{-- ads 5  --}}
@@ -359,7 +359,7 @@
 					@else
 					@endif
 					{{-- ads 5  --}}
-					
+
 				</div>
 				<!--/.page-content-->
 
@@ -367,12 +367,36 @@
 				<div class="col-lg-3 page-sidebar-right">
 					<aside>
 						@php
-						$popular = App\Models\Post::where('status',1)->get()->take(6);
+						$popular = App\Models\RightBar::get()->take(8);
 						$footer = App\Models\Footer::where('id', 1)->first();
-	
+
 						@endphp
 						<div class="card sidebar-card">
-							<div class="card-header">{{$footer->field17}}</div>
+							<div class="card-header">{{$footer->field19}}</div>
+							<div class="card-content">
+								<div class="card-body text-left">
+									@foreach ($popular as $all)
+
+
+									<div class="card">
+                                        <a href="{{$all->link}}">
+                                            <img class="card-img-top" src="{{asset('/')}}assets/right-bar/{{$all->image }}" alt="{{$all->extra}}">
+                                        </a>
+									</div>
+									<hr/>
+
+									@endforeach
+
+								</div>
+							</div>
+						</div>
+						{{-- @php
+						$popular = App\Models\Post::where('status',1)->get()->take(6);
+						$footer = App\Models\Footer::where('id', 1)->first();
+
+						@endphp
+						<div class="card sidebar-card">
+							<div class="card-header">{{$footer->field19}}</div>
 							<div class="card-content">
 								<div class="card-body text-left">
 									@foreach ($popular as $all)
@@ -383,22 +407,21 @@
 											$slug_cat = App\Models\Category::where('id', $all->category_id)->pluck('slug')->first();
 
 									@endphp
-									
+
 									<div class="card">
 										<img class="card-img-top" src="{{asset('/')}}storage/{{$image }}" alt="Card image cap">
 										<hr>
 										<div class="card-body">
-										  {{-- <a href="{{ url("/$all->slug/$all->id")}}"><h3> {{ $all->title }}</h3></a> --}}
 										  <h4 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h4>
 										</div>
 									</div>
 									<hr/>
-									
+
 									@endforeach
-									
+
 								</div>
 							</div>
-						</div>
+						</div> --}}
 						<div class="card card-user-info sidebar-card">
 							@if (auth()->check() && auth()->id() == $post->user_id)
 								<div class="card-header">{{ t('Manage Ad') }}</div>
@@ -418,19 +441,19 @@
 												{{ $post->contact_name }}
 											@endif
 										</span>
-										
+
 										@if (config('plugins.reviews.installed'))
 											@if (view()->exists('reviews::ratings-user'))
 												@include('reviews::ratings-user')
 											@endif
 										@endif
-										
+
 									</div>
 								</div>
 							@endif
 
-							
-							
+
+
 							<div class="card-content">
 								<?php $evActionStyle = 'style="border-top: 0;"'; ?>
 								@if (!auth()->check() || (auth()->check() && auth()->user()->getAuthIdentifier() != $post->user_id))
@@ -464,7 +487,7 @@
 									</div>
 									<?php $evActionStyle = 'style="border-top: 1px solid #ddd;"'; ?>
 								@endif
-								
+
 								<div class="ev-action" {!! $evActionStyle !!}>
 									@if (auth()->check())
 										@if (auth()->user()->id == $post->user_id)
@@ -489,21 +512,21 @@
 										try {
 											if (auth()->user()->can(\App\Models\Permission::getStaffPermissions())) {
 												$btnUrl = admin_url('blacklists/add') . '?email=' . $post->email;
-												
+
 												if (!isDemo($btnUrl)) {
 													$cMsg = trans('admin.confirm_this_action');
 													$cLink = "window.location.replace('" . $btnUrl . "'); window.location.href = '" . $btnUrl . "';";
 													$cHref = "javascript: if (confirm('" . addcslashes($cMsg, "'") . "')) { " . $cLink . " } else { void('') }; void('')";
-													
+
 													$btnText = trans('admin.ban_the_user');
 													$btnHint = trans('admin.ban_the_user_email', ['email' => $post->email]);
 													$tooltip = ' data-toggle="tooltip" data-placement="bottom" title="' . $btnHint . '"';
-													
+
 													$btnOut = '';
 													$btnOut .= '<a href="'. $cHref .'" class="btn btn-danger btn-block"'. $tooltip .'>';
 													$btnOut .= $btnText;
 													$btnOut .= '</a>';
-													
+
 													echo $btnOut;
 												}
 											}
@@ -516,7 +539,7 @@
 								</div>
 							</div>
 						</div>
-						
+
 						@if (config('settings.single.show_post_on_googlemap'))
 							<div class="card sidebar-card">
 								<div class="card-header">{{ t('location_map') }}</div>
@@ -529,11 +552,11 @@
 								</div>
 							</div>
 						@endif
-						
+
 						@if (isVerifiedPost($post))
 							@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.social.horizontal', 'layouts.inc.social.horizontal'])
 						@endif
-						
+
 						<div class="card sidebar-card">
 							<div class="card-header">{{ t('Safety Tips for Buyers') }}</div>
 							<div class="card-content">
@@ -575,23 +598,23 @@
 						<br>
 
 
-						
+
 					</aside>
 				</div>
 			</div>
 
 		</div>
-		
+
 		{{-- @if (config('settings.single.similar_posts') == '1' || config('settings.single.similar_posts') == '2')
 			@includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.featured', 'home.inc.featured'], ['firstSection' => false])
 		@endif
-		
+
 		@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.advertising.bottom', 'layouts.inc.advertising.bottom'], ['firstSection' => false])
-		
+
 		@if (isVerifiedPost($post))
 			@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.tools.facebook-comments', 'layouts.inc.tools.facebook-comments'], ['firstSection' => false])
 		@endif --}}
-		
+
 	</div>
 @endsection
 
@@ -626,7 +649,7 @@
 
 	<!-- bxSlider Javascript file -->
 	<script src="{{ url('assets/plugins/bxslider/jquery.bxslider.min.js') }}"></script>
-    
+
 	<script>
 		/* Favorites Translation */
         var lang = {
@@ -639,10 +662,10 @@
             confirmationSaveSearch: "{!! t('Search saved successfully') !!}",
             confirmationRemoveSaveSearch: "{!! t('Search deleted successfully') !!}"
         };
-		
+
 		$(document).ready(function () {
 			$('[rel="tooltip"]').tooltip({trigger: "hover"});
-			
+
 			@if (config('settings.single.show_post_on_googlemap'))
 				/* Google Maps */
 				getGoogleMaps(
@@ -651,7 +674,7 @@
 				'{{ config('app.locale') }}'
 				);
 			@endif
-            
+
 			/* Keep the current tab active with Twitter Bootstrap after a page reload */
             /* For bootstrap 3 use 'shown.bs.tab', for bootstrap 2 use 'shown' in the next line */
             $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
