@@ -2,12 +2,29 @@
 
 @section('header')
 	<div class="row page-titles">
-		<div class="col-md-6 col-12 align-self-center">
-        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
-            Suggest Title Update
-        </button>
+		<div class="col-md-12 col-12 align-self-center">
+        {{-- <h2 class="mt-2"> {{ $footer->field19 }} </h2> --}}
+        <div class="col-md-9">
+            <div class="row">
+                <div class="col-md-3 float-right">
+                    <h3> Inside Ads Right Bar </h3>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+
+                        Edit
+                    </button>
+                </div>
+            </div>
+
+
+        </div>
+
+
+
+
     <br>
-    <h2 class="mt-2">Title - {{ $footer->field19 }} </h2>
+
 		</div>
 		<div class="col-md-6 col-12 align-self-center d-none d-md-block">
 			<ol class="breadcrumb mb-0 p-0 bg-transparent float-right">

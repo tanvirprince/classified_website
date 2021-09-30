@@ -147,7 +147,7 @@
 						{{-- ***** blog  --}}
 						{{-- ***** right bar inside ads  --}}
 
-						<li class="sidebar-item">
+						{{-- <li class="sidebar-item">
 							<a href="#" class="sidebar-link has-arrow waves-effect waves-dark">
 								<i data-feather="edit"></i> <span class="hide-menu"> Inside Page Right Bar Ads </span>
 							</a>
@@ -168,7 +168,7 @@
 								@endif
 
 							</ul>
-						</li>
+						</li> --}}
 						{{-- ***** blog  --}}
 
 						<li class="sidebar-item">
