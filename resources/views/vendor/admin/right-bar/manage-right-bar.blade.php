@@ -26,12 +26,7 @@
     <br>
 
 		</div>
-		<div class="col-md-6 col-12 align-self-center d-none d-md-block">
-			<ol class="breadcrumb mb-0 p-0 bg-transparent float-right">
-				<li class="breadcrumb-item"><a href="{{ admin_url() }}">Blog</a></li>
-				<li class="breadcrumb-item active">Manage</li>
-			</ol>
-		</div>
+
 	</div>
   <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -96,7 +91,7 @@
 
                 <td>
                   {{-- <a href="{{ route('blog.edit',$rightBar->id) }}"><i class="fa fa-edit" aria-hidden="true"></i>   </a> --}}
-                  <a href="{{ route('blog.destroy',$rightBar->id) }}"><i class="fa fa-trash" aria-hidden="true"></i>   </a>
+                  <a href="{{ route('right-bar.destroy',$rightBar->id) }}"><i class="fa fa-trash" aria-hidden="true"></i>   </a>
                 </td>
               </tr>
               @endforeach

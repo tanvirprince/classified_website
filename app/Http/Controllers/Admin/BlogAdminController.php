@@ -132,7 +132,7 @@ class BlogAdminController extends Controller
 
         $rightBar = RightBar::findOrFail($id);
         $rightBar->delete();
-        return redirect()->route('blog.manage')->with('deleted','Blog Post has Deleted successfully');
+        return redirect()->route('manage-right-bar')->with('deleted','Deleted successfully');
 
         }
 }
