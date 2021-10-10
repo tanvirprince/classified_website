@@ -17,7 +17,7 @@ class GoogleAdsController extends Controller
     public function updateSeoAds(Request $request){
 
         $googleAds = GoogleAds::first();
-        
+
         $googleAds->ads_1_title = $request->ads_1_title;
         $googleAds->ads_1_tag = $request->ads_1_tag;
 
@@ -35,14 +35,14 @@ class GoogleAdsController extends Controller
         $googleAds->save();
 
         return redirect()->back()->with('message','You have successfully Updated. Thankyou');
-        
+
     }
     public function updateAds(Request $request){
-        
+
         $googleAds = GoogleAds::first();
         if ($googleAds !== null){
 
-            
+
             if ($request->ads_1 != null) {
                 $ads_1 = time().'.'.$request->ads_1->extension();
                 $request->ads_1->move(public_path('assets/google_banner/ads_1/'), $ads_1);
@@ -74,23 +74,30 @@ class GoogleAdsController extends Controller
                 $request->ads_5->move(public_path('assets/google_banner/ads_5/'), $ads_5);
             }else{
                 $ads_5 = $googleAds->ads_5;
-                
+
             }
-                
+
                 $googleAds->ads_1 = $ads_1;
                 $googleAds->ads_2 = $ads_2;
                 $googleAds->ads_3 = $ads_3;
                 $googleAds->ads_4 = $ads_4;
                 $googleAds->ads_5 = $ads_5;
+
                 $googleAds->ads_1_link = $request->ads_1_link;
                 $googleAds->ads_2_link = $request->ads_2_link;
                 $googleAds->ads_3_link = $request->ads_3_link;
                 $googleAds->ads_4_link = $request->ads_4_link;
                 $googleAds->ads_5_link = $request->ads_5_link;
 
+                $googleAds->auto_1 = $request->auto_1;
+                $googleAds->auto_2 = $request->auto_2;
+                $googleAds->auto_3 = $request->auto_3;
+                $googleAds->auto_4 = $request->auto_4;
+                $googleAds->auto_5 = $request->auto_5;
+
                 $googleAds->save();
                 return redirect()->back()->with('message','You have successfully Updated. Thankyou');
-            
+
         }else{
             $googleAds = new GoogleAds();
             if ($request->ads_1 != null) {
@@ -123,10 +130,10 @@ class GoogleAdsController extends Controller
                 $ads_5 = time().'.'.$request->ads_5->extension();
                 $request->ads_5->move(public_path('assets/google_banner/ads_5/'), $ads_5);
             }else{
-                
+
                 $ads_5 = null;
             }
-                
+
                 $googleAds->ads_1 = $ads_1;
                 $googleAds->ads_2 = $ads_2;
                 $googleAds->ads_3 = $ads_3;
@@ -139,8 +146,8 @@ class GoogleAdsController extends Controller
                 $googleAds->ads_5_link = $request->ads_5_link;
                 $googleAds->save();
                 return redirect()->back()->with('message','You have successfully ceated. Thankyou');
-        }   
-        
+        }
+
     }
 
     public function deleteAdsGoogle($column)
