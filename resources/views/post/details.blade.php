@@ -2,7 +2,6 @@
  * LaraClassified - Classified Ads Web Application
  * Copyright (c) BedigitCom. All Rights Reserved
  *
- * Website: https://bedigit.com
  *
  * LICENSE
  * -------
@@ -380,7 +379,7 @@
 
 									<div class="card">
                                         <a href="{{$all->link}}">
-                                            <img class="card-img-top" src="{{asset('/')}}assets/right-bar/{{$all->image }}" alt="{{$all->extra}}">
+                                            <img class="card-img-top" height="114px;" src="{{asset('/')}}assets/right-bar/{{$all->image }}" alt="{{$all->extra}}">
                                         </a>
 									</div>
 									<hr/>

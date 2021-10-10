@@ -40,7 +40,7 @@ if (
 <div class="container-fluid bg-success">
 	<div class="row col-md-12">
 		<div class="col-md-4">
-		
+
 		</div>
 		<div class="col-md-4">
 			<h1>  </h1>
@@ -54,7 +54,7 @@ if (
 <div class="container-fluid bg-grey">
 	<div class="row col-md-12">
 		<div class="col-md-4">
-		
+
 		</div>
 		<div class="col-md-4">
 
@@ -69,7 +69,7 @@ if (
 	<div class="row col-md-12 ">
 		<div class="col-md-4">
 			<h2 class="footer-title"> {{ $footer->title }} </h2>
-			
+
 			<h4><a href="{{ $footer->link11 }}" style="color: black;">{{ $footer->email }}</a></h4>
 			<h4><a href="{{ $footer->link12 }}" style="color: black;">{{ $footer->mobile_number }}</a></h4>
 			<h4><a href="{{ $footer->link13 }}" style="color: black;">{{ $footer->field11 }}</a></h4>
@@ -83,11 +83,11 @@ if (
 			<h4><a href="{{ $footer->link18 }}" style="color: black;">{{ $footer->field14 }}</a></h4>
 			<h4><a href="{{ $footer->link19 }}" style="color: black;">{{ $footer->field15 }}</a></h4>
 			<h4><a href="{{ $footer->link20 }}" style="color: black;">{{ $footer->field16 }}</a></h4>
-			
+
 		</div>
 		<div class="col-md-4">
-			{{-- <h2 class="footer-title"> {{ $footer->title1 }}</h2> --}}
-			
+			<h2 class="footer-title">{{ $footer->title5 }}</h2>
+
 			<iframe src="https://www.facebook.com/plugins/group.php?href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fbusinessjourneynet&width=250&show_metadata=false&appId=872948206507683&height=241" width="250" height="241" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
 		</div>
@@ -102,7 +102,7 @@ if (
 	<div class="footer-content">
 		<div class="container">
 			<div class="row">
-				
+
 				@if (!config('settings.footer.hide_links'))
 					<div class="{{ $colClass1 }}">
 						<div class="footer-col">
@@ -114,16 +114,16 @@ if (
 								<li><a href="{{ $footer->link4 }}"> {{ $footer->menu4 }} </a></li>
 								<li><a href="{{ $footer->link5 }}"> {{ $footer->menu5 }} </a></li>
 
-							
+
 							</ul>
 						</div>
 					</div>
-					
+
 					<div class="{{ $colClass2 }}">
 						<div class="footer-col">
 							<h4 class="footer-title">{{ $footer->title3 }}</h4>
 							<ul class="list-unstyled footer-nav">
-								
+
 								<li><a href="{{ $footer->link6 }}"> {{ $footer->menu6 }} </a></li>
 								<li><a href="{{ $footer->link7 }}"> {{ $footer->menu7 }} </a></li>
 								<li><a href="{{ $footer->link8 }}"> {{ $footer->menu8 }} </a></li>
@@ -145,7 +145,7 @@ if (
 							</ul>
 						</div>
 					</div>
-					
+
 					{{-- <div class="{{ $colClass3 }}">
 						<div class="footer-col">
 							<h4 class="footer-title">{{ t('My Account') }}</h4>
@@ -167,7 +167,7 @@ if (
 							</ul>
 						</div>
 					</div> --}}
-					
+
 					@if (
 						config('settings.other.ios_app_url') or
 						config('settings.other.android_app_url') or
@@ -214,7 +214,7 @@ if (
 										$footerSocialTitleClass = 'no-margin';
 									?>
 								@endif
-								
+
 								@if (
 									config('settings.social_link.facebook_page_url') or
 									config('settings.social_link.twitter_url') or
@@ -279,11 +279,11 @@ if (
 
 											{{-- <div class="col-8">
 											<div class="card">
-												
+
 												<div class="card-body">
 													<h3> {{ $fb_footer->title }} </h3>
 													<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}storage/{{$fb_footer->image }}" style="width:50px;height:50px;" alt="footer link">
-													
+
 													<a href="//{{ $fb_footer->link }}">
 													<button type="button" class="btn" style="color: blue;">
 														<i class="fab fa-facebook"></i>
@@ -298,10 +298,10 @@ if (
 							</div>
 						</div>
 					@endif
-					
+
 					<div style="clear: both"></div>
 				@endif
-				
+
 				<div class="col-xl-12">
 					@if (!config('settings.footer.hide_payment_plugins_logos') and isset($paymentMethods) and $paymentMethods->count() > 0)
 						<div class="text-center paymanet-method-logo">
@@ -317,20 +317,20 @@ if (
 							<hr>
 						@endif
 					@endif
-					
+
 					<div class="copy-info text-center">
 						© {{ date('Y') }} Business Journey. {{ t('all_rights_reserved') }}.
 						@if (!config('settings.footer.hide_powered_by'))
 							@if (config('settings.footer.powered_by_info'))
 								{{ t('Powered by') }} {!! config('settings.footer.powered_by_info') !!}
 							@else
-							
+
 								 Website Consultation by <a href="https://www.himaltech.co.uk/" title="Himal Tech">Himal Tech</a>.
 							@endif
 						@endif
 					</div>
 				</div>
-			
+
 			</div>
 		</div>
 	</div>

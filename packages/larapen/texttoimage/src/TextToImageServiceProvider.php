@@ -3,7 +3,6 @@
  * LaraClassified - Classified Ads Web Application
  * Copyright (c) BedigitCom. All Rights Reserved
  *
- * Website: https://bedigit.com
  *
  * LICENSE
  * -------
@@ -30,7 +29,7 @@ class TextToImageServiceProvider extends ServiceProvider
 			return new TextToImage($app);
 		});
 	}
-	
+
     /**
      * Bootstrap the application events.
      *
@@ -40,7 +39,7 @@ class TextToImageServiceProvider extends ServiceProvider
     {
         //
     }
-    
+
     /**
      * Get the services provided by the provider.
      *

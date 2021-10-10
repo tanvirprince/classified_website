@@ -3,7 +3,6 @@
  * LaraClassified - Classified Ads Web Application
  * Copyright (c) BedigitCom. All Rights Reserved
  *
- * Website: https://bedigit.com
  *
  * LICENSE
  * -------
@@ -26,38 +25,38 @@ class Settings
     public $format = IMAGETYPE_JPEG;
     public $blur = 0;
     public $pixelate = 0;
-    
+
     public static function createFromIni($iniFile)
     {
         $settings = new Settings();
-        
+
         // Cannot find settings file
         if (!realpath($iniFile)) {
             return $settings;
         }
-        
+
         // Parse config file
         $properties = @parse_ini_file($iniFile);
         if (empty($properties)) {
             return $settings;
         }
-        
+
         $settings->assignProperties($properties);
-        
+
         return $settings;
     }
-    
+
     public function assignProperties($properties)
     {
         if (empty($properties) || !is_array($properties)) {
             return;
         }
-        
+
         foreach ($properties as $name => $value) {
             if (!property_exists($this, $name)) {
                 continue;
             }
-            
+
             $this->$name = $value;
         }
     }

@@ -3,7 +3,6 @@
  * LaraClassified - Classified Ads Web Application
  * Copyright (c) BedigitCom. All Rights Reserved
  *
- * Website: https://bedigit.com
  *
  * LICENSE
  * -------

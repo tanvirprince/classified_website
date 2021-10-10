@@ -34,7 +34,7 @@ ALTER TABLE `<<prefix>>cities` ADD INDEX(`subadmin1_code`);
 ALTER TABLE `<<prefix>>cities` ADD INDEX(`subadmin2_code`);
 ALTER TABLE `<<prefix>>cities` ADD INDEX(`active`);
 
-UPDATE <<prefix>>cities SET subadmin1_code = IF(LENGTH(subadmin1_code) > 0, CONCAT(country_code, '.', subadmin1_code), NULL), 
+UPDATE <<prefix>>cities SET subadmin1_code = IF(LENGTH(subadmin1_code) > 0, CONCAT(country_code, '.', subadmin1_code), NULL),
 subadmin2_code = IF(LENGTH(subadmin2_code) > 0, CONCAT(IF(LENGTH(subadmin1_code) > 0, subadmin1_code, country_code), '.', subadmin2_code), NULL);
 
 
@@ -108,14 +108,14 @@ ALTER TABLE `<<prefix>>posts` CHANGE `activation_token` `email_token` VARCHAR(32
 ALTER TABLE `<<prefix>>posts` ADD `phone_token` VARCHAR(32) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL AFTER `email_token`;
 ALTER TABLE `<<prefix>>posts` CHANGE `active` `verified_email` TINYINT(1) UNSIGNED NULL DEFAULT '0';
 ALTER TABLE `<<prefix>>posts` ADD `verified_phone` TINYINT(1) UNSIGNED NULL DEFAULT '1' AFTER `verified_email`;
-ALTER TABLE `<<prefix>>posts` 
-	CHANGE `seller_name` `contact_name` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL, 
-	CHANGE `seller_email` `email` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL, 
-	CHANGE `seller_phone` `phone` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL, 
+ALTER TABLE `<<prefix>>posts`
+	CHANGE `seller_name` `contact_name` VARCHAR(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+	CHANGE `seller_email` `email` VARCHAR(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+	CHANGE `seller_phone` `phone` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
 	CHANGE `seller_phone_hidden` `phone_hidden` TINYINT(1) NULL DEFAULT '0';
-ALTER TABLE `<<prefix>>posts` 
-	CHANGE `country_code` `country_code` VARCHAR(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL, 
-	CHANGE `category_id` `category_id` INT(10) UNSIGNED NOT NULL DEFAULT '0', 
+ALTER TABLE `<<prefix>>posts`
+	CHANGE `country_code` `country_code` VARCHAR(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL,
+	CHANGE `category_id` `category_id` INT(10) UNSIGNED NOT NULL DEFAULT '0',
 	CHANGE `city_id` `city_id` INT(10) UNSIGNED NOT NULL DEFAULT '0';
 ALTER TABLE `<<prefix>>posts` DROP INDEX `ad_type_id`;
 ALTER TABLE `<<prefix>>posts` ADD INDEX(`post_type_id`);
@@ -157,52 +157,52 @@ ALTER TABLE `<<prefix>>saved_posts` ADD INDEX(`post_id`);
 -- settings
 ALTER TABLE `<<prefix>>settings` ADD INDEX(`active`);
 
-UPDATE `<<prefix>>settings` 
-	SET `key` = 'email_verification', 
-		`name` = 'Email verification required', 
-		`description` = 'Email verification required' 
+UPDATE `<<prefix>>settings`
+	SET `key` = 'email_verification',
+		`name` = 'Email verification required',
+		`description` = 'Email verification required'
 	WHERE `key` = 'require_users_activation';
-	
-UPDATE `<<prefix>>settings` 
-	SET `key` = 'phone_verification', 
-		`name` = 'Phone verification required', 
-		`description` = 'Phone verification required' 
+
+UPDATE `<<prefix>>settings`
+	SET `key` = 'phone_verification',
+		`name` = 'Phone verification required',
+		`description` = 'Phone verification required'
 	WHERE `key` = 'require_ads_activation';
-	
-UPDATE `<<prefix>>settings` 
-	SET `key` = 'app_cache_expiration', 
-		`name` = 'Cache Expiration Time', 
-		`description` = 'Cache Expiration Time (in minutes)' 
+
+UPDATE `<<prefix>>settings`
+	SET `key` = 'app_cache_expiration',
+		`name` = 'Cache Expiration Time',
+		`description` = 'Cache Expiration Time (in minutes)'
 	WHERE `key` = 'app_cache_expire';
-	
-UPDATE `<<prefix>>settings` 
-	SET `key` = 'app_cookie_expiration', 
-		`name` = 'Cookie Expiration Time', 
-		`description` = 'Cookie Expiration Time (in secondes)' 
+
+UPDATE `<<prefix>>settings`
+	SET `key` = 'app_cookie_expiration',
+		`name` = 'Cookie Expiration Time',
+		`description` = 'Cookie Expiration Time (in secondes)'
 	WHERE `key` = 'app_cookie_expire';
 
-UPDATE `<<prefix>>settings` 
-	SET `key` = 'app_skin', 
+UPDATE `<<prefix>>settings`
+	SET `key` = 'app_skin',
 		`name` = 'Front Skin',
 		`value` = IF(LENGTH(`value`) > 0, CONCAT('skin-', `value`), NULL),
-		`field` = '{"name":"value","label":"Value","type":"select_from_array","options":{"skin-default":"Default","skin-blue":"Blue","skin-yellow":"Yellow","skin-green":"Green","skin-red":"Red"}}' 
+		`field` = '{"name":"value","label":"Value","type":"select_from_array","options":{"skin-default":"Default","skin-blue":"Blue","skin-yellow":"Yellow","skin-green":"Green","skin-red":"Red"}}'
 	WHERE `key` = 'app_theme';
 
-UPDATE `<<prefix>>settings` 
-	SET `key` = 'admin_skin', 
-		`name` = 'Admin Skin', 
-		`description` = 'Admin Panel Skin' 
+UPDATE `<<prefix>>settings`
+	SET `key` = 'admin_skin',
+		`name` = 'Admin Skin',
+		`description` = 'Admin Panel Skin'
 	WHERE `key` = 'admin_theme';
 
 UPDATE `<<prefix>>settings` SET `active`=1 WHERE `key`='sparkpost_secret';
 
-UPDATE `<<prefix>>settings` 
-	SET `description`='e.g. smtp, mailgun, mandrill, ses, sparkpost, mail, sendmail', 
-		`field`='{"name":"value","label":"Value","type":"select_from_array","options":{"smtp":"SMTP","mailgun":"Mailgun","mandrill":"Mandrill","ses":"Amazon SES","sparkpost":"Sparkpost","mail":"PHP Mail","sendmail":"Sendmail"}}' 
+UPDATE `<<prefix>>settings`
+	SET `description`='e.g. smtp, mailgun, mandrill, ses, sparkpost, mail, sendmail',
+		`field`='{"name":"value","label":"Value","type":"select_from_array","options":{"smtp":"SMTP","mailgun":"Mailgun","mandrill":"Mandrill","ses":"Amazon SES","sparkpost":"Sparkpost","mail":"PHP Mail","sendmail":"Sendmail"}}'
 	WHERE `key`='mail_driver';
 
-UPDATE `<<prefix>>settings` 
-	SET `description`='Before enabling this option you need to download the Maxmind database by following the documentation: https://bedigit.com/doc/geo-location/'
+UPDATE `<<prefix>>settings`
+	SET `description`='Before enabling this option you need to download the Maxmind database by following the documentation: '
 	WHERE `key`='activation_geolocation';
 
 UPDATE `<<prefix>>settings` SET `key` = 'show_post_on_googlemap' WHERE `key` = 'show_ad_on_googlemap';
@@ -256,14 +256,14 @@ ALTER TABLE `<<prefix>>users` ADD INDEX(`username`);
 ALTER TABLE `<<prefix>>users` ADD INDEX(`phone`);
 ALTER TABLE `<<prefix>>users` ADD INDEX(`email`);
 
-ALTER TABLE `<<prefix>>users` 
-	CHANGE `phone_hidden` `phone_hidden` TINYINT(1) UNSIGNED NULL DEFAULT '0', 
-	CHANGE `is_admin` `is_admin` TINYINT(1) UNSIGNED NULL DEFAULT '0', 
-	CHANGE `disable_comments` `disable_comments` TINYINT(1) UNSIGNED NULL DEFAULT '0', 
-	CHANGE `receive_newsletter` `receive_newsletter` TINYINT(1) UNSIGNED NULL DEFAULT '1', 
-	CHANGE `receive_advice` `receive_advice` TINYINT(1) UNSIGNED NULL DEFAULT '1', 
-	CHANGE `verified_email` `verified_email` TINYINT(1) UNSIGNED NULL DEFAULT '1', 
-	CHANGE `blocked` `blocked` TINYINT(1) UNSIGNED NULL DEFAULT '0', 
+ALTER TABLE `<<prefix>>users`
+	CHANGE `phone_hidden` `phone_hidden` TINYINT(1) UNSIGNED NULL DEFAULT '0',
+	CHANGE `is_admin` `is_admin` TINYINT(1) UNSIGNED NULL DEFAULT '0',
+	CHANGE `disable_comments` `disable_comments` TINYINT(1) UNSIGNED NULL DEFAULT '0',
+	CHANGE `receive_newsletter` `receive_newsletter` TINYINT(1) UNSIGNED NULL DEFAULT '1',
+	CHANGE `receive_advice` `receive_advice` TINYINT(1) UNSIGNED NULL DEFAULT '1',
+	CHANGE `verified_email` `verified_email` TINYINT(1) UNSIGNED NULL DEFAULT '1',
+	CHANGE `blocked` `blocked` TINYINT(1) UNSIGNED NULL DEFAULT '0',
 	CHANGE `closed` `closed` TINYINT(1) UNSIGNED NULL DEFAULT '0';
 
 UPDATE `<<prefix>>users` SET `verified_phone` = 1;
@@ -348,7 +348,7 @@ ALTER TABLE `<<prefix>>meta_tags`
   ADD KEY `translation_of` (`translation_of`);
 
 ALTER TABLE `<<prefix>>meta_tags` MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
-  
+
 
 -- fields
 CREATE TABLE `<<prefix>>fields` (

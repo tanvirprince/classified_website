@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 return [
     'home' => 'Home',
@@ -538,7 +538,7 @@ return [
 <br><code>lll</code> => Jan 9, 2020 8:45:21 PM (23:15)
 <br><code>llll</code> => Wed, Jan 9, 2020 8:45:21 PM (23:15)
 <br>...
-<br>More information on <a href=\'https://bedigit.com/blog/date-iso-format-pattern/\' target=\'_blank\'>ISO Format</a> patterns">ISO format</a> patterns.',
+<br>More information on <a href=\'https://businessjourney.com/\' target=\'_blank\'>ISO Format</a> patterns">ISO format</a> patterns.',
     'php_date_format_hint' => 'Accepted formats: PHP-specific dates formats (<a href="javascript: void(0);" data-toggle="popover" title="DateTimeInterface::format()" data-content="<code>Y-m-d H:i</code> => 2020-01-09 08:45 (23:15)
 <br><code>j M Y g:i a</code> => 9 Jan 2020 8:45 am (11:15 pm)
 <br><code>j F Y G:i</code> => 9 January 2020 8:45 (23:15)
