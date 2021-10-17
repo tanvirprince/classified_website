@@ -33,7 +33,7 @@
 				</div>
 			</div>
 		@endif
-			
+
 		@if (isset($sections) and $sections->count() > 0)
 			@foreach($sections as $section)
 				@if (view()->exists($section->view))
@@ -41,12 +41,15 @@
 				@endif
 			@endforeach
 		@endif
-		
+
 	</div>
 @endsection
 
 @section('after_scripts')
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6481939822625674"
+    crossorigin="anonymous"></script>
 	<script>
+
 		@if (config('settings.optimization.lazy_loading_activation') == 1)
 		$(document).ready(function () {
 			$('#postsList').each(function () {

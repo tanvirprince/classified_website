@@ -44,6 +44,7 @@
 	@else
 
 	@endif
+    {!! $image->auto_3 !!}
 
 	<div class="main-container">
 
@@ -150,6 +151,10 @@
 						{{-- ads 4  --}}
 
 						@endif
+                        {!! $image->auto_4 !!}
+
+
+
 						<div class="items-details">
 							<ul class="nav nav-tabs" id="itemsDetailsTabs" role="tablist">
 								<li class="nav-item">
@@ -358,6 +363,7 @@
 					@else
 					@endif
 					{{-- ads 5  --}}
+                    {!! $image->auto_5 !!}
 
 				</div>
 				<!--/.page-content-->

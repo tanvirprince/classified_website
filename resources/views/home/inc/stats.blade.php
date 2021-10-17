@@ -14,11 +14,14 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 	</ul>
 	<a href="//{{ $image->ads_2_link }}" target="_blank">
 		<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_2/{{$image->ads_2 }}" style="max-height:150px;" alt="ads2">
-	</a>	
+	</a>
 </div>
 @else
 
 @endif
+
+{!! $image->auto_2 !!}
+
 
 {{-- temporay commetn for client request  --}}
 {{-- @php
@@ -30,8 +33,8 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 		<div class="text-center section-promo">
 			<div class="row">
 				@foreach ($footer_menu as $list)
-					
-				
+
+
 				<div class="col-sm-4 col-xs-6 col-xxs-12">
 					<div class="iconbox-wrap">
 						<div class="iconbox">
@@ -45,7 +48,7 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 							</div>
 						</div>
 					</div>
-				</div>		
+				</div>
 
 				@endforeach
 
@@ -65,7 +68,7 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 	<div class="page-info page-info-lite rounded">
 		<div class="text-center section-promo">
 			<div class="row">
-	
+
 				@if (isset($countPosts))
 				<div class="col-sm-4 col-xs-6 col-xxs-12">
 					<div class="iconbox-wrap">
@@ -81,7 +84,7 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 					</div>
 				</div>
 				@endif
-	
+
 				@if (isset($countUsers))
 				<div class="col-sm-4 col-xs-6 col-xxs-12">
 					<div class="iconbox-wrap">
@@ -97,7 +100,7 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 					</div>
 				</div>
 				@endif
-	
+
 				@if (isset($countCities))
 				<div class="col-sm-4 col-xs-6 col-xxs-12">
 					<div class="iconbox-wrap">
@@ -113,7 +116,7 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 					</div>
 				</div>
 				@endif
-	
+
 			</div>
 		</div>
 	</div>

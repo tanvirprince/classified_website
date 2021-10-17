@@ -44,7 +44,7 @@
 									<label for="exampleInputPassword2"> Ads 1 Home page </label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_1_link}}" name="ads_1_link" placeholder="link">
                                     <label> Google ads link 1 </label>
-                                    <textarea class="form-control" id="txtid" name="auto_1" rows="3" cols="50" maxlength="150"> {{$image->auto_1}} </textarea>									{{-- ads 1 image  --}}
+                                    <textarea class="form-control" id="txtid" name="auto_1" rows="3" cols="50" maxlength="300"> {{$image->auto_1}} </textarea>									{{-- ads 1 image  --}}
 									{{-- ads 1 image  --}}
                                     @if (!empty($image->ads_1))
 									<a href="{{ route('delete.img',$image->ads_1) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>
@@ -60,7 +60,7 @@
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_2_link}}" name="ads_2_link" placeholder="link">
 
                                     <label> Google ads link 2 </label>
-                                    <textarea class="form-control" id="txtid" name="auto_2" rows="3" cols="50" maxlength="150"> {{$image->auto_2}} </textarea>
+                                    <textarea class="form-control" id="txtid" name="auto_2" rows="3" cols="50" maxlength="300"> {{$image->auto_2}} </textarea>
                                     {{-- ads 2 image  --}}
 									@if (!empty($image->ads_2))
 									<a href="{{ route('delete.img',$image->ads_2) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>
@@ -78,7 +78,7 @@
 
 									{{-- ads 3 image  --}}
                                     <label> Google ads link 2 </label>
-                                    <textarea class="form-control" id="txtid" name="auto_3" rows="3" cols="50" maxlength="150">{{$image->auto_3}} </textarea>
+                                    <textarea class="form-control" id="txtid" name="auto_3" rows="3" cols="50" maxlength="300">{{$image->auto_3}} </textarea>
 									@if (!empty($image->ads_3))
 									<a href="{{ route('delete.img',$image->ads_3) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>
 										<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_3/{{$image->ads_3 }}" style="max-height:150px;" alt="ads3">
@@ -92,7 +92,7 @@
 									<label for="exampleInputPassword2">Inside Page Ads 4</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_4_link}}" name="ads_4_link" placeholder="link">
                                     <label> Google ads link 4 </label>
-                                    <textarea class="form-control" id="txtid" name="auto_4" rows="3" cols="50" maxlength="150">{{$image->auto_4}} </textarea>
+                                    <textarea class="form-control" id="txtid" name="auto_4" rows="3" cols="50" maxlength="300">{{$image->auto_4}} </textarea>
                                     {{-- ads 4 image  --}}
 									@if (!empty($image->ads_4))
 									<a href="{{ route('delete.img',$image->ads_4) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>
@@ -108,7 +108,7 @@
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_5_link}}" name="ads_5_link" placeholder="link">
 
                                     <label> Google ads link 5 </label>
-                                    <textarea class="form-control" id="txtid" name="auto_5" rows="3" cols="50" maxlength="150"> {{$image->auto_5}}</textarea>
+                                    <textarea class="form-control" id="txtid" name="auto_5" rows="3" cols="50" maxlength="300"> {{$image->auto_5}}</textarea>
                                     {{-- ads 5 image  --}}
 									@if (!empty($image->ads_5))
 									<a href="{{ route('delete.img',$image->ads_5) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>

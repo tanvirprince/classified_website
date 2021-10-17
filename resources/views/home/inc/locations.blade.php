@@ -48,11 +48,14 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 		<a href="//{{ $image->ads_1_link }}" target="_blank">
 			<img class="lazyload img-thumbnail img-fluid no-margin" alt="{{ $image->ads_1_title }}" src="{{asset('/')}}assets/google_banner/ads_1/{{$image->ads_1 }}" style="max-height:150px;" alt="ads1">
 		</a>
-        {{-- {{ $image->auto_1 }} --}}
+        {!! $image->auto_1 !!}
 	</div>
 @else
 
 @endif
+  {{-- // google ads from backend  --}}
+{!! $image->auto_1 !!}
+
 
 @includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'], ['hideOnMobile' => $hideOnMobile])
 <div class="container{{ $hideOnMobile }}">
