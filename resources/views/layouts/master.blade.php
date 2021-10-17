@@ -181,7 +181,7 @@
 		@endif
 	@show
 
-	<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6481939822625674" crossorigin="anonymous"></script>
+	{{-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6481939822625674" crossorigin="anonymous"></script> --}}
 
 </head>
 <body class="{{ config('app.skin') }}">
