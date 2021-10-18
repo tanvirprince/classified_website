@@ -18,9 +18,15 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 </div>
 @else
 
+@if (!empty($image->auto_1))
+	<div class="container mt-1 d-flex justify-content-center">
+        {!! $image->auto_2 !!}
+	</div>
+
 @endif
 
-{!! $image->auto_2 !!}
+@endif
+
 
 
 {{-- temporay commetn for client request  --}}

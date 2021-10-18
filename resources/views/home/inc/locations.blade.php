@@ -40,7 +40,13 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 @php
 	$image = App\Models\GoogleAds::where('id',1)->first();
 @endphp
-	@if (!empty($image->ads_1))
+  {{-- // google ads from backend  --}}
+
+
+
+
+
+@if (!empty($image->ads_1))
 	<div class="container mt-1">
 		<ul class="list-unstyled footer-nav text-center">
 			<li> Advertise zone 1 </li>
@@ -52,9 +58,16 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 	</div>
 @else
 
+	@if (!empty($image->auto_1))
+	<div class="container mt-1 d-flex justify-content-center">
+		{!! $image->auto_1 !!}
+	</div>
+
+	@else
+
+	@endif
+
 @endif
-  {{-- // google ads from backend  --}}
-{!! $image->auto_1 !!}
 
 
 @includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'], ['hideOnMobile' => $hideOnMobile])
