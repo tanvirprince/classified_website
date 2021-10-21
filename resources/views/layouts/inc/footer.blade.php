@@ -86,7 +86,7 @@ if (
 
 		</div>
 		<div class="col-md-4">
-			<h2 class="footer-title">{{ $footer->title5 }}</h2>
+			<h2 class="footer-title">CLASSIFIED ADS FACEBOOK GROUP</h2>
 
 			<iframe src="https://www.facebook.com/plugins/group.php?href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fbusinessjourneynet&width=250&show_metadata=false&appId=872948206507683&height=241" width="250" height="241" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
