@@ -41,11 +41,12 @@
 	<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_3/{{$image->ads_3 }}" style="max-height:150px;" alt="ads3">
 	</a>
 	</div>
-	@else
+	{{-- @else --}}
 
 	@endif
-    {!! $image->auto_3 !!}
-
+    <div class="container mt-1">
+        {!! $image->auto_3 !!}
+   </div>
 	<div class="main-container">
 
 		<?php if (isset($topAdvertising) and !empty($topAdvertising)): ?>
