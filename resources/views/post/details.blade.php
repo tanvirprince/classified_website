@@ -44,9 +44,11 @@
 	{{-- @else --}}
 
 	@endif
-    <div class="container mt-1">
+    <div class="container mt-1 d-flex justify-content-center">
         {!! $image->auto_3 !!}
    </div>
+
+
 	<div class="main-container">
 
 		<?php if (isset($topAdvertising) and !empty($topAdvertising)): ?>

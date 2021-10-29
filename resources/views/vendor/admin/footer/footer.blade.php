@@ -19,7 +19,7 @@
 @section('content')
 
 
-	
+
 	<div class="row">
 		<div class="col-12">
 			<div class="card rounded">
@@ -37,7 +37,7 @@
                     </div>
                 @endif
 
-                
+
                 <div class="card-body">
 
                     <form method="POST" action="{{route('footer.store')}}">
@@ -136,12 +136,12 @@
                           <label for="exampleInputEmail1">Link 10 </label>
                           <input type="text" value="{{ $footer->link10 }}" name="link10" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Link 10">
                         </div>
-                        
+
                         {{-- <div class="form-group">
                           <label for="exampleInputPassword1"> Field Ten </label>
                           <input type="text" value="{{ $footer->pinterest }}" name="pinterest" class="form-control" id="exampleInputPassword1" placeholder="pinterest">
                         </div> --}}
-                      </div>  
+                      </div>
                       <div class="col-md-4">
                         <div class="form-group">
                           <div class="alert alert-primary text-center text-bold" role="alert">Footer 2</div>
@@ -189,14 +189,14 @@
                           <label for="exampleInputEmail1">Field Five Link</label>
                           <input type="text" value="{{ $footer->link20 }}" name="link20" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Field 5 link">
                         </div>
-                        
+
                         <div class="form-group">
                           <div class="alert alert-primary text-center text-bold" role="alert">Footer 5</div>
                           <label for="exampleInputEmail1"><span class="badge badge-primary">(Footer 5) Title Five</span></label>
                           <input type="text" value="{{ $footer->title4 }}" name="title4" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title 4">
                         </div>
-                        
-                        
+
+
                         <div class="form-group">
                           <label for="exampleInputPassword1"> (Footer 5) Field One  </label>
                           <input type="text" value="{{ $footer->company_details }}" name="company_details" class="form-control" id="exampleInputPassword1" placeholder="company_details">
@@ -205,7 +205,7 @@
                           <label for="exampleInputEmail1">Field One Link</label>
                           <input type="text" value="{{ $footer->link21 }}" name="link21" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Field 1 link">
                         </div>
-                        
+
                         <div class="form-group">
                           <label for="exampleInputPassword1"> (Footer 5) Field Two </label>
                           <input type="text" value="{{ $footer->link }}" name="link" class="form-control" id="exampleInputPassword1" placeholder="link">
@@ -239,7 +239,7 @@
                           <input type="text" value="{{ $footer->link25 }}" name="link25" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Field 5 link">
                         </div>
 
-                        
+
 
                       </div>
                       <div class="col-md-4">
@@ -289,26 +289,30 @@
                           <input type="text" value="{{ $footer->link5 }}" name="link5" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Link 5">
                         </div>
                         <div class="form-group">
-                          <div class="alert alert-primary text-center text-bold" role="alert">Footer 5</div>
+                          <div class="alert alert-primary text-center text-bold" role="alert">Footer 6</div>
                           <label for="exampleInputEmail1"><span class="badge badge-primary">(Footer 6) Title Six</span></label>
                           <input type="text" value="{{ $footer->title5 }}" name="title5" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Title Six">
+                        </div>
+                        <div class="form-group">
+                          <label for="exampleInputEmail1"> Footer facebook Group Title </label>
+                          <input type="text" value="{{ $footer->pinterest }}" name="pinterest" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="footer Title 3">
                         </div>
                         {{-- <div class="form-group">
                           <label for="exampleInputEmail1">Ads Suggustion Title</label>
                           <input type="text" value="{{ $footer->menu7 }}" name="menu7" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Ads Suggestion Ttile">
-                        </div> --}} 
-                      </div>  
+                        </div> --}}
+                      </div>
                       <button type="submit" class="btn btn-primary">Submit</button>
                       </form>
                   </div>
                 </div>
 
-              
-				
-			
+
+
+
 			</div>
 		</div>
-		
+
 	</div>
 
 @endsection
@@ -316,7 +320,7 @@
 @section('after_styles')
 	@parent
 	<style>
-		
+
 	</style>
 @endsection
 

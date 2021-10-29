@@ -86,7 +86,7 @@ if (
 
 		</div>
 		<div class="col-md-4">
-			<h2 class="footer-title">CLASSIFIED ADS FACEBOOK GROUP</h2>
+			<h2 class="footer-title">{{ $footer->pinterest }}</h2>
 
 			<iframe src="https://www.facebook.com/plugins/group.php?href=https%3A%2F%2Fwww.facebook.com%2Fgroups%2Fbusinessjourneynet&width=250&show_metadata=false&appId=872948206507683&height=241" width="250" height="241" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
@@ -227,7 +227,7 @@ if (
 										<div class="{!! $footerSocialClass !!}">
 											<h4 class="footer-title {!! $footerSocialTitleClass !!}">{{ $footer->title5 }}</h4>
 											<ul class="list-unstyled list-inline footer-nav social-list-footer social-list-color footer-nav-inline">
-												@if (config('settings.social_link.facebook_page_url'))
+												{{-- @if (config('settings.social_link.facebook_page_url'))
 												<li>
 													<a class="icon-color fb" title="" data-placement="top" data-toggle="tooltip" href="{{ config('settings.social_link.facebook_page_url') }}" data-original-title="Facebook">
 														<i class="fab fa-facebook"></i>
@@ -268,39 +268,29 @@ if (
 														<i class="fab fa-pinterest-p"></i>
 													</a>
 												</li>
-												@endif
+												@endif --}}
 											</ul>
 										</div>
-										@php
-											$fb_footer = App\Models\Fb_foote::where('id',1)->first();
-											@endphp
-											<br>
-											<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBusinessJourneynet&tabs&width=280&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=872948206507683" width="280" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
-											{{-- <div class="col-8">
-											<div class="card">
-
-												<div class="card-body">
-													<h3> {{ $fb_footer->title }} </h3>
-													<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}storage/{{$fb_footer->image }}" style="width:50px;height:50px;" alt="footer link">
-
-													<a href="//{{ $fb_footer->link }}">
-													<button type="button" class="btn" style="color: blue;">
-														<i class="fab fa-facebook"></i>
-														Visit Page
-													</button>
-												</a>
-												</div>
-											</div> --}}
-										</div>
 									</div>
-								@endif
+                                {{-- <footer> --}}
+                                    @endif
+                                    @php
+                                    $fb_footer = App\Models\Fb_foote::where('id',1)->first();
+                                    @endphp
+                                    <br>
+                                    <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FBusinessJourneynet&tabs&width=280&height=130&small_header=false&adapt_container_width=false&hide_cover=false&show_facepile=false&appId=872948206507683" width="280" height="130" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+
+                                    </div>
+                                {{-- footer  --}}
 							</div>
 						</div>
 					@endif
 
 					<div style="clear: both"></div>
 				@endif
+
+
 
 				<div class="col-xl-12">
 					@if (!config('settings.footer.hide_payment_plugins_logos') and isset($paymentMethods) and $paymentMethods->count() > 0)
