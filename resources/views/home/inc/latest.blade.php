@@ -34,7 +34,7 @@ $popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 
 @endphp
 
-<div id="London" class="tabcontent">
+<div id="London" class="tabcontent" style="display: block;">
 	<br/>
 	<br/>
 
