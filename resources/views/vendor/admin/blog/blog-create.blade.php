@@ -45,22 +45,22 @@
 									@csrf
 									<div class="form-group">
 									<label for="exampleInputEmail1">Title</label>
-									<input type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Blog Title">
+									<input required type="text" name="title" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Blog Title">
 									<small id="emailHelp" class="form-text text-muted"> Please Create a Title for Frontend Menu.</small>
 									</div>
 									<div class="form-group">
 									<label for="exampleInputEmail1">Short Description </label>
-									<input type="text" name="short_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="short description">
+									<input required type="text" name="short_description" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="short description">
 									</div>
 									</div>
 									<div class="form-group">
 									<label for="exampleInputPassword1"> Image </label>
-									<input type="file" name="image" class="form-control" id="exampleInputPassword1">
+									<input required type="file" name="image" class="form-control" id="exampleInputPassword1">
 									</div>
 
                                     <div class="form-group">
                                     <label class="form-check-label text-dark-primary"> Description  </label>
-                                    <textarea name="body" id="default"></textarea>
+                                    <textarea required name="body" id="default"></textarea>
                                     </div>
 
 									<div class="form-group form-check">
