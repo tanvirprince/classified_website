@@ -35,11 +35,12 @@
                 @endif
 				<div class="col-md-12">
 					<div class="row">
-						<div class="col-md-6 col-sm-12 bg-light-info">
+						<div class="col-md-6 col-sm-12">
 							<div class="card-body">
 
 								<form method="POST" action="{{route('update.banner')}}" enctype="multipart/form-data">
 									@csrf
+                                <div class="bg-light-primary card-body">
 									<div class="form-group">
 									<label for="exampleInputPassword2"> Ads 1 Home page </label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_1_link}}" name="ads_1_link" placeholder="link">
@@ -54,7 +55,9 @@
 									@endif
 									<input type="file" name="ads_1" class="form-control" id="exampleInputPassword2">
 									</div>
+                                </div>
 <hr>
+                                <div class="bg-light-info card-body">
 									<div class="form-group">
 									<label for="exampleInputPassword2"> Ads 2 Home page </label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_2_link}}" name="ads_2_link" placeholder="link">
@@ -66,12 +69,14 @@
 									<a href="{{ route('delete.img',$image->ads_2) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>
 										<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_2/{{$image->ads_2 }}" style="max-height:150px;" alt="ads2">
 									@else
-										<img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="ads2">
+										<img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 80px;" alt="ads2">
 									@endif
 
 									<input type="file" name="ads_2" class="form-control" id="exampleInputPassword2">
 									</div>
+                                </div>
 <hr>
+                                <div class="bg-light-success card-body">
 									<div class="form-group">
 									<label for="exampleInputPassword2">Inside Page Ads 3</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_3_link}}" name="ads_3_link" placeholder="link">
@@ -88,6 +93,8 @@
 									<input type="file" name="ads_3" class="form-control" id="exampleInputPassword2">
 									</div>
 <hr>
+                                </div>
+                                <div class="bg-light-warning card-body">
 									<div class="form-group">
 									<label for="exampleInputPassword2">Inside Page Ads 4</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_4_link}}" name="ads_4_link" placeholder="link">
@@ -98,12 +105,14 @@
 									<a href="{{ route('delete.img',$image->ads_4) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>
 										<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_4/{{$image->ads_4 }}" style="max-height:150px;" alt="ads4">
 									@else
-										<img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="ads4">
+										<img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 80px;" alt="ads4">
 									@endif
 									<input type="file" name="ads_4" class="form-control" id="exampleInputPassword2">
 									</div>
+                                </div>
 <hr>
-									<div class="form-group">
+                                <div class="bg-light-danger card-body">
+                                    <div class="form-group">
 									<label for="exampleInputPassword2">Inside Page Ads 5</label>
 									<input type="text" class="form-control" id="exampleInputEmail1" value="{{$image->ads_5_link}}" name="ads_5_link" placeholder="link">
 
@@ -114,11 +123,11 @@
 									<a href="{{ route('delete.img',$image->ads_5) }}" class="btn btn-danger mt-2 mb-2"> Delete</a>
 									    <img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_5/{{$image->ads_5 }}" style="max-height:150px;" alt="ads5">
 									@else
-										<img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="ads5">
+										<img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 80px;" alt="ads5">
 									@endif
 									<input type="file" name="ads_5" class="form-control" id="exampleInputPassword2">
 									</div>
-
+                                </div>
 
 
 									<button type="submit" class="btn btn-primary">Submit</button>
@@ -128,6 +137,7 @@
 						</div>
 						<div class="col-md-6 col-sm-12 bg-light-primary">
 							<div class="card-body ">
+                                <h1> SEO </h1>
 								<form method="POST" action="{{route('update.seo-image')}}" enctype="multipart/form-data">
 
 									<div class="form-group">

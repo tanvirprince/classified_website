@@ -19,6 +19,9 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 @else
 
 @if (!empty($image->auto_1))
+    <ul class="list-unstyled footer-nav text-center">
+        <li> Advertise zone 2 </li>
+    </ul>
 	<div class="container mt-1 d-flex justify-content-center">
         {!! $image->auto_2 !!}
 	</div>

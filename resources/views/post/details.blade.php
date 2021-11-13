@@ -37,16 +37,19 @@
 		<li> Advertise zone 8 </li>
 	</ul>
 	<div class="container mt-1">
-	<a href="//{{ $image->ads_3_link }}" target="_blank">
-	<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_3/{{$image->ads_3 }}" style="max-height:150px;" alt="ads3">
-	</a>
+        <a href="//{{ $image->ads_3_link }}" target="_blank">
+        <img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_3/{{$image->ads_3 }}" style="max-height:150px;" alt="ads3">
+        </a>
 	</div>
-	{{-- @else --}}
-
+	@else
+        <ul class="list-unstyled footer-nav text-center">
+            <li> Advertise zone 8 </li>
+        </ul>
+        <div class="container mt-1 d-flex justify-content-center">
+            {!! $image->auto_3 !!}
+        </div>
 	@endif
-    <div class="container mt-1 d-flex justify-content-center">
-        {!! $image->auto_3 !!}
-   </div>
+
 
 
 	<div class="main-container">
@@ -142,19 +145,22 @@
 						@endif
 						{{-- ads 4  --}}
 						@if (!empty($image->ads_4))
-						<div class="container mt-2 mb-2">
-							<ul class="list-unstyled footer-nav text-center">
-								<li> Advertise zone 9 </li>
-							</ul>
-						<a href="//{{ $image->ads_4_link }}" target="_blank">
-						<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_4/{{$image->ads_4 }}" style="max-height:150px;" alt="ads4">
-						</a>
-						</div>
+                            <div class="container mt-2 mb-2">
+                                <ul class="list-unstyled footer-nav text-center">
+                                    <li> Advertise zone 9 </li>
+                                </ul>
+                                <a href="//{{ $image->ads_4_link }}" target="_blank">
+                                    <img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_4/{{$image->ads_4 }}" style="max-height:150px;" alt="ads4">
+                                </a>
+                            </div>
 						@else
-						{{-- ads 4  --}}
-
+                            <ul class="list-unstyled footer-nav text-center">
+                                <li> Advertise zone 9 </li>
+                            </ul>
+                            <div class="container mt-2 mb-2">
+                                {!! $image->auto_4 !!}
+                            </div>
 						@endif
-                        {!! $image->auto_4 !!}
 
 
 
@@ -364,9 +370,14 @@
 					</a>
 					</div>
 					@else
+                        <ul class="list-unstyled footer-nav text-center">
+                            <li> Advertise zone 10 </li>
+                        </ul>
+                        <div class="container mt-2 mb-2">
+                            {!! $image->auto_5 !!}
+                        </div>
 					@endif
 					{{-- ads 5  --}}
-                    {!! $image->auto_5 !!}
 
 				</div>
 				<!--/.page-content-->
