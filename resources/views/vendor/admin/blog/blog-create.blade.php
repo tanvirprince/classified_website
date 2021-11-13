@@ -98,7 +98,7 @@
 
 @section('after_scripts')
 	@parent
-    <script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script src="https://cdn.tiny.cloud/1/n9j8yxszuxym2dm1l77lffua43cefck6pl27f2etoi3pvt62/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
 <script>
     tinymce.init({
   selector: 'textarea#default',

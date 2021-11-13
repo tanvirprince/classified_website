@@ -369,14 +369,14 @@
 										</a>
 									</li>
 								@endif
-								@if (userHasSuperAdminPermissions())
+								{{-- @if (userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('facebook_footer') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
 											<span class="hide-menu"> Footer FB </span>
 										</a>
 									</li>
-								@endif
+								@endif --}}
 								@if (auth()->user()->can('language-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('languages') }}" class="sidebar-link">
