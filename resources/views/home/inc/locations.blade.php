@@ -151,18 +151,37 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 									@endforeach
 								</div>
 							</div>
+                            @if (Auth::user()->user_approve == 1)
 
-							@if ($loc['showButton'])
-								@if (!auth()->check() and config('settings.single.guests_can_post_ads') != '1')
-									<a class="btn btn-lg" style="background-color: red; color:white;" href="#quickLogin" data-toggle="modal">
-										<i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
-									</a>
-								@else
-									<a class="btn btn-lg pl-4 pr-4" style="background-color: red; color:white;" href="{{ \App\Helpers\UrlGen::addPost() }}" style="text-transform: none;">
-										<i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
-									</a>
-								@endif
-							@endif
+                                @if ($loc['showButton'])
+                                    @if (!auth()->check() and config('settings.single.guests_can_post_ads') != '1')
+                                        <a class="btn btn-lg" style="background-color: red; color:white;" href="#quickLogin" data-toggle="modal">
+                                            <i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
+                                        </a>
+                                    @else
+                                        <a class="btn btn-lg pl-4 pr-4" style="background-color: red; color:white;" href="{{ \App\Helpers\UrlGen::addPost() }}" style="text-transform: none;">
+                                            <i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
+                                        </a>
+                                    @endif
+                                @endif
+                            @else
+                            @if ($loc['showButton'])
+                                    @if (!auth()->check() and config('settings.single.guests_can_post_ads') != '1')
+                                        <a onclick="myFunction()" class="btn btn-lg" style="background-color: red; color:white;" data-toggle="modal">
+                                            <i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
+                                        </a>
+                                    @else
+                                        <a onclick="myFunction()" class="btn btn-lg pl-4 pr-4" style="background-color: red; color:white;"  style="text-transform: none;">
+                                            <i class="fa fa-plus-circle"></i> {{ t('Add Listing') }}
+                                        </a>
+                                    @endif
+                                @endif
+                            <script>
+                                function myFunction() {
+                                  alert("You are not Approved! You Can not post.");
+                                }
+                                </script>
+                            @endif
 
 						</div>
 					@endif

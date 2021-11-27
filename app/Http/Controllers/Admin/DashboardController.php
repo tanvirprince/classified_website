@@ -212,10 +212,28 @@ class DashboardController extends PanelController
 		return view('admin::fb.footer',compact('footer','footer_fb'));
 	}
 	public function recom(){
-		$footer = Footer::find(1)->first();
-		$footer_fb = Fb_foote::find(1)->first();
-		return view('admin::suggest_title',compact('footer','footer_fb'));
+		// $footer = Footer::find(1)->first();
+		// $footer_fb = Fb_foote::find(1)->first();
+        $users = User::latest()->paginate(10);
+		return view('admin::suggest_title',compact('users'));
 	}
+
+    public function approveStatus($id){
+        // return $id;
+		$user_status = User::where('id',$id)->first();
+        // return $user_status;
+        $user_status->user_approve = 1;
+        $user_status->save();
+        return redirect()->back()->with('message','Successfully Updated');;
+
+    }
+    public function cancelStatus($id){
+		$user_status = User::where('id',$id)->first();
+        $user_status->user_approve = 0;
+        $user_status->save();
+        return redirect()->back()->with('message','Successfully Updated');;
+
+    }
 
 	public function storeFooter(Request $request){
 		$footers = Footer::get();
@@ -378,29 +396,34 @@ class DashboardController extends PanelController
 
 	public function updateFb(Request $request){
 
-		if($request->image){
+        $about = Fb_foote::find(1)->first();
+		$about->title = $request->title;
+        $about->link = $request->link;
+        $about->save();
+        return redirect()->back()->with('success', 'It has been Added successfully');
+        // if($request->image){
 
 
-			$file = '';
-			if ($request->hasFile('image')){
-				$file = Storage::disk('public')->put('about', $request->file('image'));
-			}
-			$about = Fb_foote::find(1)->first();
-			if ($request->hasFile('image')){
-				$about->title = $request->title;
-				$about->link = $request->link;
-				$about->image = $file;
-				$about->save();
+		// 	$file = '';
+		// 	if ($request->hasFile('image')){
+		// 		$file = Storage::disk('public')->put('about', $request->file('image'));
+		// 	}
+		// 	$about = Fb_foote::find(1)->first();
+		// 	if ($request->hasFile('image')){
+		// 		$about->title = $request->title;
+		// 		$about->link = $request->link;
+		// 		$about->image = $file;
+		// 		$about->save();
 
-			}else{
-				$about->title = $request->title;
-				$about->body = $request->body;
-				$about->save();
-			}
-			return redirect()->back()
-				->with('success', 'about has been Added successfully');
+		// 	}else{
+		// 		$about->title = $request->title;
+		// 		$about->link = $request->link;
+		// 		$about->save();
+		// 	}
+		// 	return redirect()->back()
+		// 		->with('success', 'about has been Added successfully');
 
-		}
+		// }
 
 	}
 

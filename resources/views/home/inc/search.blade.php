@@ -87,17 +87,17 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 }
 ?>
 @if (isset($sForm['enableFormAreaCustomization']) and $sForm['enableFormAreaCustomization'] == '1')
-	
+
 	@if (isset($firstSection) and !$firstSection)
 		<div class="h-spacer"></div>
 	@endif
-	
+
 	<?php $parallax = (isset($sForm['parallax']) and $sForm['parallax'] == '1') ? 'parallax' : ''; ?>
 	<div class="wide-intro {{ $parallax }}{{ $hideOnMobile }}">
 		<div class="dtable hw100">
 			<div class="dtable-cell hw100">
 				<div class="container text-center">
-					
+
 					{{-- @if ($sForm['hideTitles'] != '1')
 						<h1 class="intro-title animated fadeInDown"> {{ $sForm['title'] }} </h1>
 						<p class="sub animateme fittext3 animated fadeIn">
@@ -105,11 +105,28 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 						</p>
 					@endif --}}
 
-					<div class="text-center mb-5"> 
-						<h1> <span class="color-world-black">World</span>  <span class="color-classified">Classifieds Ads & More </span>.</h1> 
-						<h2> <span class="color-bjourney-black">Level up your Personal &</span> <span class="color-bjourney-red">Business Journey</span> </h2>
+					<div class="text-center mb-5">
+						<h1>
+                            <span class="color-world-black"> </span>  <span class="color-classified">
+                                @if (!empty($footer_fb->title))
+                                {{ $footer_fb->title }}
+                                @else
+                                World Classifieds Ads & More
+                                @endif
+                        </span>.
+                        </h1>
+						<h2>
+                            <span class="color-bjourney-black">
+                                @if (!empty($footer_fb->title))
+                                {{ $footer_fb->title }}
+                                @else
+                                Level up your Personal & Business Journey
+                                @endif
+                            </span>
+                            <span class="color-bjourney-red"></span>
+                        </h2>
 					</div>
-				
+
 					@if ($sForm['hideForm'] != '1')
 						<div class="search-row animated fadeInUp rounded">
 							<form id="search" name="search" action="{{ \App\Helpers\UrlGen::search() }}" method="GET">
@@ -118,7 +135,7 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 										<i class="icon-keyboard icon-append"></i>
 										<input type="text" name="q" class="form-control keyword has-icon" placeholder="Enter Keyword" value="">
 									</div>
-									
+
 									<div class="col-md-5 col-sm-12 search-col relative locationicon">
 										<i class="icon-location-circled icon-append"></i>
 										<input type="hidden" id="lSearch" name="l" value="">
@@ -132,7 +149,7 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 												   placeholder="Please Enter Your Location" value="">
 										@endif
 									</div>
-									
+
 									<div class="col-md-2 col-sm-12 search-col">
 										<button class="btn btn-search btn-block" style="color: white;">
 											<i class="icon-search"></i> Search
@@ -142,21 +159,21 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 							</form>
 						</div>
 					@endif
-				
+
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 @else
-	
+
 	@includeFirst([config('larapen.core.customizedViewPath') . 'home.inc.spacer', 'home.inc.spacer'])
 	<div class="container">
 		<div class="intro rounded">
 			<div class="dtable hw100">
 				<div class="dtable-cell hw100">
 					<div class="container text-center">
-						
+
 						<div class="search-row fadeInUp">
 							<form id="search" name="search" action="{{ \App\Helpers\UrlGen::search() }}" method="GET">
 								<div class="row m-0">
@@ -164,7 +181,7 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 										<i class="icon-docs icon-append"></i>
 										<input type="text" name="q" class="form-control keyword has-icon" placeholder="{{ t('what') }}" value="">
 									</div>
-									
+
 									<div class="col-md-5 col-sm-12 search-col relative locationicon">
 										<i class="icon-location-2 icon-append"></i>
 										<input type="hidden" id="lSearch" name="l" value="">
@@ -178,7 +195,7 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 												   placeholder="{{ t('where') }}" value="">
 										@endif
 									</div>
-									
+
 									<div class="col-md-2 col-sm-12 search-col">
 										<button class="btn btn-primary btn-search btn-block">
 											<i class="icon-search"></i> <strong>{{ t('find') }}</strong>
@@ -188,11 +205,11 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 								</div>
 							</form>
 						</div>
-	
+
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-	
+
 @endif

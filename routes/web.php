@@ -98,6 +98,10 @@ Route::group([
 		Route::get('ads/suggest', 'DashboardController@suggest')->name('ads.suggest');
 		// title suggestion recom
 		Route::get('ads/recomandation', 'DashboardController@recom')->name('recom.suggest');
+        Route::get('user/approved/{id}', 'DashboardController@approveStatus')->name('user.approved');
+        Route::get('user/cancel/{id}', 'DashboardController@cancelStatus')->name('user.cancel');
+
+
 
 		Route::get('/suggest/store/{id}', 'DashboardController@storeSuggestion')->name('suggest.store');
 		Route::get('/suggest/off/{id}', 'DashboardController@suggestionOff')->name('suggest.off');
@@ -132,7 +136,7 @@ Route::group([
 		Route::get('footer', 'DashboardController@footer')->name('footer.create');
 		Route::post('footer/store', 'DashboardController@storeFooter')->name('footer.store');
 
-		Route::get('facebook_footer', 'DashboardController@storeFb')->name('facebook_footer.create');
+		Route::get('home-page-title', 'DashboardController@storeFb')->name('facebook_footer.create');
 		Route::post('facebook_footer/store', 'DashboardController@updateFb')->name('facebook_footer.store');
 
 		// recomaded text route

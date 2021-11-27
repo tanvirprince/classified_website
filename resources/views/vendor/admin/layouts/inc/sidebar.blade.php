@@ -266,6 +266,11 @@
 										</a>
 									</li>
 								@endif
+                                <li class="sidebar-item">
+                                    <a href="{{ admin_url('ads/recomandation') }}" class="sidebar-link">
+                                         <span class="hide-menu"> Users Approve </span>
+                                    </a>
+                                </li>
 								@if (auth()->user()->can('role-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('roles') }}" class="sidebar-link">
@@ -369,14 +374,14 @@
 										</a>
 									</li>
 								@endif
-								{{-- @if (userHasSuperAdminPermissions())
+								@if (userHasSuperAdminPermissions())
 									<li class="sidebar-item">
-										<a href="{{ admin_url('facebook_footer') }}" class="sidebar-link">
+										<a href="{{ admin_url('home-page-title') }}" class="sidebar-link">
 											<i class="mdi mdi-adjust"></i>
-											<span class="hide-menu"> Footer FB </span>
+											<span class="hide-menu"> Home Page Title </span>
 										</a>
 									</li>
-								@endif --}}
+								@endif
 								@if (auth()->user()->can('language-list') || userHasSuperAdminPermissions())
 									<li class="sidebar-item">
 										<a href="{{ admin_url('languages') }}" class="sidebar-link">

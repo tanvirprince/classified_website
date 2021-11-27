@@ -26,7 +26,7 @@ if (request()->segment(1) != 'countries') {
 <div class="header">
 	<nav class="navbar fixed-top navbar-site navbar-light bg-light navbar-expand-md" role="navigation">
 		<div class="container">
-			
+
 			<div class="navbar-identity">
 				{{-- Logo --}}
 				<a href="{{ url('/') }}" class="navbar-brand logo logo-title">
@@ -59,7 +59,7 @@ if (request()->segment(1) != 'countries') {
 					@endif
 				@endif
 			</div>
-			
+
 			<div class="navbar-collapse collapse">
 				<ul class="nav navbar-nav navbar-left">
 					{{-- Country Flag --}}
@@ -91,10 +91,10 @@ if (request()->segment(1) != 'countries') {
 					@endif
 				</ul>
 
-				
+
 				@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.menu.select-language', 'layouts.inc.menu.select-language'])
 
-				
+
 				<ul class="nav navbar-nav ml-auto navbar-right">
 					@if (!auth()->check())
 						<li class="nav-item">
@@ -155,11 +155,11 @@ if (request()->segment(1) != 'countries') {
 							</ul>
 						</li>
 					@endif
-					
+
 					@if (config('plugins.currencyexchange.installed'))
 						@include('currencyexchange::select-currency')
 					@endif
-					
+
 					@if (config('settings.single.pricing_page_enabled') == '2')
 						<li class="nav-item pricing">
 							<a href="{{ \App\Helpers\UrlGen::pricing() }}" class="nav-link">
@@ -169,27 +169,27 @@ if (request()->segment(1) != 'countries') {
 					@endif
 
 					@php
-					$menu = App\Models\Menu::where('status',null)->get()	
-					@endphp 
+					$menu = App\Models\Menu::where('status',null)->get()
+					@endphp
 					@if (!empty($menu))
 						@foreach ($menu as $menus)
 						<li class="nav-item pricing">
 							<a href="{{ $menus->link }}" class="nav-link">
 								<i class="{{ $menus->icon}}"></i> {{$menus->title}}
 							</a>
-						</li>	
+						</li>
 						@endforeach
-					
-						
+
+
 					@endif
 
 					{{-- drop down 1  --}}
 					@php
 						$footer = App\Models\Footer::find(1)->first();
 					@endphp
-					
+
 					@if ($footer->dropdown_1_status == '1')
-						
+
 						<li class="nav-item dropdown no-arrow">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span>{{ $footer->dropdown_1 }}</span>
@@ -210,7 +210,7 @@ if (request()->segment(1) != 'countries') {
 					@endif
 					{{-- drop down 2  --}}
 					@if ($footer->dropdown_2_status == '1')
-						
+
 						<li class="nav-item dropdown no-arrow">
 							<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 								<span>{{ $footer->dropdown_2 }}</span>
@@ -232,7 +232,7 @@ if (request()->segment(1) != 'countries') {
 
 
 
-					
+
 						{{-- <li class="nav-item pricing">
 							<a href="{{ url('sitemap') }}" class="nav-link">
 								<i class="fas fa-book"></i> Blog
@@ -253,8 +253,8 @@ if (request()->segment(1) != 'countries') {
 								<i class="fas fa-kiwi-bird"></i> FAQ
 							</a>
 						</li> --}}
-					
-					
+
+
 					<?php
 						$addListingUrl = \App\Helpers\UrlGen::addPost();
 						$addListingAttr = '';
@@ -269,18 +269,33 @@ if (request()->segment(1) != 'countries') {
 							$addListingAttr = '';
 						}
 					?>
-					<li class="nav-item postadd">
+                    @if (Auth::user()->user_approve == 1)
+                    <li class="nav-item postadd">
 						<a class="btn btn-block" style="background-color: red; color: white;" href="{{ $addListingUrl }}"{!! $addListingAttr !!}>
 							<i class="fa fa-plus-circle"></i> <strong>{{ t('Add Listing') }}</strong>
 						</a>
 					</li>
+                    @else
+                    <li class="nav-item postadd">
+						<a onclick="myFunction()" class="btn btn-block" style="background-color: red; color: white;" href="#" >
+							<i class="fa fa-plus-circle"></i> <strong>{{ t('Add Listing') }}</strong>
+						</a>
+					</li>
+
+                    <script>
+                    function myFunction() {
+                      alert("You are not Approved! You Can not post.");
+                    }
+                    </script>
+                    @endif
+
 					{{-- <button type="button" class="btn" style="background-color: red;"><i class="fa fa-plus-circle"></i>{{ t('Add Listing') }}</button> --}}
-					
-					
+
+
 				</ul>
 			</div>
-			
-			
+
+
 		</div>
 	</nav>
 </div>
