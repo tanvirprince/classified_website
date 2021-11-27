@@ -68,9 +68,9 @@ $popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
 
 								@if (!empty($image))
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
+								<a href="{{ url("/$all->slug-$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
 								@else
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
+								<a href="{{ url("/$all->slug-$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
 								@endif
 
 
@@ -79,7 +79,7 @@ $popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 						</div>
 						<div class="col-sm-7 col-12 add-desc-box">
 							<div class="items-details">
-								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<h5 class="add-title"><a href="{{ url("/$all->slug-$all->id")}}">{{ $all->title }} </a></h5>
 								<span class="info-row">
 
 										<span class="date">
@@ -148,9 +148,9 @@ $popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
 
 								@if (!empty($image))
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
+								<a href="{{ url("/$all->slug-$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
 								@else
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
+								<a href="{{ url("/$all->slug-$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
 								@endif
 
 
@@ -159,7 +159,7 @@ $popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 						</div>
 						<div class="col-sm-7 col-12 add-desc-box">
 							<div class="items-details">
-								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<h5 class="add-title"><a href="{{ url("/$all->slug-$all->id")}}">{{ $all->title }} </a></h5>
 								<span class="info-row">
 
 										<span class="date">
@@ -230,9 +230,9 @@ $popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 								<span class="photo-count"><i class="fa fa-camera"></i> 1 </span>
 
 								@if (!empty($image))
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
+								<a href="{{ url("/$all->slug-$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}storage/{{$image }}" style="height: 180px;" alt="Web Developer"> </a>
 								@else
-								<a href="{{ url("/$all->slug/$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
+								<a href="{{ url("/$all->slug-$all->id")}}"><img class="lazyload img-thumbnail no-margin" src="{{asset('/')}}images/no_image.jpg" style="height: 180px;" alt="Web Developer"> </a>
 								@endif
 
 
@@ -241,7 +241,7 @@ $popular = App\Models\Post::get()->sortByDesc('visits')->take(4);
 						</div>
 						<div class="col-sm-7 col-12 add-desc-box">
 							<div class="items-details">
-								<h5 class="add-title"><a href="{{ url("/$all->slug/$all->id")}}">{{ $all->title }} </a></h5>
+								<h5 class="add-title"><a href="{{ url("/$all->slug-$all->id")}}">{{ $all->title }} </a></h5>
 								<span class="info-row">
 
 										<span class="date">
