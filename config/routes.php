@@ -1,7 +1,7 @@
-<?php 
+<?php
 
 return [
-    'post' => '{slug}/{id}',
+    'post' => '{slug}-{id}',
     'search' => 'search',
     'searchPostsByUserId' => 'users/{id}/ads',
     'searchPostsByUsername' => 'profile/{username}',
