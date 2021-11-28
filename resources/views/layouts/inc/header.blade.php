@@ -263,6 +263,10 @@ if (request()->segment(1) != 'countries') {
                                 $addListingUrl = '#';
 						        $addListingAttr = '';
                                 $check = 'onclick="myFunction()"';
+                            }else{
+                                $addListingUrl = \App\Helpers\UrlGen::addPost();;
+						        $addListingAttr = '';
+                                $check = '';
                             }
                         }
 						if (!auth()->check()) {
