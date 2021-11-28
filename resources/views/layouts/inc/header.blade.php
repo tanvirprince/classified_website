@@ -258,36 +258,38 @@ if (request()->segment(1) != 'countries') {
 					<?php
 						$addListingUrl = \App\Helpers\UrlGen::addPost();
 						$addListingAttr = '';
+                        if (auth()->check()) {
+                            if(!Auth::user()->user_approve == 1){
+                                $addListingUrl = '#';
+						        $addListingAttr = '';
+                                $check = 'onclick="myFunction()"';
+                            }
+                        }
 						if (!auth()->check()) {
 							if (config('settings.single.guests_can_post_ads') != '1') {
 								$addListingUrl = '#quickLogin';
 								$addListingAttr = ' data-toggle="modal"';
+                                $check = '';
 							}
 						}
 						if (config('settings.single.pricing_page_enabled') == '1') {
 							$addListingUrl = \App\Helpers\UrlGen::pricing();
 							$addListingAttr = '';
+                            $check = '';
 						}
 					?>
-                    @if (Auth::user()->user_approve == 1)
                     <li class="nav-item postadd">
-						<a class="btn btn-block" style="background-color: red; color: white;" href="{{ $addListingUrl }}"{!! $addListingAttr !!}>
+						<a {!! $check !!} class="btn btn-block" style="background-color: red; color: white;" href="{{ $addListingUrl }}"{!! $addListingAttr !!}>
 							<i class="fa fa-plus-circle"></i> <strong>{{ t('Add Listing') }}</strong>
 						</a>
 					</li>
-                    @else
-                    <li class="nav-item postadd">
-						<a onclick="myFunction()" class="btn btn-block" style="background-color: red; color: white;" href="#" >
-							<i class="fa fa-plus-circle"></i> <strong>{{ t('Add Listing') }}</strong>
-						</a>
-					</li>
-
                     <script>
-                    function myFunction() {
-                      alert("You are not Approved! You Can not post.");
-                    }
+                        function myFunction() {
+                        alert("You are not Approved! You Can not post.");
+                        }
                     </script>
-                    @endif
+
+
 
 					{{-- <button type="button" class="btn" style="background-color: red;"><i class="fa fa-plus-circle"></i>{{ t('Add Listing') }}</button> --}}
 

@@ -30,21 +30,21 @@ class UrlGen
 		if (is_array($entry)) {
 			$entry = ArrayHelper::toObject($entry);
 		}
-		
+
 		if (isset($entry->id) && isset($entry->title)) {
 			$preview = !isVerifiedPost($entry) ? '?preview=1' : '';
-			
+
 			$slug = ($encoded) ? rawurlencode($entry->slug) : $entry->slug;
-			
+
 			$path = str_replace(['{slug}', '{id}'], [$slug, $entry->id], config('routes.post'));
 			$path = $path . $preview;
 		} else {
 			$path = '#';
 		}
-		
+
 		return $path;
 	}
-	
+
 	/**
 	 * @param $entry
 	 * @param bool $encoded
@@ -53,10 +53,10 @@ class UrlGen
 	public static function postUri($entry, $encoded = false)
 	{
 		$uri = self::postPath($entry, $encoded);
-		
+
 		return $uri;
 	}
-	
+
 	/**
 	 * @param $entry
 	 * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string|null
@@ -66,12 +66,12 @@ class UrlGen
 		if (is_array($entry)) {
 			$entry = ArrayHelper::toObject($entry);
 		}
-		
+
 		$url = url(self::postPath($entry));
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param bool $httpError
 	 * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string|null
@@ -81,10 +81,10 @@ class UrlGen
 		$url = (config('settings.single.publication_form_type') == '2')
 			? url('create')
 			: url('posts/create');
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param $entry
 	 * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string|null
@@ -94,7 +94,7 @@ class UrlGen
 		if (is_array($entry)) {
 			$entry = ArrayHelper::toObject($entry);
 		}
-		
+
 		if (isset($entry->id)) {
 			$url = (config('settings.single.publication_form_type') == '2')
 				? url('edit/' . $entry->id)
@@ -102,10 +102,10 @@ class UrlGen
 		} else {
 			$url = '#';
 		}
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param $cat
 	 * @param null $except
@@ -115,13 +115,13 @@ class UrlGen
 	public static function getCatParentUrl($cat, $except = null, $debug = false)
 	{
 		if (Str::startsWith(config('routes.searchPostsByCat'), request()->segment(1) . '/')) {
-			
+
 			$catParentUrl = (isset($cat->parent) && !empty($cat->parent))
 				? UrlGen::category($cat->parent, null, null, false)
 				: UrlGen::category($cat, null, null, false);
-			
+
 		} else {
-			
+
 			if (is_null($except)) {
 				$except = [];
 				if (request()->filled('c') && request()->filled('sc')) {
@@ -135,28 +135,28 @@ class UrlGen
 					}
 				}
 			}
-			
+
 			if (is_string($except)) {
 				$except = [$except];
 			}
-			
+
 			if (!is_array($except)) {
 				self::search();
 			}
-			
+
 			$except = array_filter($except); // Remove empty elements
-			
+
 			if (!in_array('cf', $except)) {
 				$except[] = 'cf';
 			}
-			
+
 			$catParentUrl = self::search([], $except);
-			
+
 		}
-		
+
 		return $catParentUrl;
 	}
-	
+
 	/**
 	 * @param $entry
 	 * @param null $countryCode
@@ -171,27 +171,27 @@ class UrlGen
 				'l'  => $city->id,
 				'c'  => $entry->id,
 			];
-			
+
 			$url = self::search(array_merge(request()->except(['page'] + array_keys($params)), $params));
-			
+
 			return $url;
 		}
-		
+
 		if (empty($countryCode)) {
 			$countryCode = config('country.code');
 		}
-		
+
 		$countryCodePath = '';
 		if (config('settings.seo.multi_countries_urls')) {
 			if (!empty($countryCode)) {
 				$countryCodePath = strtolower($countryCode) . '/';
 			}
 		}
-		
+
 		if (is_array($entry)) {
 			$entry = ArrayHelper::toObject($entry);
 		}
-		
+
 		if (isset($entry->slug)) {
 			if ($findParent && isset($entry->parent) && !empty($entry->parent)) {
 				$path = str_replace(['{countryCode}/', '{catSlug}', '{subCatSlug}'], ['', $entry->parent->slug, $entry->slug], config('routes.searchPostsBySubCat'));
@@ -202,10 +202,10 @@ class UrlGen
 		} else {
 			$url = self::search();
 		}
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param $entry
 	 * @param null $countryCode
@@ -227,12 +227,12 @@ class UrlGen
 					'c'  => $cat->id,
 				];
 			}
-			
+
 			$url = self::search(array_merge(request()->except(['page'] + array_keys($params)), $params));
-			
+
 			return $url;
 		}
-		
+
 		if (empty($countryCode)) {
 			if (isset($entry->country_code) && !empty($entry->country_code)) {
 				$countryCode = $entry->country_code;
@@ -240,18 +240,18 @@ class UrlGen
 				$countryCode = config('country.code');
 			}
 		}
-		
+
 		$countryCodePath = '';
 		if (config('settings.seo.multi_countries_urls')) {
 			if (!empty($countryCode)) {
 				$countryCodePath = strtolower($countryCode) . '/';
 			}
 		}
-		
+
 		if (is_array($entry)) {
 			$entry = ArrayHelper::toObject($entry);
 		}
-		
+
 		if (isset($entry->id, $entry->name)) {
 			$path = str_replace(['{countryCode}/', '{city}', '{id}'], ['', $entry->slug ?? slugify($entry->name), $entry->id], config('routes.searchPostsByCity'));
 			$path = $countryCodePath . $path;
@@ -263,10 +263,10 @@ class UrlGen
 		} else {
 			$url = '#';
 		}
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param $entry
 	 * @param null $countryCode
@@ -277,18 +277,18 @@ class UrlGen
 		if (empty($countryCode)) {
 			$countryCode = config('country.code');
 		}
-		
+
 		$countryCodePath = '';
 		if (config('settings.seo.multi_countries_urls')) {
 			if (!empty($countryCode)) {
 				$countryCodePath = strtolower($countryCode) . '/';
 			}
 		}
-		
+
 		if (is_array($entry)) {
 			$entry = ArrayHelper::toObject($entry);
 		}
-		
+
 		if (isset($entry->username) && !empty($entry->username)) {
 			$path = str_replace(['{countryCode}/', '{username}'], ['', $entry->username], config('routes.searchPostsByUsername'));
 			$url = url($countryCodePath . $path);
@@ -300,10 +300,10 @@ class UrlGen
 				$url = '#';
 			}
 		}
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param $tag
 	 * @param null $countryCode
@@ -314,20 +314,20 @@ class UrlGen
 		if (empty($countryCode)) {
 			$countryCode = config('country.code');
 		}
-		
+
 		$countryCodePath = '';
 		if (config('settings.seo.multi_countries_urls')) {
 			if (!empty($countryCode)) {
 				$countryCodePath = strtolower($countryCode) . '/';
 			}
 		}
-		
+
 		$path = str_replace(['{countryCode}/', '{tag}'], ['', $tag], config('routes.searchPostsByTag'));
 		$url = url($countryCodePath . $path);
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param null $countryCode
 	 * @param null $companyId
@@ -338,24 +338,24 @@ class UrlGen
 		if (empty($countryCode)) {
 			$countryCode = config('country.code');
 		}
-		
+
 		$countryCodePath = '';
 		if (config('settings.seo.multi_countries_urls')) {
 			if (!empty($countryCode)) {
 				$countryCodePath = strtolower($countryCode) . '/';
 			}
 		}
-		
+
 		if (!empty($companyId)) {
 			$path = str_replace(['{countryCode}/', '{id}'], ['', $companyId], config('routes.searchPostsByCompanyId'));
 			$url = url($countryCodePath . $path);
 		} else {
 			$url = url($countryCodePath . config('routes.companies'));
 		}
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param array $queryArr
 	 * @param array $exceptArr
@@ -368,26 +368,26 @@ class UrlGen
 		if (empty($countryCode)) {
 			$countryCode = config('country.code');
 		}
-		
+
 		$countryCodePath = '';
 		if (config('settings.seo.multi_countries_urls')) {
 			if (!empty($countryCode)) {
 				$countryCodePath = strtolower($countryCode) . '/';
 			}
 		}
-		
+
 		if ($currentUrl) {
 			$url = request()->url();
 		} else {
 			$path = str_replace(['{countryCode}/'], [''], config('routes.search'));
 			$url = $countryCodePath . $path;
 		}
-		
+
 		$url = qsUrl($url, array_merge(request()->except($exceptArr + array_keys($queryArr)), $queryArr), null, false);
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param $entry
 	 * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string|null
@@ -397,17 +397,17 @@ class UrlGen
 		if (is_array($entry)) {
 			$entry = ArrayHelper::toObject($entry);
 		}
-		
+
 		if (isset($entry->slug)) {
 			$path = str_replace(['{slug}'], [$entry->slug], config('routes.pageBySlug'));
 			$url = url($path);
 		} else {
 			$url = '#';
 		}
-		
+
 		return $url;
 	}
-	
+
 	/**
 	 * @param null $countryCode
 	 * @return bool|\Illuminate\Contracts\Routing\UrlGenerator|mixed|string|null
@@ -417,60 +417,60 @@ class UrlGen
 		if (empty($countryCode)) {
 			$countryCode = config('country.code');
 		}
-		
+
 		$countryCodePath = '';
 		if (config('settings.seo.multi_countries_urls')) {
 			if (!empty($countryCode)) {
 				$countryCodePath = strtolower($countryCode) . '/';
 			}
 		}
-		
+
 		$path = str_replace(['{countryCode}/'], [''], config('routes.sitemap'));
 		$url = url($countryCodePath . $path);
-		
+
 		return $url;
 	}
-	
+
 	public static function countries()
 	{
 		return url(config('routes.countries'));
 	}
-	
+
 	public static function contact()
 	{
 		return url(config('routes.contact'));
 	}
-	
+
 	public static function pricing()
 	{
 		return url(config('routes.pricing'));
 	}
-	
+
 	public static function loginPath()
 	{
 		return config('routes.login');
 	}
-	
+
 	public static function logoutPath()
 	{
 		return config('routes.logout');
 	}
-	
+
 	public static function registerPath()
 	{
 		return config('routes.register');
 	}
-	
+
 	public static function login()
 	{
 		return url(self::loginPath());
 	}
-	
+
 	public static function logout()
 	{
 		return url(self::logoutPath());
 	}
-	
+
 	public static function register()
 	{
 		return url(self::registerPath());
