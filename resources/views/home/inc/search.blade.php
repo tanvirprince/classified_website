@@ -120,8 +120,8 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
                         </h1>
 						<h2>
                             <span class="color-bjourney-black">
-                                @if (!empty($footer_fb->body))
-                                {{ $footer_fb->body }}
+                                @if (!empty($footer_fb->link))
+                                {{ $footer_fb->link }}
                                 @else
                                 Level up your Personal & Business Journey
                                 @endif
