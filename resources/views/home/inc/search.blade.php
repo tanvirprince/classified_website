@@ -104,6 +104,9 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
 							{!! $sForm['subTitle'] !!}
 						</p>
 					@endif --}}
+                        @php
+                        $footer_fb = \App\Models\Fb_foote::find(1)->first();
+                        @endphp
 
 					<div class="text-center mb-5">
 						<h1>
@@ -117,8 +120,8 @@ if (isset($searchFormOptions, $searchFormOptions['hide_on_mobile']) and $searchF
                         </h1>
 						<h2>
                             <span class="color-bjourney-black">
-                                @if (!empty($footer_fb->title))
-                                {{ $footer_fb->title }}
+                                @if (!empty($footer_fb->body))
+                                {{ $footer_fb->body }}
                                 @else
                                 Level up your Personal & Business Journey
                                 @endif
