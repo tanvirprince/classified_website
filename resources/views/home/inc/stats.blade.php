@@ -12,7 +12,7 @@ $image = App\Models\GoogleAds::where('id',1)->first();
 	<ul class="list-unstyled footer-nav text-center">
 		<li> Advertise zone 2 </li>
 	</ul>
-	<a href="//{{ $image->ads_2_link }}" target="_blank">
+	<a href="//{{ $image->ads_2_link }}" target="_blank" class="d-flex justify-content-center">
 		<img class="lazyload img-thumbnail img-fluid no-margin" src="{{asset('/')}}assets/google_banner/ads_2/{{$image->ads_2 }}" style="max-height:150px;" alt="ads2">
 	</a>
 </div>

@@ -51,7 +51,7 @@ if (isset($citiesOptions, $citiesOptions['hide_on_mobile']) and $citiesOptions['
 		<ul class="list-unstyled footer-nav text-center">
 			<li> Advertise zone 1 </li>
 		</ul>
-		<a href="//{{ $image->ads_1_link }}" target="_blank">
+		<a href="//{{ $image->ads_1_link }}" target="_blank" class="d-flex justify-content-center">
 			<img class="lazyload img-thumbnail img-fluid no-margin" alt="{{ $image->ads_1_title }}" src="{{asset('/')}}assets/google_banner/ads_1/{{$image->ads_1 }}" style="max-height:150px;" alt="ads1">
 		</a>
 	</div>
