@@ -48,9 +48,9 @@
 				<div class="col-md-8 page-content">
 					<div class="inner-box">
 						<h2 class="title-2">
-							<strong><i class="icon-user-add"></i> {{ t('create_your_account_it_is_free') }}</strong>
+							<strong><i class="icon-user-add"></i> Create your account </strong>
 						</h2>
-						
+
 						@if (
 							config('settings.social_auth.social_login_activation')
 							and (
@@ -90,7 +90,7 @@
 								</div>
 								@endif
 							</div>
-							
+
 							<div class="row d-flex justify-content-center loginOr">
 								<div class="col-xl-12 mb-1">
 									<hr class="hrOr">
@@ -98,7 +98,7 @@
 								</div>
 							</div>
 						@endif
-						
+
 						<div class="row mt-5">
 							<div class="col-xl-12">
 								<form id="signupForm" class="form-horizontal" method="POST" action="{{ url()->current() }}">
@@ -148,14 +148,14 @@
 														<div class="input-group-prepend">
 															<span id="phoneCountry" class="input-group-text">{!! getPhoneIcon(old('country', config('country.code'))) !!}</span>
 														</div>
-														
+
 														<input name="phone"
 															   placeholder="{{ (!isEnabledField('email')) ? t('Mobile Phone Number') : t('phone_number') }}"
 															   class="form-control input-md{{ $phoneError }}"
 															   type="text"
 															   value="{{ phoneFormat(old('phone'), old('country', config('country.code'))) }}"
 														>
-														
+
 														<div class="input-group-append tooltipHere" data-placement="top"
 															 data-toggle="tooltip"
 															 data-original-title="{{ t('Hide the phone number on the ads') }}">
@@ -168,7 +168,7 @@
 												</div>
 											</div>
 										@endif
-									
+
 										@if (isEnabledField('email'))
 											<!-- email -->
 											<?php $emailError = (isset($errors) and $errors->has('email')) ? ' is-invalid' : ''; ?>
@@ -194,7 +194,7 @@
 												</div>
 											</div>
 										@endif
-									
+
 										@if (isEnabledField('username'))
 											<!-- username -->
 											<?php $usernameError = (isset($errors) and $errors->has('username')) ? ' is-invalid' : ''; ?>
@@ -216,7 +216,7 @@
 												</div>
 											</div>
 										@endif
-										
+
 										<!-- password -->
 										<?php $passwordError = (isset($errors) and $errors->has('password')) ? ' is-invalid' : ''; ?>
 										<div class="form-group row required">
@@ -238,9 +238,9 @@
 												</small>
 											</div>
 										</div>
-										
+
 										@includeFirst([config('larapen.core.customizedViewPath') . 'layouts.inc.tools.recaptcha', 'layouts.inc.tools.recaptcha'], ['colLeft' => 'col-md-4', 'colRight' => 'col-md-6'])
-										
+
 										<!-- accept_terms -->
 										<?php $acceptTermsError = (isset($errors) and $errors->has('accept_terms')) ? ' is-invalid' : ''; ?>
 										<div class="form-group row required">
@@ -252,7 +252,7 @@
 														   value="1"
 														   type="checkbox" {{ (old('accept_terms')=='1') ? 'checked="checked"' : '' }}
 													>
-													
+
 													<label class="form-check-label" for="acceptTerms" style="font-weight: normal;">
 														{!! t('accept_terms_label', ['attributes' => getUrlPageByType('terms')]) !!}
 													</label>
@@ -260,7 +260,7 @@
 												<div style="clear:both"></div>
 											</div>
 										</div>
-										
+
 										<!-- accept_marketing_offers -->
 										<?php $acceptMarketingOffersError = (isset($errors) and $errors->has('accept_marketing_offers')) ? ' is-invalid' : ''; ?>
 										<div class="form-group row required">
@@ -272,7 +272,7 @@
 														   value="1"
 														   type="checkbox" {{ (old('accept_marketing_offers')=='1') ? 'checked="checked"' : '' }}
 													>
-													
+
 													<label class="form-check-label" for="acceptMarketingOffers" style="font-weight: normal;">
 														{!! t('accept_marketing_offers_label') !!}
 													</label>
