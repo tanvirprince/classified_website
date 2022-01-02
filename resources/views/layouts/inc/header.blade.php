@@ -218,7 +218,7 @@ if (request()->segment(1) != 'countries') {
 								<i class="icon-down-open-big fa"></i>
 							</a>
 							@php
-								$drop = App\Models\Menu::where('status','2')->get();
+								$drop = App\Models\Menu::where('status','3')->get();
 							@endphp
 							<ul id="userMenuDropdown" class="dropdown-menu user-menu dropdown-menu-right shadow-sm">
 								{{-- <li class="dropdown-item"><a href="{{ url('account/my-posts') }}"><i class="icon-th-thumb"></i> {{ t('my_ads') }} </a></li> --}}
