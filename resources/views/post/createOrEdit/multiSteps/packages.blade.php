@@ -22,12 +22,12 @@
     <div class="main-container">
         <div class="container">
             <div class="row">
-    
+
                 @includeFirst([config('larapen.core.customizedViewPath') . 'post.inc.notification', 'post.inc.notification'])
-                
+
                 <div class="col-md-12 page-content">
                     <div class="inner-box">
-						
+
                         <h2 class="title-2">
 							<strong>
 								@if (isset($selectedPackage) and !empty($selectedPackage))
@@ -47,21 +47,21 @@
 												  data-toggle="tooltip"
 												  data-original-title="' . $post->title . '"
 										>' . \Illuminate\Support\Str::limit($post->title, 45) . '</a>';
-										
+
 										echo $postLink;
 									}
 								}
 							} catch (\Exception $e) {}
 							?>
 						</h2>
-						
+
                         <div class="row">
                             <div class="col-sm-12">
                                 <form class="form" id="postForm" method="POST" action="{{ url()->current() }}">
                                     {!! csrf_field() !!}
                                     <input type="hidden" name="post_id" value="{{ $post->id }}">
                                     <fieldset>
-										
+
 										@if (isset($selectedPackage) and !empty($selectedPackage))
 											<?php $currentPackagePrice = $selectedPackage->price; ?>
 											@includeFirst([
@@ -74,11 +74,11 @@
 												'post.createOrEdit.inc.packages'
 											])
                                         @endif
-											
+
                                         <!-- Button  -->
                                         <div class="form-group">
                                             <div class="col-md-12 text-center mt-4">
-                                                @if (request()->segment(2) == 'create')
+                                                {{-- @if (request()->segment(2) == 'create')
                                                     <a id="skipBtn" href="{{ url('posts/create/' . $post->tmp_token . '/finish') }}" class="btn btn-default btn-lg">
 														{{ t('Skip') }}
 													</a>
@@ -86,11 +86,11 @@
                                                     <a id="skipBtn" href="{{ \App\Helpers\UrlGen::post($post) }}" class="btn btn-default btn-lg">
 														{{ t('Skip') }}
 													</a>
-                                                @endif
+                                                @endif --}}
                                                 <button id="submitPostForm" class="btn btn-success btn-lg submitPostForm"> {{ t('Pay') }} </button>
                                             </div>
                                         </div>
-                                    
+
                                     </fieldset>
                                 </form>
                             </div>
@@ -115,7 +115,7 @@
 
     <script>
         @if (isset($packages) and isset($paymentMethods) and $packages->count() > 0 and $paymentMethods->count() > 0)
-			
+
 			var currentPackagePrice = {{ isset($currentPackagePrice) ? $currentPackagePrice : 0 }};
 			var currentPaymentActive = {{ isset($currentPaymentActive) ? $currentPaymentActive : 0 }};
 			var isCreationFormPage = {{ request()->segment(2) == 'create' ? 'true' : 'false' }};
@@ -129,7 +129,7 @@
 				var paymentMethod = $('#paymentMethodId').find('option:selected').data('name');
 				showAmount(packagePrice, packageCurrencySymbol, packageCurrencyInLeft);
 				showPaymentSubmitButton(currentPackagePrice, packagePrice, currentPaymentActive, paymentMethod, isCreationFormPage);
-				
+
 				/* Select a Package */
 				$('.package-selection').click(function () {
 					selectedPackage = $(this).val();
@@ -139,25 +139,25 @@
 					showAmount(packagePrice, packageCurrencySymbol, packageCurrencyInLeft);
 					showPaymentSubmitButton(currentPackagePrice, packagePrice, currentPaymentActive, paymentMethod, isCreationFormPage);
 				});
-				
+
 				/* Select a Payment Method */
 				$('#paymentMethodId').on('change', function () {
 					paymentMethod = $(this).find('option:selected').data('name');
 					showPaymentSubmitButton(currentPackagePrice, packagePrice, currentPaymentActive, paymentMethod, isCreationFormPage);
 				});
-				
+
 				/* Form Default Submission */
 				$('#submitPostForm').on('click', function (e) {
 					e.preventDefault();
-					
+
 					if (packagePrice <= 0) {
 						$('#postForm').submit();
 					}
-					
+
 					return false;
 				});
 			});
-        
+
         @endif
 
 		/* Show or Hide the Payment Submit Button */
@@ -168,7 +168,7 @@
 			if (packagePrice > 0) {
 				$('#submitPostForm').show();
 				$('#skipBtn').hide();
-				
+
 				if (currentPackagePrice > packagePrice) {
 					$('#submitPostForm').hide();
 				}
