@@ -34,9 +34,9 @@ class PostRequest extends Request
 {
 	public static $packages;
 	public static $paymentMethods;
-	
+
 	protected $cfMessages = [];
-	
+
 	/**
 	 * Prepare the data for validation.
 	 *
@@ -48,9 +48,9 @@ class PostRequest extends Request
 		if (isFromAdminPanel()) {
 			return;
 		}
-		
+
 		$input = $this->all();
-		
+
 		// title
 		if ($this->filled('title')) {
 			$input['title'] = $this->input('title');
@@ -58,7 +58,7 @@ class PostRequest extends Request
 			$input['title'] = onlyNumCleaner($input['title']);
 			$input['title'] = RemoveFromString::contactInfo($input['title'], true);
 		}
-		
+
 		// description
 		if ($this->filled('description')) {
 			$input['description'] = $this->input('description');
@@ -73,7 +73,7 @@ class PostRequest extends Request
 			}
 			$input['description'] = RemoveFromString::contactInfo($input['description'], true);
 		}
-		
+
 		// price
 		if ($this->has('price')) {
 			if ($this->filled('price')) {
@@ -83,23 +83,23 @@ class PostRequest extends Request
 				$input['price'] = null;
 			}
 		}
-		
+
 		// contact_name
 		if ($this->filled('contact_name')) {
 			$input['contact_name'] = strCleanerLite($this->input('contact_name'));
 			$input['contact_name'] = onlyNumCleaner($input['contact_name']);
 		}
-		
+
 		// phone
 		if ($this->filled('phone')) {
 			$input['phone'] = phoneFormatInt($this->input('phone'), $this->input('country_code', session('country_code')));
 		}
-		
+
 		// tags
 		if ($this->filled('tags')) {
 			$input['tags'] = tagCleaner($this->input('tags'));
 		}
-		
+
 		// is_permanent
 		if ($this->filled('is_permanent')) {
 			$input['is_permanent'] = $this->input('is_permanent');
@@ -120,11 +120,11 @@ class PostRequest extends Request
 		} else {
 			$input['is_permanent'] = 0;
 		}
-		
+
 		request()->merge($input); // Required!
 		$this->merge($input);
 	}
-	
+
 	/**
 	 * Get the validation rules that apply to the request.
 	 *
@@ -144,16 +144,16 @@ class PostRequest extends Request
 			new SluggableRule(),
 			new BlacklistTitleRule(),
 		];
-		$rules['description'] = ['required', new BetweenRule(5, 6000), new MbAlphanumericRule(), new BlacklistWordRule()];
+		$rules['description'] = ['required', new BetweenRule(100, 6000), new MbAlphanumericRule(), new BlacklistWordRule()];
 		$rules['contact_name'] = ['required', new BetweenRule(2, 200)];
 		$rules['email'] = ['max:100', new BlacklistEmailRule(), new BlacklistDomainRule()];
 		$rules['phone'] = ['max:20'];
 		$rules['city_id'] = ['required', 'not_in:0'];
-		
+
 		if (!auth()->check()) {
 			$rules['accept_terms'] = ['accepted'];
 		}
-		
+
 		// CREATE
 		if (in_array($this->method(), ['POST', 'CREATE'])) {
 			if (config('settings.single.publication_form_type') == '2') {
@@ -176,12 +176,12 @@ class PostRequest extends Request
 						$rules['pictures'] = ['required'];
 					}
 				}
-				
+
 				// Package & PaymentMethod
 				if (isset(self::$packages, self::$paymentMethods) and self::$packages->count() > 0 and self::$paymentMethods->count() > 0) {
 					// Require 'package_id' if Packages are available
 					$rules['package_id'] = ['required'];
-					
+
 					// Require 'payment_method_id' if the selected package's price > 0
 					if ($this->has('package_id')) {
 						$package = Package::find($this->input('package_id'));
@@ -191,11 +191,11 @@ class PostRequest extends Request
 					}
 				}
 			}
-			
+
 			// reCAPTCHA
 			$rules = $this->recaptchaRules($rules);
 		}
-		
+
 		// UPDATE
 		if (in_array($this->method(), ['PUT', 'PATCH', 'UPDATE'])) {
 			if (config('settings.single.publication_form_type') == '2') {
@@ -223,14 +223,14 @@ class PostRequest extends Request
 				}
 			}
 		}
-		
+
 		// COMMON
-		
+
 		// Location
 		if (in_array(config('country.admin_type'), ['1', '2']) && config('country.admin_field_active') == 1) {
 			$rules['admin_code'] = ['required', 'not_in:0'];
 		}
-		
+
 		// Email
 		if ($this->filled('email')) {
 			$rules['email'][] = 'email';
@@ -244,7 +244,7 @@ class PostRequest extends Request
 				$rules['email'][] = 'required';
 			}
 		}
-		
+
 		// Phone
 		if (config('settings.sms.phone_verification') == 1) {
 			if ($this->filled('phone')) {
@@ -262,14 +262,14 @@ class PostRequest extends Request
 				$rules['phone'][] = 'required';
 			}
 		}
-		
+
 		// Custom Fields
 		if (!isFromApi()) {
 			$cfRequest = new CustomFieldRequest();
 			$rules = $rules + $cfRequest->rules();
 			$this->cfMessages = $cfRequest->messages();
 		}
-		
+
 		/*
 		 * Tags (Only allow letters, numbers, spaces and ',;_-' symbols)
 		 *
@@ -284,10 +284,10 @@ class PostRequest extends Request
 		if ($this->filled('tags')) {
 			$rules['tags'] = ['regex:/^[\p{L}\p{N} ,;_-]+$/u'];
 		}
-		
+
 		return $rules;
 	}
-	
+
 	/**
 	 * Get custom attributes for validator errors.
 	 *
@@ -296,30 +296,30 @@ class PostRequest extends Request
 	public function attributes()
 	{
 		$attributes = [];
-		
+
 		if ($this->file('pictures')) {
 			$files = $this->file('pictures');
 			foreach ($files as $key => $file) {
 				$attributes['pictures.' . $key] = t('picture X', ['key' => ($key + 1)]);
 			}
 		}
-		
+
 		return $attributes;
 	}
-	
+
 	/**
 	 * @return array
 	 */
 	public function messages()
 	{
 		$messages = [];
-		
+
 		// Category & Sub-Category
 		if ($this->filled('parent_id') && !empty($this->input('parent_id'))) {
 			$messages['category_id.required'] = t('The field is required', ['field' => mb_strtolower(t('sub_category'))]);
 			$messages['category_id.not_in'] = t('The field is required', ['field' => mb_strtolower(t('sub_category'))]);
 		}
-		
+
 		if (config('settings.single.publication_form_type') == '2') {
 			// Picture
 			if ($this->file('pictures')) {
@@ -332,13 +332,13 @@ class PostRequest extends Request
 						'field'   => t('picture X', ['key' => ($key + 1)]),
 						'maxSize' => readableBytes($maxSize),
 					]);
-					
+
 					$uploadMaxFilesizeStr = @ini_get('upload_max_filesize');
 					$postMaxSizeStr = @ini_get('post_max_size');
 					if (!empty($uploadMaxFilesizeStr) && !empty($postMaxSizeStr)) {
 						$uploadMaxFilesize = (int)strToDigit($uploadMaxFilesizeStr);
 						$postMaxSize = (int)strToDigit($postMaxSizeStr);
-						
+
 						$serverMaxSize = min($uploadMaxFilesize, $postMaxSize);
 						$serverMaxSize = $serverMaxSize * 1024 * 1024; // Convert MB to KB to Bytes
 						if ($serverMaxSize < $maxSize) {
@@ -348,22 +348,22 @@ class PostRequest extends Request
 							]);
 						}
 					}
-					
+
 					$messages['pictures.' . $key . '.uploaded'] = $msg;
 				}
 			}
-			
+
 			// Package & PaymentMethod
 			$messages['package_id.required'] = trans('validation.required_package_id');
 			$messages['payment_method_id.required'] = t('validation.required_payment_method_id');
 			$messages['payment_method_id.not_in'] = t('validation.required_payment_method_id');
 		}
-		
+
 		// Custom Fields
 		if (!isFromApi()) {
 			$messages = $messages + $this->cfMessages;
 		}
-		
+
 		return $messages;
 	}
 }
