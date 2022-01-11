@@ -78,15 +78,15 @@
                                         <!-- Button  -->
                                         <div class="form-group">
                                             <div class="col-md-12 text-center mt-4">
-                                                {{-- @if (request()->segment(2) == 'create')
-                                                    <a id="skipBtn" href="{{ url('posts/create/' . $post->tmp_token . '/finish') }}" class="btn btn-default btn-lg">
+                                                @if (request()->segment(2) == 'create')
+                                                    {{-- <a id="skipBtn" href="{{ url('posts/create/' . $post->tmp_token . '/finish') }}" class="btn btn-default btn-lg">
 														{{ t('Skip') }}
-													</a>
+													</a> --}}
                                                 @else
                                                     <a id="skipBtn" href="{{ \App\Helpers\UrlGen::post($post) }}" class="btn btn-default btn-lg">
 														{{ t('Skip') }}
 													</a>
-                                                @endif --}}
+                                                @endif
                                                 <button id="submitPostForm" class="btn btn-success btn-lg submitPostForm"> {{ t('Pay') }} </button>
                                             </div>
                                         </div>
